@@ -65,6 +65,17 @@
 %    \end{tikzpicture}
 %  }
 
+	\fancypagestyle{base} {%
+		\fancyhead{
+			\bool_if:NT \l__coc_show_background_bool
+			{
+				\begin{tikzpicture}[remember~picture,overlay]
+					\node[inner~sep=0pt] at (current~page.center) {\includegraphics[width=\paperwidth,height=\paperheight]{\PATH templates/template_coc/img/paper.jpg}};
+				\end{tikzpicture}
+			}
+		}
+	}%
+	
 	\fancypagestyle {plain} {}
 
 	\fancypagestyle{empty}{%

@@ -1,0 +1,56 @@
+\begin{pageTikZ}
+	%% Skills Line
+	\draw[line width=0.75pt, black] (41.621,296.777) -- ++(0,21.809)  -- ++(-5.155,0) arc[start angle=270, end angle=180, radius=6.014] -- ++(0,42.763) arc[start angle=180, end angle=90, radius=6.014] -- ++(5.155,0) -- ++(0,295.441);
+	
+	%% Skill Score Boxes
+	\foreach \i in {0,...,18}
+	{
+		\pgfmathsetmacro{\hpos}{294.639 + \i * 20.122};
+		%%% Left
+		\draw[line width=0.75, black] (219.466,\hpos) arc[start angle=-90, end angle=0, radius=3.007] -- ++(0,8.549) arc[start angle=0, end angle=90, radius=3.007] -- ++(-62.718,0) arc[start angle=90, end angle=180, radius=3.007] -- ++(0,-8.549) arc[start angle=180, end angle=270, radius=3.007] -- cycle;
+		\draw[line width=0.75, black] (176.652,\hpos) -- ++(0,14.563);
+		\draw[line width=0.75, black] (199.532,\hpos) -- ++(0,14.563);
+		%%% Middle
+		\draw[line width=0.75, black] (400.318,\hpos) arc[start angle=-90, end angle=0, radius=3.007] -- ++(0,8.549) arc[start angle=0, end angle=90, radius=3.007] -- ++(-62.718,0) arc[start angle=90, end angle=180, radius=3.007] -- ++(0,-8.549) arc[start angle=180, end angle=270, radius=3.007] -- cycle;
+		\draw[line width=0.75, black] (357.504,\hpos) -- ++(0,14.563);
+		\draw[line width=0.75, black] (380.414,\hpos) -- ++(0,14.563);
+		%%% Right
+		\draw[line width=0.75, black] (581.17,\hpos) arc[start angle=-90, end angle=0, radius=3.007] -- ++(0,8.549) arc[start angle=0, end angle=90, radius=3.007] -- ++(-62.718,0) arc[start angle=90, end angle=180, radius=3.007] -- ++(0,-8.549) arc[start angle=180, end angle=270, radius=3.007] -- cycle;
+		\draw[line width=0.75, black] (538.356,\hpos) -- ++(0,14.563);
+		\draw[line width=0.75, black] (561.266,\hpos) -- ++(0,14.563);
+	}
+	
+	%% Skill Squares
+	\foreach \i in {0,...,18}
+	{
+		\pgfmathsetmacro{\hpos}{297.646 + \i * 20.122};
+		\ifthenelse{\equal{\i}{8}}{}{\ifthenelse{\equal{\i}{9}}{}{%
+			\draw[line width=0.75, black] (55.797,\hpos) rectangle ++(-8.549,8.549);
+		}}
+		\draw[line width=0.75, black] (236.649,\hpos) rectangle ++(-8.549,8.549);
+		\draw[line width=0.75, black] (417.501,\hpos) rectangle ++(-8.549,8.549);
+	}
+	
+	%% Empty Lines
+	%%% Left
+	\draw[line width=0.75, black] (58.797, 386.683) -- ++(70,0);
+	\draw[line width=0.75, black] (58.797, 406.805) -- ++(90,0);
+	\draw[line width=0.75, black] (58.797, 628.147) -- ++(90,0);
+	\draw[line width=0.75, black] (58.797, 648.269) -- ++(90,0);
+	%%% Middle
+	\draw[line width=0.75, black] (239.649, 326.317) -- ++(90,0);
+	\draw[line width=0.75, black] (239.649, 426.927) -- ++(70,0);
+	\draw[line width=0.75, black] (239.649, 447.049) -- ++(90,0);
+	\draw[line width=0.75, black] (239.649, 467.171) -- ++(90,0);
+	\draw[line width=0.75, black] (239.649, 487.293) -- ++(70,0);
+	%%% Right
+	\draw[line width=0.75, black] (420.501, 326.317) -- ++(70,0);
+	\draw[line width=0.75, black] (420.501, 406.805) -- ++(70,0);
+	\draw[line width=0.75, black] (420.501, 426.927) -- ++(90,0);
+	\draw[line width=0.75, black] (420.501, 447.049) -- ++(90,0);
+	\draw[line width=0.75, black] (420.501, 527.537) -- ++(70,0);
+	\draw[line width=0.75, black] (420.501, 608.025) -- ++(90,0);
+	\draw[line width=0.75, black] (420.501, 628.147) -- ++(90,0);
+	\draw[line width=0.75, black] (420.501, 648.269) -- ++(90,0);
+	\draw[line width=0.75, black] (420.501, 668.391) -- ++(90,0);
+\end{pageTikZ}

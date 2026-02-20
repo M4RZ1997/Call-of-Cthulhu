@@ -1,0 +1,890 @@
+% --------------------------------------------------------------------------------------------------------------- %
+% #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# CALCULATION #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
+% --------------------------------------------------------------------------------------------------------------- %
+% Calculate Scores
+\newcommand{\calculateCharacteristicStats}{%
+	\StrengthScore{\intcalcAdd{\intcalcMul{\StrengthRolledValue}{5}}{\StrengthModificationValue}}
+	\ConstitutionScore{\intcalcAdd{\intcalcMul{\ConstitutionRolledValue}{5}}{\ConstitutionModificationValue}}
+	\DexterityScore{\intcalcAdd{\intcalcMul{\DexterityRolledValue}{5}}{\DexterityModificationValue}}
+	\IntelligenceScore{\intcalcAdd{\intcalcMul{\IntelligenceRolledValue}{5}}{\IntelligenceModificationValue}}
+	\SizeScore{\intcalcAdd{\intcalcMul{\SizeRolledValue}{5}}{\SizeModificationValue}}
+	\PowerScore{\intcalcAdd{\intcalcMul{\PowerRolledValue}{5}}{\PowerModificationValue}}
+	
+	\calculateAppearanceScore{}
+	
+	\EducationScore{\intcalcAdd{\intcalcMul{\EducationRolledValue}{5}}{\EducationModificationValue}}
+	\LuckStarting{\intcalcAdd{\intcalcMul{\LuckRolledValue}{5}}{\LuckModificationValue}}
+	
+	\HitPointsMaximum{\intcalcDiv{\intcalcAdd{\ConstitutionScoreValue}{\SizeScoreValue}}{10}}
+	\MagicPointsMaximum{\intcalcDiv{\PowerScoreValue}{5}}
+	\SanityStarting{\PowerScoreValue}
+	
+	\calculateDamageBonusAndBuild{\intcalcAdd{\StrengthScoreValue}{\SizeScoreValue}}
+	\calculateMove{}
+}%
+
+\newcommand{\calculateAppearanceScore}{%
+	\def\ageDeduction{0}
+	\ifthenelse{\CharacterAgeValue < 40}{}{%
+		\ifthenelse{\CharacterAgeValue < 50}{
+			\def\ageDeduction{5}
+		}{%
+			\ifthenelse{\CharacterAgeValue < 60}{
+				\def\ageDeduction{10}
+			}{%
+				\ifthenelse{\CharacterAgeValue < 70}{
+					\def\ageDeduction{15}
+				}{%
+					\ifthenelse{\CharacterAgeValue < 80}{
+						\def\ageDeduction{20}
+					}{%
+						\def\ageDeduction{25}
+					}%
+				}%
+			}%
+		}%
+	}%
+	
+	\AppearanceScore{\intcalcSub{\intcalcAdd{\intcalcMul{\AppearanceRolledValue}{5}}{\AppearanceModificationValue}}{\ageDeduction}}
+	
+}%
+\newcommand{\calculateDamageBonusAndBuild}[1]{%
+	\ifthenelse{#1<64}{%
+		\DamageBonus{-2}
+		\Build{-2}
+	}{%
+		\ifthenelse{#1<84}{%
+			\DamageBonus{-1}
+			\Build{-1}
+		}{%
+			\ifthenelse{#1<124}{%
+				\DamageBonus{None}
+				\Build{0}
+			}{%
+				\ifthenelse{#1<164}{%
+					\DamageBonus{+1D4}
+					\Build{+1}
+				}{%
+					\DamageBonus{+1D6}
+					\Build{+2}
+				}%
+			}%
+		}%
+	}%
+}%
+\newcommand{\calculateMove}{%
+	\ifthenelse{\DexterityScoreValue < \SizeScoreValue}{%
+		\ifthenelse{\StrengthScoreValue < \SizeScoreValue}{\def\base{7}}{\def\base{8}}
+	}{%
+		\ifthenelse{\DexterityScoreValue = \SizeScoreValue}{%
+			\def\base{8}
+		}{%
+			\ifthenelse{\StrengthScoreValue < \SizeScoreValue}{\def\base{8}}{%
+				\ifthenelse{\StrengthScoreValue = \SizeScoreValue}{\def\base{8}}{%
+					\def\base{9}
+				}%
+			}
+		}
+	}%
+	\ifthenelse{\CharacterAgeValue < 40}{\def\reduction{0}}{%
+		\ifthenelse{\CharacterAgeValue < 50}{\def\reduction{1}}{%
+			\ifthenelse{\CharacterAgeValue < 60}{\def\reduction{2}}{%
+				\ifthenelse{\CharacterAgeValue < 70}{\def\reduction{3}}{%
+					\ifthenelse{\CharacterAgeValue < 80}{\def\reduction{4}}{\def\reduction{5}}%
+				}%
+			}%
+		}%
+	}%
+	\Move{\intcalcSub{\base}{\reduction}}%
+}%
+
+% Calculate Halves and Fifths
+\newcommand{\calculateHalf}[1]{%
+	\ifthenelse{\equal{#1}{}}{}{\intcalcShr{#1}}%
+}%
+\newcommand{\calculateFifth}[1]{%
+	\ifthenelse{\equal{#1}{}}{}{\intcalcDiv{#1}{5}}%
+}%
+
+% Calculate Wealth
+%% Spending Level
+\newcommand{\calculateSpendingLevel}{%
+	\ifthenelse{\CreditRatingValue < 1}{%
+		\ifthenelse{\equal{\ERA}{1920s}}{\SpendingLevel{\$ 0.50}}{\SpendingLevel{\$ 10}}
+	}{%
+		\ifthenelse{\CreditRatingValue < 10}{%
+			\ifthenelse{\equal{\ERA}{1920s}}{\SpendingLevel{\$ 2}}{\SpendingLevel{\$ 40}}
+		}{%
+			\ifthenelse{\CreditRatingValue < 50}{%
+				\ifthenelse{\equal{\ERA}{1920s}}{\SpendingLevel{\$ 10}}{\SpendingLevel{\$ 200}}
+			}{%
+				\ifthenelse{\CreditRatingValue < 90}{%
+					\ifthenelse{\equal{\ERA}{1920s}}{\SpendingLevel{\$ 50}}{\SpendingLevel{\$ 1'000}}
+				}{%
+					\ifthenelse{\CreditRatingValue < 99}{%
+						\ifthenelse{\equal{\ERA}{1920s}}{\SpendingLevel{\$ 250}}{\SpendingLevel{\$ 5'000}}
+					}{%
+						\ifthenelse{\equal{\ERA}{1920s}}{\SpendingLevel{\$ 5'000}}{\SpendingLevel{\$ 100'000}}
+					}%
+				}%
+			}%
+		}%
+	}%
+}%
+%% Cash
+\newcommand{\calculateCash}{%
+	\ifthenelse{\CreditRatingValue < 1}{%
+		\ifthenelse{\equal{\ERA}{1920s}}{\Cash{\$ 0.50}}{\Cash{\$ 10}}
+	}{%
+		\ifthenelse{\CreditRatingValue < 10}{%
+			\ifthenelse{\equal{\ERA}{1920s}}{\Cash{\$ \intcalcMul{\CreditRatingValue}{1}}}{\Cash{\$ \intcalcMul{\CreditRatingValue}{20}}}
+		}{%
+			\ifthenelse{\CreditRatingValue < 50}{%
+				\ifthenelse{\equal{\ERA}{1920s}}{\Cash{\$ \intcalcMul{\CreditRatingValue}{2}}}{\Cash{\$ \intcalcMul{\CreditRatingValue}{40}}}
+			}{%
+				\ifthenelse{\CreditRatingValue < 90}{%
+					\ifthenelse{\equal{\ERA}{1920s}}{\Cash{\$ \intcalcMul{\CreditRatingValue}{5}}}{\Cash{\$ \intcalcMul{\CreditRatingValue}{100}}}
+				}{%
+					\ifthenelse{\CreditRatingValue < 99}{%
+						\ifthenelse{\equal{\ERA}{1920s}}{\Cash{\$ \intcalcMul{\CreditRatingValue}{20}}}{\Cash{\$ \intcalcMul{\CreditRatingValue}{400}}}
+					}{%
+						\ifthenelse{\equal{\ERA}{1920s}}{\Cash{\$ 50'000}}{\Cash{\$ 1'000'000}}
+					}%
+				}%
+			}%
+		}%
+	}%
+}%
+%% Assets
+\newcommand{\calculateAssets}{%
+	\ifthenelse{\CreditRatingValue < 1}{%
+		\ifthenelse{\equal{\ERA}{1920s}}{\Assets{None}}{\Assets{None}}
+	}{%
+		\ifthenelse{\CreditRatingValue < 10}{%
+			\ifthenelse{\equal{\ERA}{1920s}}{\Assets{\$ \intcalcMul{\CreditRatingValue}{10}}}{\Assets{\$ \intcalcMul{\CreditRatingValue}{200}}}
+		}{%
+			\ifthenelse{\CreditRatingValue < 50}{%
+				\ifthenelse{\equal{\ERA}{1920s}}{\Assets{\$ \intcalcMul{\CreditRatingValue}{50}}}{\Assets{\$ \intcalcMul{\CreditRatingValue}{1000}}}
+			}{%
+				\ifthenelse{\CreditRatingValue < 90}{%
+					\ifthenelse{\equal{\ERA}{1920s}}{\Assets{\$ \intcalcMul{\CreditRatingValue}{500}}}{\Assets{\$ \intcalcMul{\CreditRatingValue}{10000}}}
+				}{%
+					\ifthenelse{\CreditRatingValue < 99}{%
+						\ifthenelse{\equal{\ERA}{1920s}}{\Assets{\$ \intcalcMul{\CreditRatingValue}{2000}}}{\Assets{\$ \intcalcMul{\CreditRatingValue}{40000}}}
+					}{%
+						\ifthenelse{\equal{\ERA}{1920s}}{\Assets{\$ 5'000'000+}}{\Assets{\$ 100'000'000+}}
+					}%
+				}%
+			}%
+		}%
+	}%
+}%
+
+% --------------------------------------------------------------------------------------------------------------- %
+% #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# CHARACTER SHEET #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
+% --------------------------------------------------------------------------------------------------------------- %
+% CHARACTER INFO
+\newcommand{\CharacterNameValue}{}
+\newcommand{\CharacterBirthplaceValue}{}
+\newcommand{\CharacterPronounValue}{}
+\newcommand{\CharacterOccupationValue}{}
+\newcommand{\CharacterResidenceValue}{}
+\newcommand{\CharacterAgeValue}{}
+\newcommand{\CharacterImageValue}{}
+
+\newcommand{\CharacterImageNode}{
+	\node at (507.1635,91.726) {\includegraphics[width=101.807pt, height=120.124pt, keepaspectratio]{\CharacterImageValue}};
+}
+
+\newcommand{\CharacterName}[1]{\renewcommand{\CharacterNameValue}{#1}}
+\newcommand{\Birthplace}[1]{\renewcommand{\CharacterBirthplaceValue}{#1}}
+\newcommand{\Pronoun}[1]{\renewcommand{\CharacterPronounValue}{#1}}
+\newcommand{\Occupation}[1]{\renewcommand{\CharacterOccupationValue}{#1}}
+\newcommand{\Residence}[1]{\renewcommand{\CharacterResidenceValue}{#1}}
+\newcommand{\Age}[1]{\renewcommand{\CharacterAgeValue}{#1}}
+
+\NewDocumentCommand{\CharacterImage}{O{}O{} m}{%
+	\renewcommand{\CharacterImageValue}{#3}
+	\ifthenelse{\equal{#2}{}}{}{%
+		\ifthenelse{\equal{#2}{Width}}{%
+			\renewcommand{\CharacterImageNode}{%
+				\node[#1] at (507.1635,91.726) {\includegraphics[width=101.807pt, keepaspectratio]{\CharacterImageValue}};
+			}%
+		}{%
+			\ifthenelse{\equal{#2}{Height}}{%
+				\renewcommand{\CharacterImageNode}{%
+					\node[#1] at (507.1635,91.726) {\includegraphics[height=120.124pt, keepaspectratio]{\CharacterImageValue}};
+				}%
+			}{%
+				\renewcommand{\CharacterImageNode}{%
+					\node[#1] at (507.1635,91.726) {\includegraphics[#2]{\CharacterImageValue}};
+				}%
+			}%
+		}%
+	}%
+}%
+
+% CHARACTERISTICS STATS
+%% ROLLED
+\newcommand{\StrengthRolledValue}{}
+\newcommand{\ConstitutionRolledValue}{}
+\newcommand{\DexterityRolledValue}{}
+\newcommand{\IntelligenceRolledValue}{}
+\newcommand{\SizeRolledValue}{}
+\newcommand{\PowerRolledValue}{}
+\newcommand{\AppearanceRolledValue}{}
+\newcommand{\EducationRolledValue}{}
+\newcommand{\LuckRolledValue}{}
+
+\newcommand{\StrengthRolled}[1]{\renewcommand{\StrengthRolledValue}{#1}}
+\newcommand{\ConstitutionRolled}[1]{\renewcommand{\ConstitutionRolledValue}{#1}}
+\newcommand{\DexterityRolled}[1]{\renewcommand{\DexterityRolledValue}{#1}}
+\newcommand{\IntelligenceRolled}[1]{\renewcommand{\IntelligenceRolledValue}{#1}}
+\newcommand{\SizeRolled}[1]{\renewcommand{\SizeRolledValue}{#1}}
+\newcommand{\PowerRolled}[1]{\renewcommand{\PowerRolledValue}{#1}}
+\newcommand{\AppearanceRolled}[1]{\renewcommand{\AppearanceRolledValue}{#1}}
+\newcommand{\EducationRolled}[1]{\renewcommand{\EducationRolledValue}{#1}}
+\newcommand{\LuckRolled}[1]{\renewcommand{\LuckRolledValue}{#1}}
+
+%% MODIFICATION
+\newcommand{\StrengthModificationValue}{0}
+\newcommand{\ConstitutionModificationValue}{0}
+\newcommand{\DexterityModificationValue}{0}
+\newcommand{\IntelligenceModificationValue}{0}
+\newcommand{\SizeModificationValue}{0}
+\newcommand{\PowerModificationValue}{0}
+\newcommand{\AppearanceModificationValue}{0}
+\newcommand{\EducationModificationValue}{0}
+\newcommand{\LuckModificationValue}{0}
+
+\newcommand{\StrengthModification}[1]{\renewcommand{\StrengthModificationValue}{#1}}
+\newcommand{\ConstitutionModification}[1]{\renewcommand{\ConstitutionModificationValue}{#1}}
+\newcommand{\DexterityModification}[1]{\renewcommand{\DexterityModificationValue}{#1}}
+\newcommand{\IntelligenceModification}[1]{\renewcommand{\IntelligenceModificationValue}{#1}}
+\newcommand{\SizeModification}[1]{\renewcommand{\SizeModificationValue}{#1}}
+\newcommand{\PowerModification}[1]{\renewcommand{\PowerModificationValue}{#1}}
+\newcommand{\AppearanceModification}[1]{\renewcommand{\AppearanceModificationValue}{#1}}
+\newcommand{\EducationModification}[1]{\renewcommand{\EducationModificationValue}{#1}}
+\newcommand{\LuckModification}[1]{\renewcommand{\LuckModificationValue}{#1}}
+
+%% DISPLAY VALUES
+\newcommand{\StrengthScoreValue}{}
+\newcommand{\ConstitutionScoreValue}{}
+\newcommand{\DexterityScoreValue}{}
+\newcommand{\IntelligenceScoreValue}{}
+\newcommand{\SizeScoreValue}{}
+\newcommand{\PowerScoreValue}{}
+\newcommand{\AppearanceScoreValue}{}
+\newcommand{\EducationScoreValue}{}
+
+\newcommand{\StrengthScore}[1]{\renewcommand{\StrengthScoreValue}{\intcalcMin{\intcalcMax{#1}{0}}{99}}}
+\newcommand{\ConstitutionScore}[1]{\renewcommand{\ConstitutionScoreValue}{\intcalcMin{\intcalcMax{#1}{0}}{99}}}
+\newcommand{\DexterityScore}[1]{\renewcommand{\DexterityScoreValue}{\intcalcMin{\intcalcMax{#1}{0}}{99}}}
+\newcommand{\IntelligenceScore}[1]{\renewcommand{\IntelligenceScoreValue}{\intcalcMin{\intcalcMax{#1}{0}}{99}}}
+\newcommand{\SizeScore}[1]{\renewcommand{\SizeScoreValue}{\intcalcMax{#1}{0}}}
+\newcommand{\PowerScore}[1]{\renewcommand{\PowerScoreValue}{\intcalcMax{#1}{0}}}
+\newcommand{\AppearanceScore}[1]{\renewcommand{\AppearanceScoreValue}{\intcalcMin{\intcalcMax{#1}{0}}{99}}}
+\newcommand{\EducationScore}[1]{\renewcommand{\EducationScoreValue}{\intcalcMin{\intcalcMax{#1}{0}}{99}}}
+
+\newcommand{\HitPointsMaximumValue}{}
+\newcommand{\HitPointsCurrentValue}{}
+\newcommand{\MagicPointsMaximumValue}{}
+\newcommand{\MagicPointsCurrentValue}{}
+\newcommand{\LuckStartingValue}{}
+\newcommand{\LuckCurrentValue}{}
+\newcommand{\SanityStartingValue}{}
+\newcommand{\SanityCurrentValue}{}
+\newcommand{\SanityInsaneValue}{}
+
+\newcommand{\HitPointsMaximum}[1]{\renewcommand{\HitPointsMaximumValue}{#1}}
+\newcommand{\HitPointsCurrent}[1]{\renewcommand{\HitPointsCurrentValue}{#1}}
+\newcommand{\MagicPointsMaximum}[1]{\renewcommand{\MagicPointsMaximumValue}{#1}}
+\newcommand{\MagicPointsCurrent}[1]{\renewcommand{\MagicPointsCurrentValue}{#1}}
+\newcommand{\LuckStarting}[1]{\renewcommand{\LuckStartingValue}{#1}}
+\newcommand{\LuckCurrent}[1]{\renewcommand{\LuckCurrentValue}{#1}}
+\newcommand{\SanityStarting}[1]{\renewcommand{\SanityStartingValue}{#1}}
+\newcommand{\SanityCurrent}[1]{\renewcommand{\SanityCurrentValue}{#1}}
+\newcommand{\SanityInsane}[1]{\renewcommand{\SanityInsaneValue}{#1}}
+
+\newboolean{b_TemporaryInsanity}
+\newboolean{b_IndefiniteInsanity}
+\newboolean{b_MajorWound}
+\newboolean{b_Unconscious}
+\newboolean{b_Dying}
+
+\newcommand{\TemporaryInsanity}[1]{\ifthenelse{\equal{#1}{T}}{\setboolean{b_TemporaryInsanity}{true}}{}}
+\newcommand{\IndefiniteInsanity}[1]{\ifthenelse{\equal{#1}{T}}{\setboolean{b_IndefiniteInsanity}{true}}{}}
+\newcommand{\MajorWound}[1]{\ifthenelse{\equal{#1}{T}}{\setboolean{b_MajorWound}{true}}{}}
+\newcommand{\Unconscious}[1]{\ifthenelse{\equal{#1}{T}}{\setboolean{b_Unconscious}{true}}{}}
+\newcommand{\Dying}[1]{\ifthenelse{\equal{#1}{T}}{\setboolean{b_Dying}{true}}{}}
+
+% SKILLS
+\newcommand{\AccountingSkillValue}{5}
+\newcommand{\AnthropologySkillValue}{1}
+\newcommand{\AppraiseSkillValue}{5}
+\newcommand{\ArchaeologySkillValue}{1}
+\newcommand{\ArtCraftANameValue}{}
+\newcommand{\ArtCraftASkillValue}{5}
+\newcommand{\ArtCraftBNameValue}{}
+\newcommand{\ArtCraftBSkillValue}{}
+\newcommand{\CharmSkillValue}{15}
+\newcommand{\ClimbSkillValue}{20}
+\newcommand{\CreditRatingValue}{0}
+\newcommand{\CthulhuMythosSkillValue}{0}
+\newcommand{\DisguiseSkillValue}{5}
+\newcommand{\DodgeSkillValue}{}
+\newcommand{\DriveAutoSkillValue}{20}
+\newcommand{\ElecRepairSkillValue}{10}
+\newcommand{\FastTalkSkillValue}{5}
+\newcommand{\BrawlSkillValue}{25}
+\newcommand{\FightingANameValue}{}
+\newcommand{\FightingASkillValue}{}
+\newcommand{\FightingBNameValue}{}
+\newcommand{\FightingBSkillValue}{}
+\newcommand{\HandgunSkillValue}{20}
+\newcommand{\RifleShotgunSkillValue}{25}
+\newcommand{\FirearmsNameValue}{}
+\newcommand{\FirearmsSkillValue}{}
+\newcommand{\FirstAidSkillValue}{30}
+\newcommand{\HistorySkillValue}{5}
+\newcommand{\IntimidateSkillValue}{15}
+\newcommand{\JumpSkillValue}{20}
+\newcommand{\LanguageANameValue}{}
+\newcommand{\LanguageASkillValue}{1}
+\newcommand{\LanguageBNameValue}{}
+\newcommand{\LanguageBSkillValue}{}
+\newcommand{\LanguageCNameValue}{}
+\newcommand{\LanguageCSkillValue}{}
+\newcommand{\LanguageOwnNameValue}{}
+\newcommand{\LanguageOwnSkillValue}{\EducationScoreValue}
+\newcommand{\LawSkillValue}{5}
+\newcommand{\LibraryUseSkillValue}{20}
+\newcommand{\ListenSkillValue}{20}
+\newcommand{\LocksmithSkillValue}{1}
+\newcommand{\MechRepairSkillValue}{10}
+\newcommand{\MedicineSkillValue}{1}
+\newcommand{\NaturalWorldSkillValue}{10}
+\newcommand{\NavigateSkillValue}{10}
+\newcommand{\OccultSkillValue}{5}
+\newcommand{\PersuadeSkillValue}{10}
+\newcommand{\PilotNameValue}{}
+\newcommand{\PilotSkillValue}{1}
+\newcommand{\PsychoanalysisSkillValue}{1}
+\newcommand{\PsychologySkillValue}{10}
+\newcommand{\RideSkillValue}{5}
+\newcommand{\ScienceANameValue}{}
+\newcommand{\ScienceASkillValue}{1}
+\newcommand{\ScienceBNameValue}{}
+\newcommand{\ScienceBSkillValue}{}
+\newcommand{\ScienceCNameValue}{}
+\newcommand{\ScienceCSkillValue}{}
+\newcommand{\SleightOfHandSkillValue}{10}
+\newcommand{\SpotHiddenSkillValue}{25}
+\newcommand{\StealthSkillValue}{20}
+\newcommand{\SurvivalNameValue}{}
+\newcommand{\SurvivalSkillValue}{10}
+\newcommand{\SwimSkillValue}{20}
+\newcommand{\ThrowSkillValue}{20}
+\newcommand{\TrackSkillValue}{10}
+\newcommand{\ExtraSlotANameValue}{}
+\newcommand{\ExtraSlotASkillValue}{}
+\newcommand{\ExtraSlotBNameValue}{}
+\newcommand{\ExtraSlotBSkillValue}{}
+\newcommand{\ExtraSlotCNameValue}{}
+\newcommand{\ExtraSlotCSkillValue}{}
+\newcommand{\ExtraSlotDNameValue}{}
+\newcommand{\ExtraSlotDSkillValue}{}
+%% BOOLEANS
+\newboolean{b_AccountingSkill}
+\newboolean{b_AnthropologySkill}
+\newboolean{b_AppraiseSkill}
+\newboolean{b_ArchaeologySkill}
+\newboolean{b_ArtCraftASkill}
+\newboolean{b_ArtCraftBSkill}
+\newboolean{b_CharmSkill}
+\newboolean{b_ClimbSkill}
+\newboolean{b_DisguiseSkill}
+\newboolean{b_DodgeSkill}
+\newboolean{b_DriveAutoSkill}
+\newboolean{b_ElecRepairSkill}
+\newboolean{b_FastTalkSkill}
+\newboolean{b_BrawlSkill}
+\newboolean{b_FightingASkill}
+\newboolean{b_FightingBSkill}
+\newboolean{b_HandgunSkill}
+\newboolean{b_RifleShotgunSkill}
+\newboolean{b_FirearmsSkill}
+\newboolean{b_FirstAidSkill}
+\newboolean{b_HistorySkill}
+\newboolean{b_IntimidateSkill}
+\newboolean{b_JumpSkill}
+\newboolean{b_LanguageASkill}
+\newboolean{b_LanguageBSkill}
+\newboolean{b_LanguageCSkill}
+\newboolean{b_LanguageOwnSkill}
+\newboolean{b_LawSkill}
+\newboolean{b_LibraryUseSkill}
+\newboolean{b_ListenSkill}
+\newboolean{b_LocksmithSkill}
+\newboolean{b_MechRepairSkill}
+\newboolean{b_MedicineSkill}
+\newboolean{b_NaturalWorldSkill}
+\newboolean{b_NavigateSkill}
+\newboolean{b_OccultSkill}
+\newboolean{b_PersuadeSkill}
+\newboolean{b_PilotSkill}
+\newboolean{b_PsychoanalysisSkill}
+\newboolean{b_PsychologySkill}
+\newboolean{b_RideSkill}
+\newboolean{b_ScienceASkill}
+\newboolean{b_ScienceBSkill}
+\newboolean{b_ScienceCSkill}
+\newboolean{b_SleightOfHandSkill}
+\newboolean{b_SpotHiddenSkill}
+\newboolean{b_StealthSkill}
+\newboolean{b_SurvivalSkill}
+\newboolean{b_SwimSkill}
+\newboolean{b_ThrowSkill}
+\newboolean{b_TrackSkill}
+\newboolean{b_ExtraSlotASkill}
+\newboolean{b_ExtraSlotBSkill}
+\newboolean{b_ExtraSlotCSkill}
+\newboolean{b_ExtraSlotDSkill}
+
+\newcommand{\AccountingSkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_AccountingSkill}{true}}{}%
+	\renewcommand{\AccountingSkillValue}{#2}%
+}%
+\newcommand{\AnthropologySkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_AnthropologySkill}{true}}{}%
+	\renewcommand{\AnthropologySkillValue}{#2}%
+}%
+\newcommand{\AppraiseSkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_AppraiseSkill}{true}}{}%
+	\renewcommand{\AppraiseSkillValue}{#2}%
+}%
+\newcommand{\ArchaeologySkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_ArchaeologySkill}{true}}{}%
+	\renewcommand{\ArchaeologySkillValue}{#2}%
+}
+
+\newcounter{artCraftSlotCounter}
+\setcounter{artCraftSlotCounter}{1}
+\newcommand{\ArtCraftSkill}[3][]{
+	\ifnum\value{artCraftSlotCounter}>2%
+		\PackageWarning{General Commands}{All Art/Craft slots are filled! Cannot add "#2".}%
+	\else%
+		\ifthenelse{\equal{#1}{T}}{\setboolean{b_ArtCraft\Alph{artCraftSlotCounter}Skill}{true}}{}%
+		\expandafter\renewcommand\csname ArtCraft\Alph{artCraftSlotCounter}NameValue\endcsname{#2}%
+		\expandafter\renewcommand\csname ArtCraft\Alph{artCraftSlotCounter}SkillValue\endcsname{#3}%
+		\stepcounter{artCraftSlotCounter}%
+	\fi
+}
+
+\newcommand{\CharmSkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_CharmSkill}{true}}{}%
+	\renewcommand{\CharmSkillValue}{#2}%
+}
+\newcommand{\ClimbSkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_ClimbSkill}{true}}{}%
+	\renewcommand{\ClimbSkillValue}{#2}%
+}
+\newcommand{\CreditRating}[1]{\renewcommand{\CreditRatingValue}{#1}}
+\newcommand{\CthulhuMythosSkill}[1]{\renewcommand{\CthulhuMythosSkillValue}{#1}}
+\newcommand{\DisguiseSkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_DisguiseSkill}{true}}{}%
+	\renewcommand{\DisguiseSkillValue}{#2}%
+}
+\newcommand{\DodgeSkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_DodgeSkill}{true}}{}%
+	\renewcommand{\DodgeSkillValue}{#2}%
+}
+\newcommand{\DriveAutoSkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_DriveAutoSkill}{true}}{}%
+	\renewcommand{\DriveAutoSkillValue}{#2}%
+}
+\newcommand{\ElectricalRepairSkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_ElecRepairSkill}{true}}{}%
+	\renewcommand{\ElecRepairSkillValue}{#2}%
+}
+\newcommand{\FastTalkSkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_FastTalkSkill}{true}}{}%
+	\renewcommand{\FastTalkSkillValue}{#2}%
+}
+\newcommand{\BrawlSkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_BrawlSkill}{true}}{}%
+	\renewcommand{\BrawlSkillValue}{#2}%
+}
+
+\newcounter{fightingSlotCounter}
+\setcounter{fightingSlotCounter}{1}
+\newcommand{\FightingSkill}[3][]{
+	\ifnum\value{fightingSlotCounter}>2%
+		\PackageWarning{General Commands}{All Fighting slots are filled! Cannot add "#2".}%
+	\else%
+		\ifthenelse{\equal{#1}{T}}{\setboolean{b_Fighting\Alph{fightingSlotCounter}Skill}{true}}{}%
+		\expandafter\renewcommand\csname Fighting\Alph{fightingSlotCounter}NameValue\endcsname{#2}%
+		\expandafter\renewcommand\csname Fighting\Alph{fightingSlotCounter}SkillValue\endcsname{#3}%
+		\stepcounter{fightingSlotCounter}%
+	\fi
+}
+
+\newcommand{\HandgunSkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_HandgunSkill}{true}}{}%
+	\renewcommand{\HandgunSkillValue}{#2}%
+}
+\newcommand{\RifleShotgunSkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_RifleShotgunSkill}{true}}{}%
+	\renewcommand{\RifleShotgunSkillValue}{#2}%
+}
+
+\newcommand{\FirearmsSkill}[3][]{
+	\ifthenelse{\equal{\FirearmsNameValue}{}}{%
+		\ifthenelse{\equal{#1}{T}}{\setboolean{b_FirearmsSkill}{true}}{}%
+		\renewcommand{\FirearmsNameValue}{#2}
+		\renewcommand{\FirearmsSkillValue}{#3}
+	}{%
+		\PackageWarning{General Commands}{Custom Firearm Skill already defined! Cannot add "#2".}%
+	}%
+}
+
+\newcommand{\FirstAidSkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_FirstAidSkill}{true}}{}%
+	\renewcommand{\FirstAidSkillValue}{#2}%
+}
+\newcommand{\HistorySkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_HistorySkill}{true}}{}%
+	\renewcommand{\HistorySkillValue}{#2}%
+}
+\newcommand{\IntimidateSkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_IntimidateSkill}{true}}{}%
+	\renewcommand{\IntimidateSkillValue}{#2}%
+}
+\newcommand{\JumpSkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_JumpSkill}{true}}{}%
+	\renewcommand{\JumpSkillValue}{#2}%
+}
+
+\newcounter{languageOtherSlotCounter}
+\setcounter{languageOtherSlotCounter}{1}
+\newcommand{\LanguageOtherSkill}[3][]{
+	\ifnum\value{languageOtherSlotCounter}>3%
+		\PackageWarning{General Commands}{All other Language slots are filled! Cannot add "#2".}%
+	\else%
+		\ifthenelse{\equal{#1}{T}}{\setboolean{b_Language\Alph{languageOtherSlotCounter}Skill}{true}}{}%
+		\expandafter\renewcommand\csname Language\Alph{languageOtherSlotCounter}NameValue\endcsname{#2}%
+		\expandafter\renewcommand\csname Language\Alph{languageOtherSlotCounter}SkillValue\endcsname{#3}%
+		\stepcounter{languageOtherSlotCounter}%
+	\fi
+}
+
+\newcommand{\LanguageOwnSkill}[3][]{
+	\ifthenelse{\equal{\LanguageOwnNameValue}{}}{%
+		\ifthenelse{\equal{#1}{T}}{\setboolean{b_LanguageOwnSkill}{true}}{}%
+		\renewcommand{\LanguageOwnNameValue}{#2}
+		\renewcommand{\LanguageOwnSkillValue}{#3}
+	}{%
+		\PackageWarning{General Commands}{Own Language Skill already defined! Cannot add "#2".}%
+	}%
+}
+
+\newcommand{\LawSkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_LawSkill}{true}}{}%
+	\renewcommand{\LawSkillValue}{#2}%
+}
+\newcommand{\LibraryUseSkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_LibraryUseSkill}{true}}{}%
+	\renewcommand{\LibraryUseSkillValue}{#2}%
+}
+\newcommand{\ListenSkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_ListenSkill}{true}}{}%
+	\renewcommand{\ListenSkillValue}{#2}%
+}
+\newcommand{\LocksmithSkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_LocksmithSkill}{true}}{}%
+	\renewcommand{\LocksmithSkillValue}{#2}%
+}
+\newcommand{\MechanicalRepairSkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_MechRepairSkill}{true}}{}%
+	\renewcommand{\MechRepairSkillValue}{#2}%
+}
+\newcommand{\MedicineSkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_MedicineSkill}{true}}{}%
+	\renewcommand{\MedicineSkillValue}{#2}%
+}
+\newcommand{\NaturalWorldSkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_NaturalWorldSkill}{true}}{}%
+	\renewcommand{\NaturalWorldSkillValue}{#2}%
+}
+\newcommand{\NavigateSkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_NavigateSkill}{true}}{}%
+	\renewcommand{\NavigateSkillValue}{#2}%
+}
+\newcommand{\OccultSkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_OccultSkill}{true}}{}%
+	\renewcommand{\OccultSkillValue}{#2}%
+}
+\newcommand{\PersuadeSkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_PersuadeSkill}{true}}{}%
+	\renewcommand{\PersuadeSkillValue}{#2}%
+}
+
+\newcommand{\PilotSkill}[3][]{
+	\ifthenelse{\equal{\PilotNameValue}{}}{%
+		\ifthenelse{\equal{#1}{T}}{\setboolean{b_PilotSkill}{true}}{}%
+		\renewcommand{\PilotNameValue}{#2}
+		\renewcommand{\PilotSkillValue}{#3}
+	}{%
+		\PackageWarning{General Commands}{Pilot Skill already defined! Cannot add "#2".}%
+	}%
+}
+
+\newcommand{\PsychoanalysisSkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_PsychoanalysisSkill}{true}}{}%
+	\renewcommand{\PsychoanalysisSkillValue}{#2}%
+}
+\newcommand{\PsychologySkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_PsychologySkill}{true}}{}%
+	\renewcommand{\PsychologySkillValue}{#2}%
+}
+\newcommand{\RideSkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_RideSkill}{true}}{}%
+	\renewcommand{\RideSkillValue}{#2}%
+}
+
+\newcounter{scienceSlotCounter}
+\setcounter{scienceSlotCounter}{1}
+\newcommand{\ScienceSkill}[3][]{
+	\ifnum\value{scienceSlotCounter}>3%
+		\PackageWarning{General Commands}{All Science slots are filled! Cannot add "#2".}%
+	\else%
+		\ifthenelse{\equal{#1}{T}}{\setboolean{b_Science\Alph{scienceSlotCounter}Skill}{true}}{}%
+		\expandafter\renewcommand\csname Science\Alph{scienceSlotCounter}NameValue\endcsname{#2}%
+		\expandafter\renewcommand\csname Science\Alph{scienceSlotCounter}SkillValue\endcsname{#3}%
+		\stepcounter{scienceSlotCounter}%
+	\fi
+}
+
+\newcommand{\SleightOfHandSkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_SleightOfHandSkill}{true}}{}%
+	\renewcommand{\SleightOfHandSkillValue}{#2}%
+}
+\newcommand{\SpotHiddenSkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_SpotHiddenSkill}{true}}{}%
+	\renewcommand{\SpotHiddenSkillValue}{#2}%
+}
+\newcommand{\StealthSkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_StealthSkill}{true}}{}%
+	\renewcommand{\StealthSkillValue}{#2}%
+}
+
+\newcommand{\SurvivalSkill}[3][]{
+	\ifthenelse{\equal{\SurvivalNameValue}{}}{%
+		\ifthenelse{\equal{#1}{T}}{\setboolean{b_SurvivalSkill}{true}}{}%
+		\renewcommand{\SurvivalNameValue}{#2}
+		\renewcommand{\SurvivalSkillValue}{#3}
+	}{%
+		\PackageWarning{General Commands}{Survival Skill already defined! Cannot add "#2".}%
+	}%
+}
+
+\newcommand{\SwimSkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_SwimSkill}{true}}{}%
+	\renewcommand{\SwimSkillValue}{#2}%
+}
+\newcommand{\ThrowSkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_ThrowSkill}{true}}{}%
+	\renewcommand{\ThrowSkillValue}{#2}%
+}
+\newcommand{\TrackSkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_TrackSkill}{true}}{}%
+	\renewcommand{\TrackSkillValue}{#2}%
+}
+
+\newcounter{extraSlotCounter}
+\setcounter{extraSlotCounter}{1}
+\newcommand{\ExtraSkill}[3][]{
+	\ifnum\value{extraSlotCounter}>4%
+		\PackageWarning{General Commands}{All Extra slots are filled! Cannot add "#2".}%
+	\else%
+		\ifthenelse{\equal{#1}{T}}{\setboolean{b_ExtraSlot\Alph{extraSlotCounter}Skill}{true}}{}%
+		\expandafter\renewcommand\csname ExtraSlot\Alph{extraSlotCounter}NameValue\endcsname{#2}%
+		\expandafter\renewcommand\csname ExtraSlot\Alph{extraSlotCounter}SkillValue\endcsname{#3}%
+		\stepcounter{extraSlotCounter}%
+	\fi
+}
+
+% COMBAT
+\newcommand{\WeaponANameValue}{}
+\newcommand{\WeaponASkillValue}{}
+\newcommand{\WeaponADamageValue}{}
+\newcommand{\WeaponAnoAttacksValue}{}
+\newcommand{\WeaponARangeValue}{}
+\newcommand{\WeaponAAmmoValue}{}
+\newcommand{\WeaponAMalfunctionValue}{}
+\newcommand{\WeaponBNameValue}{}
+\newcommand{\WeaponBSkillValue}{}
+\newcommand{\WeaponBDamageValue}{}
+\newcommand{\WeaponBnoAttacksValue}{}
+\newcommand{\WeaponBRangeValue}{}
+\newcommand{\WeaponBAmmoValue}{}
+\newcommand{\WeaponBMalfunctionValue}{}
+\newcommand{\WeaponCNameValue}{}
+\newcommand{\WeaponCSkillValue}{}
+\newcommand{\WeaponCDamageValue}{}
+\newcommand{\WeaponCnoAttacksValue}{}
+\newcommand{\WeaponCRangeValue}{}
+\newcommand{\WeaponCAmmoValue}{}
+\newcommand{\WeaponCMalfunctionValue}{}
+\newcommand{\WeaponDNameValue}{}
+\newcommand{\WeaponDSkillValue}{}
+\newcommand{\WeaponDDamageValue}{}
+\newcommand{\WeaponDnoAttacksValue}{}
+\newcommand{\WeaponDRangeValue}{}
+\newcommand{\WeaponDAmmoValue}{}
+\newcommand{\WeaponDMalfunctionValue}{}
+\newcommand{\WeaponENameValue}{}
+\newcommand{\WeaponESkillValue}{}
+\newcommand{\WeaponEDamageValue}{}
+\newcommand{\WeaponEnoAttacksValue}{}
+\newcommand{\WeaponERangeValue}{}
+\newcommand{\WeaponEAmmoValue}{}
+\newcommand{\WeaponEMalfunctionValue}{}
+\newcommand{\WeaponFNameValue}{}
+\newcommand{\WeaponFSkillValue}{}
+\newcommand{\WeaponFDamageValue}{}
+\newcommand{\WeaponFnoAttacksValue}{}
+\newcommand{\WeaponFRangeValue}{}
+\newcommand{\WeaponFAmmoValue}{}
+\newcommand{\WeaponFMalfunctionValue}{}
+
+\newcounter{weaponSlotCounter}
+\setcounter{weaponSlotCounter}{1}
+\newcommand{\addWeapon}[7]{%
+	\ifnum\value{weaponSlotCounter}>6%
+		\PackageWarning{General Commands}{All Weapon slots are filled! Cannot add "#1".}%
+	\else%
+		\expandafter\renewcommand\csname Weapon\Alph{weaponSlotCounter}NameValue\endcsname{#1}%
+		\expandafter\renewcommand\csname Weapon\Alph{weaponSlotCounter}SkillValue\endcsname{#2}%
+		\expandafter\renewcommand\csname Weapon\Alph{weaponSlotCounter}DamageValue\endcsname{#3}%
+		\expandafter\renewcommand\csname Weapon\Alph{weaponSlotCounter}noAttacksValue\endcsname{#4}%
+		\expandafter\renewcommand\csname Weapon\Alph{weaponSlotCounter}RangeValue\endcsname{#5}%
+		\expandafter\renewcommand\csname Weapon\Alph{weaponSlotCounter}AmmoValue\endcsname{#6}%
+		\expandafter\renewcommand\csname Weapon\Alph{weaponSlotCounter}MalfunctionValue\endcsname{#7}%
+		\stepcounter{weaponSlotCounter}%
+	\fi
+}%
+
+\newcommand{\MoveValue}{}
+\newcommand{\BuildValue}{}
+\newcommand{\DamageBonusValue}{}
+
+\newcommand{\Move}[1]{\renewcommand{\MoveValue}{#1}}
+\newcommand{\Build}[1]{\renewcommand{\BuildValue}{#1}}
+\newcommand{\DamageBonus}[1]{\renewcommand{\DamageBonusValue}{#1}}
+
+% --------------------------------------------------------------------------------------------------------------- %
+% #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#  BACKGROUND  SHEET  #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
+% --------------------------------------------------------------------------------------------------------------- %
+% MY STORY
+\newcommand{\MyStoryValue}{}
+
+\newcommand{\MyStory}[1]{\renewcommand{\MyStoryValue}{#1}}
+
+% BACKSTORY
+\newcommand{\PersonalDescriptionValue}{}
+\newcommand{\IdeologyBeliefsValue}{}
+\newcommand{\SignificantPeopleValue}{}
+\newcommand{\MeaningfulLocationsValue}{}
+\newcommand{\TreasuredPossessionsValue}{}
+\newcommand{\TraitsValue}{}
+\newcommand{\InjuriesScarsValue}{}
+\newcommand{\PhobiasManiasValue}{}
+\newcommand{\ArcaneTomesSpellsValue}{}
+\newcommand{\StrangeEntitiesEncountersValue}{}
+
+\newcommand{\PersonalDescription}[1]{\renewcommand{\PersonalDescriptionValue}{#1}}
+\newcommand{\IdeologyBeliefs}[1]{\renewcommand{\IdeologyBeliefsValue}{#1}}
+\newcommand{\SignificantPeople}[1]{\renewcommand{\SignificantPeopleValue}{#1}}
+\newcommand{\MeaningfulLocations}[1]{\renewcommand{\MeaningfulLocationsValue}{#1}}
+\newcommand{\TreasuredPossessions}[1]{\renewcommand{\TreasuredPossessionsValue}{#1}}
+\newcommand{\Traits}[1]{\renewcommand{\TraitsValue}{#1}}
+\newcommand{\InjuriesScars}[1]{\renewcommand{\InjuriesScarsValue}{#1}}
+\newcommand{\PhobiasManias}[1]{\renewcommand{\PhobiasManiasValue}{#1}}
+\newcommand{\ArcaneTomesSpells}[1]{\renewcommand{\ArcaneTomesSpellsValue}{#1}}
+\newcommand{\StrangeEntitiesEncounters}[1]{\renewcommand{\StrangeEntitiesEncountersValue}{#1}}
+
+% GEAR, POSSESSIONS & WEALTH
+\newcommand{\GearPossessionsAValue}{}
+\newcommand{\GearPossessionsBValue}{}
+\newcommand{\GearPossessionsCValue}{}
+\newcommand{\GearPossessionsDValue}{}
+\newcommand{\GearPossessionsEValue}{}
+\newcommand{\GearPossessionsFValue}{}
+\newcommand{\GearPossessionsGValue}{}
+\newcommand{\GearPossessionsHValue}{}
+\newcommand{\GearPossessionsIValue}{}
+\newcommand{\GearPossessionsJValue}{}
+\newcommand{\SpendingLevelValue}{}
+\newcommand{\CashValue}{}
+\newcommand{\AssetsValue}{}
+\newcommand{\AssetsInformationValue}{}
+
+\newcounter{gearPossessionsCounter}
+\setcounter{gearPossessionsCounter}{1}
+\newcommand{\addGearOrPossessions}[1]{%
+	\ifnum\value{gearPossessionsCounter}>10%
+		\PackageWarning{General Commands}{All Gear & Possessions slots are filled! Cannot add "#1".}%
+	\else%
+		\expandafter\renewcommand\csname GearPossessions\Alph{gearPossessionsCounter}Value\endcsname{#1}%
+		\stepcounter{gearPossessionsCounter}%
+	\fi
+}%
+
+\newcommand{\SpendingLevel}[1]{\renewcommand{\SpendingLevelValue}{#1}}
+\newcommand{\Cash}[1]{\renewcommand{\CashValue}{#1}}
+\newcommand{\Assets}[1]{\renewcommand{\AssetsValue}{#1}}
+\newcommand{\Wealth}[3]{%
+	\ifthenelse{\equal{#1}{}}{%
+		\calculateSpendingLevel
+	}{%
+		\SpendingLevel{#1}
+	}
+	\ifthenelse{\equal{#2}{}}{%
+		\calculateCash
+	}{%
+		\Cash{#2}
+	}
+	\ifthenelse{\equal{#3}{}}{%
+		\calculateAssets
+	}{%
+		\Assets{#3}
+	}
+}%
+\newcommand{\AssetsInformation}[1]{\renewcommand{\AssetsInformationValue}{#1}}
+
+% FELLOW INVESTIGATOR
+\newcommand{\FellowInvestigatorACharacterValue}{}
+\newcommand{\FellowInvestigatorAPlayerValue}{}
+\newcommand{\FellowInvestigatorBCharacterValue}{}
+\newcommand{\FellowInvestigatorBPlayerValue}{}
+\newcommand{\FellowInvestigatorCCharacterValue}{}
+\newcommand{\FellowInvestigatorCPlayerValue}{}
+\newcommand{\FellowInvestigatorDCharacterValue}{}
+\newcommand{\FellowInvestigatorDPlayerValue}{}
+\newcommand{\FellowInvestigatorECharacterValue}{}
+\newcommand{\FellowInvestigatorEPlayerValue}{}
+\newcommand{\FellowInvestigatorFCharacterValue}{}
+\newcommand{\FellowInvestigatorFPlayerValue}{}
+
+\newcounter{fellowInvestigatorCounter}
+\setcounter{fellowInvestigatorCounter}{1}
+\newcommand{\addFellowInvestigator}[2]{%
+	\ifnum\value{fellowInvestigatorCounter}>6%
+		\PackageWarning{General Commands}{All Fellow Investigator slots are filled! Cannot add "#1".}%
+	\else%
+		\expandafter\renewcommand\csname FellowInvestigator\Alph{fellowInvestigatorCounter}CharacterValue\endcsname{#1}%
+		\expandafter\renewcommand\csname FellowInvestigator\Alph{fellowInvestigatorCounter}PlayerValue\endcsname{#2}%
+		\stepcounter{fellowInvestigatorCounter}%
+	\fi
+}%

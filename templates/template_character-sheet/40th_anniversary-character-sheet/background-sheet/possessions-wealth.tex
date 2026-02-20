@@ -1,0 +1,22 @@
+\begin{pageTikZ}
+	% Gear & Possessions - Lines (always visible)
+	\foreach \i in {0,...,4}
+	{
+		\pgfmathsetmacro{\hpos}{543.159 + \i * 13.684};
+		\draw[line width=0.75pt, black] (49.353,\hpos) -- ++(121.141,0);
+		\draw[line width=0.75pt, black] (175.648,\hpos) -- ++(121.141,0);
+	}
+	% Spending Level - Line (always visible)
+	\draw[line width=0.75pt, black] (385.506,543.159) -- (564.942,543.159);
+	% Cash - Line (always visible)
+	\draw[line width=0.75pt, black] (341.506,556.843) -- (564.942,556.843);
+	% Assets - Lines (only visible if no respective part is not provided is not provided)
+	\draw[line width=0.75pt, black] (347.506,570.527) -- (564.942,570.527);
+	\ifthenelse{\equal{\AssetsInformationValue}{}}{%
+		\foreach \i in {1,...,2}
+		{
+			\pgfmathsetmacro{\hpos}{570.527 + \i * 13.684};
+			\draw[line width=0.75pt, black] (317.506,\hpos) -- ++(247.436,0);
+		}
+	}{}
+\end{pageTikZ}

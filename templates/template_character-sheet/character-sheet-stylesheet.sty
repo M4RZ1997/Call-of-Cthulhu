@@ -1,0 +1,100 @@
+\ProvidesPackage{character-sheet-stylesheet}
+% ------------------------------------------------------------------------------------------------- %
+%						character_sheet_stylesheet.sty  Marcel Zauder 09/08/2023					%
+% Stylesheet by Marcel                                                                              %
+% ------------------------------------------------------------------------------------------------- %
+% ################################################################################################# %
+% -------------------------------------- PATH to Superfolder -------------------------------------- %
+\providecommand{\PATH}{} % Each tex file needs to provide the relative path to the superfolder
+% ------------------------------------------------------------------------------------------------- %
+% ################################################################################################# %
+% ------------------------------------ Edition-Specific  PATHS ------------------------------------ %
+\newcommand{\ePATH}{}
+\newcommand{\ERA}{}
+\newcommand{\EDITION}{•}
+\ExplSyntaxOn
+\keys_define:nn { character-sheet / options }
+{
+	edition .code:n =
+	{
+		\renewcommand{\EDITION}{#1}
+		\str_if_eq:nnTF {#1} {40th-anniversary}
+		{
+			\renewcommand{\ePATH}{\PATH templates/template_character-sheet/40th_anniversary-character-sheet/}
+			\renewcommand{\ERA}{1920s}
+		}
+		{
+			\str_if_eq:nnTF {#1} {other}
+				{ \renewcommand{\ePATH}{\PATH templates/template_character-sheet/other/} }
+			{ \msg_error:nnx {character-sheet} {invalid-edition} {#1} }
+		}
+	},
+	edition .value_required:n		= true,
+	edition .default:n				= pre5e24
+}
+
+\ProcessKeysOptions { character-sheet / options }
+\ExplSyntaxOff
+% ------------------------------------------------------------------------------------------------- %
+% ################################################################################################# %
+% ---------------------------------- Full-Page-TikZ  Environment ---------------------------------- %
+\newenvironment{pageTikZ} {%
+	\begin{tikzpicture}[
+		remember picture,
+		overlay,
+		x=1pt,
+		y=-1pt,
+		shift={(current page.north west)}
+	]
+}
+{%
+	\end{tikzpicture}
+}
+% ------------------------------------------------------------------------------------------------- %
+% ################################################################################################# %
+% ------------------------------------- Character Page Styles ------------------------------------- %
+\fancypagestyle{character-sheet}{%
+	% 40TH Anniversary Character Sheet Ornaments
+	\ifthenelse{\equal{\EDITION}{40th-anniversary}}{%
+		\newgeometry{%
+			hmargin		= .75in,	% Left and right margins
+			top			= .46in,	% Top of text area to top of page
+			bottom		= .5in,		% Bottom of text area to bottom of page
+			footskip	= .32in,	% Bottom of text area to bottom of footer text
+			columnsep	= .33in,	% Space between columns
+		}%
+		\fancyhead{%
+			\begin{tikzpicture}[remember picture,overlay]%
+				\node[inner sep=0pt] at (current page.center) {\includegraphics[width=\paperwidth,height=\paperheight]{\PATH templates/template_coc/img/paper.jpg}};%
+			\end{tikzpicture}%
+			\input{\PATH templates/template_character-sheet/40th_anniversary-character-sheet/ornament.tex}%
+		}%
+	}{}%
+}
+% ------------------------------------------------------------------------------------------------- %
+% ################################################################################################# %
+% -------------------------------- Additional Text - Page Geometry -------------------------------- %
+\newcommand{\CharacterSheetTextGeometry}{%
+	\ifthenelse{\equal{\EDITION}{40th-anniversary}}{
+		\newgeometry{
+			hmargin		= .75in,	% Left and right margins
+			top			= .46in,	% Top of text area to top of page
+			bottom		= .5in,		% Bottom of text area to bottom of page
+			footskip	= .32in,	% Bottom of text area to bottom of footer text
+			columnsep	= .33in,	% Space between columns
+		}
+	}{}%
+}%
+% ------------------------------------------------------------------------------------------------- %
+% ################################################################################################# %
+% -------------------------- Loading Settings,  Usepackages and Commands -------------------------- %
+\usepackage{\PATH templates/template_character-sheet/character-sheet-usepackages}
+\input{\PATH templates/template_character-sheet/character-sheet-settings}
+\input{\PATH templates/template_character-sheet/character-sheet-commands_general}
+% ------------------------------------------------------------------------------------------------- %
+% ################################################################################################# %
+% --------------------------------- Commands for  Rendering Pages --------------------------------- %
+\newcommand{\rendercharactersheet}{\input{\ePATH character-sheet.tex}}
+\newcommand{\renderbackgroundsheet}{\input{\ePATH background-sheet.tex}}
+\newcommand{\renderblanktextsheet}{\input{\ePATH blank-text-sheet.tex}}
+% ------------------------------------------------------------------------------------------------- %

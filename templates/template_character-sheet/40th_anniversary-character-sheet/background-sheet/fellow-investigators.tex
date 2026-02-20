@@ -1,0 +1,17 @@
+\begin{pageTikZ}
+	% IMAGE
+	\node[inner sep=0pt] at (220.11,699.815) {\includegraphics[width=109.852pt]{\PATH/templates/template_character-sheet/40th_anniversary-character-sheet/img/Fellow_Investigator}};
+	% BOXES
+	\foreach \i in {0,...,2}
+	{
+		\pgfmathsetmacro{\hpos}{635.036 + \i * 40.198};
+		\draw[line width=0.75pt, black] (49.353,\hpos) rectangle ++(110.831,35.921);
+		\draw[line width=0.75pt, black] (280.036,\hpos) ++(0,8.553) rectangle ++(110.831,35.921);
+		
+		\draw[line width=0.75pt, black] (82.283,\hpos) ++(0,15.395) -- ++(74.894,0);
+		\draw[line width=0.75pt, black] (87.29,\hpos) ++(0,30.609) -- ++(69.887,0);
+		
+		\draw[line width=0.75pt, black] (312.966,\hpos) ++(0,23.948) -- ++(74.894,0);
+		\draw[line width=0.75pt, black] (317.973,\hpos) ++(0,39.162) -- ++(69.887,0);
+	}
+\end{pageTikZ}

@@ -1,0 +1,36 @@
+\begin{pageTikZ}
+	%% Combat Line
+	\draw[line width=0.75pt, black] (41.621,691.483) -- ++(0,7.27)  -- ++(-5.155,0) arc[start angle=270, end angle=180, radius=6.014] -- ++(0,41.48) arc[start angle=180, end angle=90, radius=6.014] -- ++(5.155,0) -- ++(0,15.822);
+	
+	%% Attacks
+	%%% Skills
+	\foreach \i in {0,...,3}
+	{
+		\pgfmathsetmacro{\hpos}{705.93 + \i * 16.701};
+		\draw[line width=0.75, black] (48.494,\hpos) ++(0,14.563) -- ++(70,0);
+		
+		\draw[line width=0.75, black] (186.818,\hpos) arc[start angle=-90, end angle=0, radius=3.007] -- ++(0,8.549) arc[start angle=0, end angle=90, radius=3.007] -- ++(-62.718,0) arc[start angle=90, end angle=180, radius=3.007] -- ++(0,-8.549) arc[start angle=180, end angle=270, radius=3.007] -- cycle;
+		\draw[line width=0.75, black] (166.914,\hpos) -- ++(0,14.563);
+		\draw[line width=0.75, black] (144.004,\hpos) -- ++(0,14.563);
+		
+		\draw[line width=0.75, black] (192.424,\hpos) ++(0,14.563) -- ++(50,0);
+		\draw[line width=0.75, black] (253.424,\hpos) ++(0,14.563) -- ++(50,0);
+		\draw[line width=0.75, black] (314.424,\hpos) ++(0,14.563) -- ++(31,0);
+		\draw[line width=0.75, black] (356.424,\hpos) ++(0,14.563) -- ++(31,0);
+		\draw[line width=0.75, black] (398.424,\hpos) ++(0,14.563) -- ++(31,0);
+	}
+	
+%	\draw[line width=0.75, black] (192.424,720.493) -- ++(237,0);
+	
+	%% Combat Stats
+	%%% Move
+	\draw[line width=0.75, black] (495,685.428) arc[start angle=-90, end angle=0, radius=3.007] -- ++(0,8.549) arc[start angle=0, end angle=90, radius=3.007] -- ++(-18.754,0) arc[start angle=90, end angle=180, radius=3.007] -- ++(0,-8.549) arc[start angle=180, end angle=270, radius=3.007] -- cycle;
+	%%% Build
+	\draw[line width=0.75, black] (495,707.688) arc[start angle=-90, end angle=0, radius=3.007] -- ++(0,8.549) arc[start angle=0, end angle=90, radius=3.007] -- ++(-18.754,0) arc[start angle=90, end angle=180, radius=3.007] -- ++(0,-8.549) arc[start angle=180, end angle=270, radius=3.007] -- cycle;
+	%%% Dodge
+	\draw[line width=0.75, black] (551.17,729.948) arc[start angle=-90, end angle=0, radius=3.007] -- ++(0,8.549) arc[start angle=0, end angle=90, radius=3.007] -- ++(-62.718,0) arc[start angle=90, end angle=180, radius=3.007] -- ++(0,-8.549) arc[start angle=180, end angle=270, radius=3.007] -- cycle;
+	\draw[line width=0.75, black] (531.266,729.948) -- ++(0,14.563);
+	\draw[line width=0.75, black] (508.356,729.948) -- ++(0,14.563);
+	%%% Damage Bonus
+	\draw[line width=0.75, black] (565.753,752.208) arc[start angle=-90, end angle=0, radius=3.007] -- ++(0,8.549) arc[start angle=0, end angle=90, radius=3.007] -- ++(-41.239,0) arc[start angle=90, end angle=180, radius=3.007] -- ++(0,-8.549) arc[start angle=180, end angle=270, radius=3.007] -- cycle;
+\end{pageTikZ}

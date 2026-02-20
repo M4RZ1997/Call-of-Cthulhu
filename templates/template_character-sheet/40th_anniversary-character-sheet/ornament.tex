@@ -1,0 +1,135 @@
+\begin{pageTikZ}
+	%% Guidelines
+%	\draw[line width=2pt, red] (307.1475,0) -- (307.1475,794.97);
+%	\draw[line width=1pt, blue] (25.297,0) -- (25.297,794.97);
+%	\draw[line width=1pt, blue] (588.998,0) -- (588.998,794.97);
+%	
+%	\draw[line width=2pt, red] (0,399.4095) -- (614.295,399.4095);
+%	\draw[line width=1pt, blue] (0,19.67) -- (614.295,19.67);
+%	\draw[line width=1pt, blue] (0,779.149) -- (614.295,779.149);
+	
+	
+	%% Horizontal Triangles (Mid 307.1475)	
+	\foreach \i in {0,...,15}
+	{
+		\pgfmathsetmacro{\hpos}{313.591 + (-1)^\i * 33.507 * ceil(\i / 2)};
+		\begin{scope}
+			\path[clip] (\hpos, 19.67) -- ++(10.31,-10.262) -- ++(10.31,10.262) -- ++(-8.162,0) arc[start angle=0, end angle=-180, radius=2.148] -- cycle;
+			\draw[line width=2pt, black] (\hpos, 19.67) -- ++(10.31,-10.262) -- ++(10.31,10.262) -- cycle;
+			
+			\path[clip] (\hpos, 19.67) ++(3,-1.25) -- ++(7.31,-7.262) -- ++(7.31,7.262) -- cycle;
+			
+			\draw[line width=0.5pt, black] (\hpos, 19.67) ++(10.31,0) -- ++(0,-10.262);
+			\draw[line width=0.5pt, black] (\hpos, 19.67) ++(10.31,0) -- ++(3,-9);
+			\draw[line width=0.5pt, black] (\hpos, 19.67) ++(10.31,0) -- ++(-3,-9);
+			\draw[line width=0.5pt, black] (\hpos, 19.67) ++(10.31,0) -- ++(9,-9);
+			\draw[line width=0.5pt, black] (\hpos, 19.67) ++(10.31,0) -- ++(-9,-9);
+		\end{scope}
+		\begin{scope}
+			\path[clip] (\hpos, 779.149) -- ++(10.31,10.262) -- ++(10.31,-10.262) -- ++(-8.162,0) arc[start angle=0, end angle=180, radius=2.148] -- cycle;
+			\draw[line width=2pt, black] (\hpos, 779.149) -- ++(10.31,10.262) -- ++(10.31,-10.262) -- cycle;
+			
+			\path[clip] (\hpos, 779.149) ++(3,1.25) -- ++(7.31,7.262) -- ++(7.31,-7.262) -- cycle;
+			
+			\draw[line width=0.5pt, black] (\hpos, 779.149) ++(10.31,0) -- ++(0,10.262);
+			\draw[line width=0.5pt, black] (\hpos, 779.149) ++(10.31,0) -- ++(3,9);
+			\draw[line width=0.5pt, black] (\hpos, 779.149) ++(10.31,0) -- ++(-3,9);
+			\draw[line width=0.5pt, black] (\hpos, 779.149) ++(10.31,0) -- ++(9,9);
+			\draw[line width=0.5pt, black] (\hpos, 779.149) ++(10.31,0) -- ++(-9,9);
+		\end{scope}
+	}
+	\foreach \i in {0,...,14}
+	{
+		\pgfmathsetmacro{\hpos}{296.8375 + (-1)^\i * 33.507 * ceil(\i / 2)};
+		\begin{scope}
+			\path[clip] (\hpos, 9.408) -- ++(10.31,10.262) -- ++(10.31,-10.262) -- ++(-8.162,0) arc[start angle=0, end angle=180, radius=2.148] -- cycle;
+			\draw[line width=2pt, black] (\hpos, 9.408) -- ++(10.31,10.262) -- ++(10.31,-10.262) -- cycle;
+			
+			\path[clip] (\hpos, 9.408) ++(3,1.25) -- ++(7.31,7.262) -- ++(7.31,-7.262) -- cycle;
+			
+			\draw[line width=0.5pt, black] (\hpos, 9.408) ++(10.31,0) -- ++(0,10.262);
+			\draw[line width=0.5pt, black] (\hpos, 9.408) ++(10.31,0) -- ++(3,9);
+			\draw[line width=0.5pt, black] (\hpos, 9.408) ++(10.31,0) -- ++(-3,9);
+			\draw[line width=0.5pt, black] (\hpos, 9.408) ++(10.31,0) -- ++(9,9);
+			\draw[line width=0.5pt, black] (\hpos, 9.408) ++(10.31,0) -- ++(-9,9);
+		\end{scope}
+		\begin{scope}
+			\path[clip] (\hpos, 789.411) -- ++(10.31,-10.262) -- ++(10.31,10.262) -- ++(-8.162,0) arc[start angle=0, end angle=-180, radius=2.148] -- cycle;
+			\draw[line width=2pt, black] (\hpos, 789.411) -- ++(10.31,-10.262) -- ++(10.31,10.262) -- cycle;
+			
+			\path[clip] (\hpos, 789.411) ++(3,-1.25) -- ++(7.31,-7.262) -- ++(7.31,7.262) -- cycle;
+			
+			\draw[line width=0.5pt, black] (\hpos, 789.411) ++(10.31,0) -- ++(0,-10.262);
+			\draw[line width=0.5pt, black] (\hpos, 789.411) ++(10.31,0) -- ++(3,-9);
+			\draw[line width=0.5pt, black] (\hpos, 789.411) ++(10.31,0) -- ++(-3,-9);
+			\draw[line width=0.5pt, black] (\hpos, 789.411) ++(10.31,0) -- ++(9,-9);
+			\draw[line width=0.5pt, black] (\hpos, 789.411) ++(10.31,0) -- ++(-9,-9);
+		\end{scope}
+	}
+	%% Vertical Triangles (Mid 399.4095)	
+	\foreach \i in {0,...,21}
+	{
+		\pgfmathsetmacro{\hpos}{405.853 + (-1)^\i * 33.507 * ceil(\i / 2)};
+		\begin{scope}
+			\path[clip] (25.297, \hpos) -- ++(-10.262,10.31) -- ++(10.262,10.31) -- ++(0,-8.162) arc[start angle=90, end angle=270, radius=2.148] -- cycle;
+			\draw[line width=2pt, black] (25.297, \hpos) -- ++(-10.262,10.31) -- ++(10.262,10.31) -- cycle;
+			
+			\path[clip] (25.297, \hpos) ++(-1.25, 3) -- ++(-7.262,7.31) -- ++(7.262,7.31) -- cycle;
+			
+			\draw[line width=0.5pt, black] (25.297, \hpos) ++(0,10.31) -- ++(-10.262,0);
+			\draw[line width=0.5pt, black] (25.297, \hpos) ++(0,10.31) -- ++(-9,3);
+			\draw[line width=0.5pt, black] (25.297, \hpos) ++(0,10.31) -- ++(-9,-3);
+			\draw[line width=0.5pt, black] (25.297, \hpos) ++(0,10.31) -- ++(-9,9);
+			\draw[line width=0.5pt, black] (25.297, \hpos) ++(0,10.31) -- ++(-9,-9);
+		\end{scope}
+		\begin{scope}
+			\path[clip] (588.998, \hpos) -- ++(10.262,10.31) -- ++(-10.262,10.31) -- ++(0,-8.162) arc[start angle=90, end angle=-90, radius=2.148] -- cycle;
+			\draw[line width=2pt, black] (588.998, \hpos) -- ++(10.262,10.31) -- ++(-10.262,10.31) -- cycle;
+			
+			\path[clip] (588.998, \hpos) ++(1.25, 3) -- ++(7.262,7.31) -- ++(-7.262,7.31) -- cycle;
+			
+			\draw[line width=0.5pt, black] (588.998, \hpos) ++(0,10.31) -- ++(10.262,0);
+			\draw[line width=0.5pt, black] (588.998, \hpos) ++(0,10.31) -- ++(9,3);
+			\draw[line width=0.5pt, black] (588.998, \hpos) ++(0,10.31) -- ++(9,-3);
+			\draw[line width=0.5pt, black] (588.998, \hpos) ++(0,10.31) -- ++(9,9);
+			\draw[line width=0.5pt, black] (588.998, \hpos) ++(0,10.31) -- ++(9,-9);
+		\end{scope}
+	}
+	\foreach \i in {0,...,20}
+	{
+		\pgfmathsetmacro{\hpos}{389.1475 + (-1)^\i * 33.507 * ceil(\i / 2)};
+		\begin{scope}
+			\path[clip] (15.035, \hpos) -- ++(10.262,10.31) -- ++(-10.262,10.31) -- ++(0,-8.162) arc[start angle=90, end angle=-90, radius=2.148] -- cycle;
+			\draw[line width=2pt, black] (15.035, \hpos) -- ++(10.262,10.31) -- ++(-10.262,10.31) -- cycle;
+			
+			\path[clip] (15.035, \hpos) ++(1.25, 3) -- ++(7.262,7.31) -- ++(-7.262,7.31) -- cycle;
+			
+			\draw[line width=0.5pt, black] (15.035, \hpos) ++(0,10.31) -- ++(10.262,0);
+			\draw[line width=0.5pt, black] (15.035, \hpos) ++(0,10.31) -- ++(9,3);
+			\draw[line width=0.5pt, black] (15.035, \hpos) ++(0,10.31) -- ++(9,-3);
+			\draw[line width=0.5pt, black] (15.035, \hpos) ++(0,10.31) -- ++(9,9);
+			\draw[line width=0.5pt, black] (15.035, \hpos) ++(0,10.31) -- ++(9,-9);
+		\end{scope}
+		\begin{scope}
+			\path[clip] (599.26, \hpos) -- ++(-10.262,10.31) -- ++(10.262,10.31) -- ++(0,-8.162) arc[start angle=90, end angle=270, radius=2.148] -- cycle;
+			\draw[line width=2pt, black] (599.26, \hpos) -- ++(-10.262,10.31) -- ++(10.262,10.31) -- cycle;
+			
+			\path[clip] (599.26, \hpos) ++(-1.25, 3) -- ++(-7.262,7.31) -- ++(7.262,7.31) -- cycle;
+			
+			\draw[line width=0.5pt, black] (599.26, \hpos) ++(0,10.31) -- ++(-10.262,0);
+			\draw[line width=0.5pt, black] (599.26, \hpos) ++(0,10.31) -- ++(-9,3);
+			\draw[line width=0.5pt, black] (599.26, \hpos) ++(0,10.31) -- ++(-9,-3);
+			\draw[line width=0.5pt, black] (599.26, \hpos) ++(0,10.31) -- ++(-9,9);
+			\draw[line width=0.5pt, black] (599.26, \hpos) ++(0,10.31) -- ++(-9,-9);
+		\end{scope}
+	}
+	
+	%% Elder Signs
+	\node at (22.7675,18.638) {\includegraphics[scale=0.1]{\PATH/templates/template_character-sheet/40th_anniversary-character-sheet/img/Elder_Sign_gold}};
+	\node at (22.7675,778.1215) {\includegraphics[scale=0.1]{\PATH/templates/template_character-sheet/40th_anniversary-character-sheet/img/Elder_Sign_gold}};
+	\node at (591.5275,778.1215) {\includegraphics[scale=0.1]{\PATH/templates/template_character-sheet/40th_anniversary-character-sheet/img/Elder_Sign_gold}};
+	\node at (591.5275,18.638) {\includegraphics[scale=0.1]{\PATH/templates/template_character-sheet/40th_anniversary-character-sheet/img/Elder_Sign_gold}};
+	
+	%% Copyright
+	\node[rotate=90, anchor=west, inner sep=0pt] at (607.5,760) {\tiny \textcolor{grey_text_color}{\textcopyright \ 2021 Chaosium Inc. Permission is granted to copy for personal, non-commercial use only.}};
+\end{pageTikZ}

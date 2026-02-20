@@ -1,0 +1,76 @@
+\begin{pageTikZ}
+	% MY STORY
+	\node[inner sep=0pt] at (307.1475,52.2355) {\large\bfseries\textsc{My Story}};
+	
+	% BACKSTORY
+	\node[inner sep=0pt] at (307.1475,181.3805) {\large\bfseries\textsc{Backstory}};
+	
+	\node[anchor=north west, inner sep=0pt] at (49.353,195.615) {\Large Personal Description};
+	\node[anchor=north west, inner sep=0pt] at (317.506,195.615) {\Large Traits};
+	\node[anchor=north west, inner sep=0pt] at (49.353,261.042) {\Large Ideology \& Beliefs};
+	\node[anchor=north west, inner sep=0pt] at (317.506,261.042) {\Large Injuries \& Scars};
+	\node[anchor=north west, inner sep=0pt] at (49.353,326.469) {\Large Significant People};
+	\node[anchor=north west, inner sep=0pt] at (317.506,326.469) {\Large Phobias \& Manias};
+	\node[anchor=north west, inner sep=0pt] at (49.353,391.896) {\Large Meaningful Locations};
+	\node[anchor=north west, inner sep=0pt] at (317.506,391.896) {\Large Arcane Tomes \& Spells};
+	\node[anchor=north west, inner sep=0pt] at (49.353,457.323) {\Large Treasured Possessions};
+	\node[anchor=north west, inner sep=0pt] at (317.506,457.323) {\Large Encounters with Strange Entities};
+	
+	% GEAR, POSSESSIONS & WEALTH
+	\node[inner sep=0pt] at (173.071,523.159) {\large\bfseries\textsc{Gear \& Possessions}};
+	\node[inner sep=0pt] at (441.224,523.159) {\large\bfseries\textsc{Wealth}};
+	\node[anchor=north west, inner sep=0pt] at (317.506,536.159) {\small Spending Level};
+	\node[anchor=north west, inner sep=0pt] at (317.506,549.843) {\small Cash};
+	\node[anchor=north west, inner sep=0pt] at (317.506,563.527) {\small Assets};
+	
+	% FELLOW INVESTIGATORS
+	\node[inner sep=0pt] at (220.11,620.036) {\large\bfseries\textsc{Fellow}};
+	\node[inner sep=0pt] at (220.11,630.036) {\large\bfseries\textsc{Investigators}};
+	\foreach \i in {0,...,2}
+	{
+		\pgfmathsetmacro{\hpos}{646.036 + \i * 40.198};
+		\node[anchor=west, inner sep=0pt] at (50.353,\hpos) {\large Char.};
+		\node[anchor=west, inner sep=0pt] at (50.353,\hpos + 16.5) {\large Player};
+		
+		\node[anchor=west, inner sep=0pt] at (281.036,\hpos + 8.553) {\large Char.};
+		\node[anchor=west, inner sep=0pt] at (281.036,\hpos + 25.053) {\large Player};
+	}
+	
+	% Quick Reference Rules
+	\node[inner sep=0pt] at (489.9325,625.036) {\large\bfseries\textsc{Quick Reference Rules}};
+	\node[inner sep=0pt] at (489.9325,642.036) {\small\bfseries Skill \& Characteristic Rolls};
+	
+	\node[inner sep=0pt] at (415.9325,652.536) {\tiny Level of};
+	\node[inner sep=0pt] at (415.9325,657.536) {\tiny Success:};
+	
+	\draw[line width=0.1pt, black] (430.9325,650.036) rectangle ++(25,10);
+	\draw[line width=0.1pt, black] (455.9325,650.036) rectangle ++(20,10);
+	\draw[line width=0.1pt, black] (475.9325,650.036) rectangle ++(25,10);
+	\draw[line width=0.1pt, black] (500.9325,650.036) rectangle ++(25,10);
+	\draw[line width=0.1pt, black] (525.9325,650.036) rectangle ++(25,10);
+	\draw[line width=0.1pt, black] (550.9325,650.036) rectangle ++(25,10);
+	
+	\node[inner sep=0pt] at (443.4325,652.536) {\tiny Fumble};
+	\node[inner sep=0pt] at (443.4325,657.536) {\tiny 100/96+};
+	\node[inner sep=0pt] at (465.9325,652.536) {\tiny Fail};
+	\node[inner sep=0pt] at (465.9325,657.536) {\tiny > skill};
+	\node[inner sep=0pt] at (488.4325,652.536) {\tiny Regular};
+	\node[inner sep=0pt] at (488.4325,657.536) {\tiny $\leq$ skill};
+	\node[inner sep=0pt] at (513.4325,652.536) {\tiny Hard};
+	\node[inner sep=0pt] at (513.4325,657.536) {\tiny $\nicefrac{1}{2}$ skill};
+	\node[inner sep=0pt] at (538.4325,652.536) {\tiny Extreme};
+	\node[inner sep=0pt] at (538.4325,657.536) {\tiny $\nicefrac{1}{5}$ skill};
+	\node[inner sep=0pt] at (563.4325,652.536) {\tiny Critical};
+	\node[inner sep=0pt] at (563.4325,657.536) {\tiny 01};
+	
+	\node[inner sep=0pt] at (489.9325,667.036) {\tiny Pushing Rolls: must justify reroll;};
+	\node[inner sep=0pt] at (489.9325,673.036) {\tiny cannot push combat or Sanity rolls};
+	\node[inner sep=0pt] at (489.9325,685.036) {\small\bfseries Wounds \& Healing};
+	\node[inner sep=0pt] at (489.9325,695.036) {\tiny First Aid heals 1 HP \ \ \ \ \ \ \ Medicine  heals 1D3 HP};
+	\node[inner sep=0pt] at (489.9325,703.036) {\tiny \textbf{Major Wounds} = loss of $\geq \nicefrac{1}{2}$ max HP in one attack};
+	\node[inner sep=0pt] at (489.9325,711.036) {\tiny Reach 0 HP without Major Wound = \textbf{Unconscious}};
+	\node[inner sep=0pt] at (489.9325,719.036) {\tiny Reach 0 HP with Major Wound = \textbf{Dying}};
+	\node[inner sep=0pt] at (489.9325,732.036) {\tiny \textbf{Dying}: First Aid = temp, stabilized; then require Medicine};
+	\node[inner sep=0pt] at (489.9325,740.036) {\tiny \textbf{Natural Heal rate} (non Major Wound): recover 1 HP per day};
+	\node[inner sep=0pt] at (489.9325,748.036) {\tiny \textbf{Natural Heal rate} (Major Wound): weekly healing roll};
+\end{pageTikZ}
