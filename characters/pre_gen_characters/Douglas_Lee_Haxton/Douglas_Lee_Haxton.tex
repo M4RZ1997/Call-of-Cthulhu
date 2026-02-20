@@ -1,0 +1,251 @@
+\documentclass[letterpaper,openany,twoside,twocolumn]{book}
+
+\newcommand{\PATH}{../../../}
+
+\usepackage[justified]{\PATH templates/template_coc/coc}
+
+\usepackage{\PATH templates/utilities/m4rz-colors}
+\usepackage{\PATH templates/utilities/m4rz-fonts}
+
+\usepackage[edition=40th-anniversary]{\PATH /templates/template_character-sheet/character-sheet-stylesheet}
+
+\graphicspath{{./images}}
+
+% --------------------------------------------------------------------------------------------------------------- %
+% #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#  CHARACTER INFORMATION  #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
+% --------------------------------------------------------------------------------------------------------------- %
+\CharacterName{Douglas Lee Haxton}
+\Birthplace{}
+\Pronoun{Mr.}
+\Occupation{Postal Clerk}
+\Residence{}
+\Age{52} % Stat Deduction like age-based appearance or move deductions are automated, however player's choice deductions must be made manually in SCORE MODIFICATIONS
+
+% CHARACTER IMAGE
+%% \CharacterImage[#1][#2]{#3}
+
+%%% #1: tikz/node options, like shift (xshift, yshift) or anchors
+%%% #2:
+%%%% includegraphics options, like height, width or keepaspectratio
+%%%% OR
+%%%% {Width}: width = 101.807pt or {Height}: height = 120.124pt
+%%% #3: Path to image
+
+%% If optionals are left empty the images max dimensions are:
+%%% width = 101.807pt, height = 120.124pt
+%%% keepaspectratio enabled
+\CharacterImage[yshift=0.1cm][Width]{Douglas_Lee_Haxton.png}
+% If the Constitution Score is 0 a "Deceased" decal will be added to the Investigator's image
+% --------------------------------------------------------------------------------------------------------------- %
+% #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#  CHARACTERISTIC SCORES  #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
+% --------------------------------------------------------------------------------------------------------------- %
+% ROLL 3D6 for the following Stats
+\StrengthRolled{12}
+\ConstitutionRolled{10}
+\DexterityRolled{10}
+\PowerRolled{13}
+\AppearanceRolled{12}
+\LuckRolled{12}
+% ROLL 2D6 and add 6 for the following Stats
+\IntelligenceRolled{18}
+\SizeRolled{14}
+\EducationRolled{14}
+
+% SCORE MODIFICATIONS
+%% like AGE DEDUCTIONS (except for APPEARANCE) or increases, i.e. due to EDU IMPOROVEMENTS
+%% All Score Minimums are 0
+%% Only Size and Power may exceed 99, others are capped at 99
+\StrengthModification{0}
+\ConstitutionModification{-5}
+\DexterityModification{-5}
+\PowerModification{0}
+\AppearanceModification{0}
+\LuckModification{0}
+\IntelligenceModification{0}
+\SizeModification{0}
+\EducationModification{15}
+
+\calculateCharacteristicStats{}
+
+% CURRENT VALUES
+\HitPointsCurrent{}
+\MagicPointsCurrent{}
+\LuckCurrent{}
+\SanityCurrent{55}
+
+% CONDITIONS
+%% Set argument to T to display an X in the respective condition box
+\TemporaryInsanity{}
+\IndefiniteInsanity{}
+\MajorWound{}
+\Unconscious{}
+\Dying{}
+% --------------------------------------------------------------------------------------------------------------- %
+% #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#  SKILL  #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
+% --------------------------------------------------------------------------------------------------------------- %
+% Each of the following macros has an optional argument which can be {T} to tick the boxes next to the appropriate skill
+% For skills like Art/Craft of Language (Other) you also need to specify a name which can then be displayed
+%% A maximum number is indicated and any further addition to the same category of skill is ommitted
+% Base Percentage Values are set by default
+\AccountingSkill[]{50}
+\AnthropologySkill[]{1}
+\AppraiseSkill[]{5}
+\ArchaeologySkill[]{1}
+
+% Art/Craft Skill (Max Number: 2)
+\ArtCraftSkill[]{Acting}{35}
+\ArtCraftSkill[]{Singing}{25}
+
+\CharmSkill[]{15}
+\ClimbSkill[]{20}
+\CreditRating{24}
+\CthulhuMythosSkill{4}
+\DisguiseSkill[]{25}
+\DodgeSkill[]{\intcalcShr{\DexterityScoreValue}}
+\DriveAutoSkill[]{20}
+\ElectricalRepairSkill[]{10}
+\FastTalkSkill[]{5}
+\BrawlSkill[]{25}
+
+% Fighting Skill (Max Number: 2)
+%\FightingSkill[]{Jiujitsu}{56}
+
+\HandgunSkill[]{40}
+\RifleShotgunSkill[]{70}
+
+% Firearm Skill (Max Number: 1)
+%\FirearmsSkill[]{Firearms (Bow)}{50}
+
+\FirstAidSkill[]{30}
+\HistorySkill[]{25}
+\IntimidateSkill[]{15}
+\JumpSkill[]{20}
+
+% Language (Other) Skill (Max Number: 3)
+\LanguageOtherSkill[]{French}{20}
+%\LanguageOtherSkill[]{German}{60}
+%\LanguageOtherSkill[]{Swahili}{20}
+
+\LanguageOwnSkill[]{English}{\EducationScoreValue}
+\LawSkill[]{5}
+\LibraryUseSkill[]{60}
+\ListenSkill[]{40}
+\LocksmithSkill[]{1}
+\MechanicalRepairSkill[]{10}
+\MedicineSkill[]{1}
+\NaturalWorldSkill[]{10}
+\NavigateSkill[]{10}
+\OccultSkill[]{50}
+\PersuadeSkill[]{60}
+
+% Pilot Skill (Max Number: 1)
+%\PilotSkill[]{Submarine}{1}
+
+\PsychoanalysisSkill[]{1}
+\PsychologySkill[]{10}
+\RideSkill[]{5}
+
+% Science Skill (Max Number: 3)
+\ScienceSkill[]{Astronomy}{40}
+\ScienceSkill[]{Physics}{20}
+
+\SleightOfHandSkill[]{10}
+\SpotHiddenSkill[]{45}
+\StealthSkill[]{40}
+
+% Survival Skill (Max Number: 1)
+%\SurvivalSkill[]{Outdoor}{10}
+
+\SwimSkill[]{20}
+\ThrowSkill[]{50}
+\TrackSkill[]{10}
+
+% Extra Slots (Max Number: 4)
+\ExtraSkill[]{Computer Use}{50}
+% --------------------------------------------------------------------------------------------------------------- %
+% #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#  COMBAT // WEAPONS  #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
+% --------------------------------------------------------------------------------------------------------------- %
+% The max number of weapons that can be displayed is dependent on which character-sheet is in use:
+%% 40th Anniversary:	Max Number 4
+%% Original:			Max Number 6
+%
+% If your number exceeds that value any additional weapon is ommitted
+%% \addWeapon{#1}{#2}{#3}{#4}{#5}{#6}{#7}
+%%% #1: Display Name
+%%% #2: Skill Value (i.e. \BrawlSkillValue or \FirearmsSkillValue)
+%%% #3: Damage
+%%% #4: Number of Attacks
+%%% #5: Range
+%%% #6: Ammo
+%%% #7: Malfunction
+\addWeapon{Brawl}{\BrawlSkillValue}{1D3 + 1D4}{1}{-}{-}{-}
+\addWeapon{Mossberg 590}{\RifleShotgunSkillValue}{4D6/2d6/1D6}{1}{10/20/40 yds}{5}{100}
+\addWeapon{Colt 1911A1}{\HandgunSkillValue}{1D10 + 2}{1 (3)}{15 yds}{7}{100}
+
+% --------------------------------------------------------------------------------------------------------------- %
+% #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# BACKGROUND & POSSESSION #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
+% --------------------------------------------------------------------------------------------------------------- %
+% The length of the text is irrelevant, however, is eventually cut automatically to avoid text overlays
+% MY STORY
+\MyStory{\scriptsize Haxton loved his job with the Arkham Post Office, walking the delivery routes, meeting people, and providing a service, yet he always felt there was something missing in his life.
+
+	Shortly before his 50th birthday, he saw something strange, while walking past a disused warehouse. On taking a closer look, Haxton was accosted and barely survived an encounter with pack of savage beast-like men. While the physical trauma healed quickly, it took much longer for his mind to recover. After spending seven months in Arkham Sanatorium Haxton was released; the doctors recording that he had made a "full recovery". In truth, he had simply learned to tell the doctors what they wanted to hear.
+	
+	His time in the sanatorium was not spent in vain; there were others who had survived their own encounters with things that man was not meant to know. These people listened to Haxton's tale and nodded; they knew he was telling the truth. They called themselves Ratched's Children and they said they worked to protect mankind from the horrors of the night. After being released, Haxton kept in contact with Ratched's Children. Eventually, he was offered membership in the fight for mankind's salvation. Haxton had found what he had been looking for all of his life and a way he could make a difference. He now devotes his time to "the project", searching the internet and newspapers for incidents that could be related to the work of the Old Ones. He is vigilant and ready to answer the call when it comes.
+}%
+
+% BACKSTORY
+%% PERSONAL DESCRIPTION
+\PersonalDescription{Average height, balding, heavyset, with dark-ringed, and haunted eyes.}
+%% TRAITS
+\Traits{Something of a gun enthusiast; since his incident he keeps a firearm nearby, despite not having a permit to do so. Liable to extreme bursts of nervous energy.}
+%% IDEOLOGY & BELIEFS
+\IdeologyBeliefs{}
+%% INJURIES & SCARS
+\InjuriesScars{Scar on right side of his torso where a beast-like man raked him with its claws.}
+%% SIGNIFICANT PEOPLE
+\SignificantPeople{Single; while he has become distant from his friends, he still cares for his elderly parents.}
+%% PHOBIAS & MANIAS
+\PhobiasManias{Claustrophobia.}
+%% MEANINGFUL LOCATIONS
+\MeaningfulLocations{}
+%% ARCANE TOMES & SPELLS
+\ArcaneTomesSpells{}
+%% TREASURED POSSESSIONS
+\TreasuredPossessions{His books; his cuddly, Mossberg 590 12-gauge Shotgun (with bayonet); and loveable, Colt 1911A1 .45 ACP Pistol.}
+%% ENCOUNTERS WITH STRANGE ENTITIES
+\StrangeEntitiesEncounters{}
+
+% GEAR & POSSESSIONS (Max Number: 10)
+\addGearOrPossessions{Mossberg 590, 12-Gauge}
+\addGearOrPossessions{Colt 1911A1 .45 ACP Pistol}
+
+% WEALTH
+%% \Wealth{#1}{#2}{#3}
+%% Every empty argument will cause the respective value to be calculated automatically, depending on the Credit Rating
+%%% #1: Spending Level
+%%% #2: Cash
+%%% #3: Assets
+\Wealth{}{}{}
+%% More Information on Assets if required/needed
+\AssetsInformation{}
+
+% FELLOW INVESTIGATORS (Max Number: 6)
+%% \addFellowInvestigator{#1}{#2}
+%%% #1: Character Name
+%%% #2: Player Name
+%\addFellowInvestigator{Phteven}{Steve}
+
+\begin{document}
+	% This pagestyle adds the ornament and sets the text geometry based on the chosen character-sheet style
+	%% To restore the original pagestyle use \pagestyle(base)
+	\pagestyle{character-sheet}
+	\rendercharactersheet
+	
+	\clearpage
+	\renderbackgroundsheet
+	
+	\clearpage
+	% The following command can be used to add text lines to the whole page
+	\renderblanktextsheet
+\end{document}

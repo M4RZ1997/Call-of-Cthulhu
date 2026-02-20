@@ -1,0 +1,246 @@
+\documentclass[letterpaper,openany,twoside,twocolumn]{book}
+
+\newcommand{\PATH}{../../../}
+
+\usepackage[justified]{\PATH templates/template_coc/coc}
+
+\usepackage{\PATH templates/utilities/m4rz-colors}
+\usepackage{\PATH templates/utilities/m4rz-fonts}
+
+\usepackage[edition=40th-anniversary]{\PATH /templates/template_character-sheet/character-sheet-stylesheet}
+
+\graphicspath{{./images}}
+
+% --------------------------------------------------------------------------------------------------------------- %
+% #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#  CHARACTER INFORMATION  #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
+% --------------------------------------------------------------------------------------------------------------- %
+\CharacterName{Robert Andersson}
+\Birthplace{Arkham}
+\Pronoun{Mr.}
+\Occupation{Journalist}
+\Residence{}
+\Age{44} % Stat Deduction like age-based appearance or move deductions are automated, however player's choice deductions must be made manually in SCORE MODIFICATIONS
+
+% CHARACTER IMAGE
+%% \CharacterImage[#1][#2]{#3}
+
+%%% #1: tikz/node options, like shift (xshift, yshift) or anchors
+%%% #2:
+%%%% includegraphics options, like height, width or keepaspectratio
+%%%% OR
+%%%% {Width}: width = 101.807pt or {Height}: height = 120.124pt
+%%% #3: Path to image
+
+%% If optionals are left empty the images max dimensions are:
+%%% width = 101.807pt, height = 120.124pt
+%%% keepaspectratio enabled
+\CharacterImage[yshift=0.1cm][Width]{Robert_Andersson.png}
+% If the Constitution Score is 0 a "Deceased" decal will be added to the Investigator's image
+% --------------------------------------------------------------------------------------------------------------- %
+% #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#  CHARACTERISTIC SCORES  #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
+% --------------------------------------------------------------------------------------------------------------- %
+% ROLL 3D6 for the following Stats
+\StrengthRolled{9}
+\ConstitutionRolled{11}
+\DexterityRolled{12}
+\PowerRolled{12}
+\AppearanceRolled{12}
+\LuckRolled{3}
+% ROLL 2D6 and add 6 for the following Stats
+\IntelligenceRolled{15}
+\SizeRolled{13}
+\EducationRolled{15}
+
+% SCORE MODIFICATIONS
+%% like AGE DEDUCTIONS (except for APPEARANCE) or increases, i.e. due to EDU IMPOROVEMENTS
+%% All Score Minimums are 0
+%% Only Size and Power may exceed 99, others are capped at 99
+\StrengthModification{-5}
+\ConstitutionModification{0}
+\DexterityModification{0}
+\PowerModification{0}
+\AppearanceModification{0}
+\LuckModification{-9}
+\IntelligenceModification{0}
+\SizeModification{0}
+\EducationModification{5}
+
+\calculateCharacteristicStats{}
+
+% CURRENT VALUES
+\HitPointsCurrent{}
+\MagicPointsCurrent{}
+\LuckCurrent{}
+\SanityCurrent{58}
+
+% CONDITIONS
+%% Set argument to T to display an X in the respective condition box
+\TemporaryInsanity{}
+\IndefiniteInsanity{}
+\MajorWound{}
+\Unconscious{}
+\Dying{}
+% --------------------------------------------------------------------------------------------------------------- %
+% #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#  SKILL  #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
+% --------------------------------------------------------------------------------------------------------------- %
+% Each of the following macros has an optional argument which can be {T} to tick the boxes next to the appropriate skill
+% For skills like Art/Craft of Language (Other) you also need to specify a name which can then be displayed
+%% A maximum number is indicated and any further addition to the same category of skill is ommitted
+% Base Percentage Values are set by default
+\AccountingSkill[]{5}
+\AnthropologySkill[]{1}
+\AppraiseSkill[]{5}
+\ArchaeologySkill[]{1}
+
+% Art/Craft Skill (Max Number: 2)
+\ArtCraftSkill[]{Literature}{70}
+\ArtCraftSkill[]{Photography}{25}
+
+\CharmSkill[]{65}
+\ClimbSkill[]{20}
+\CreditRating{40}
+\CthulhuMythosSkill{0}
+\DisguiseSkill[]{5}
+\DodgeSkill[]{\intcalcShr{\DexterityScoreValue}}
+\DriveAutoSkill[]{40}
+\ElectricalRepairSkill[]{10}
+\FastTalkSkill[]{50}
+\BrawlSkill[]{35}
+
+% Fighting Skill (Max Number: 2)
+%\FightingSkill[]{Jiujitsu}{56}
+
+\HandgunSkill[]{20}
+\RifleShotgunSkill[]{25}
+
+% Firearm Skill (Max Number: 1)
+%\FirearmsSkill[]{Firearms (Bow)}{50}
+
+\FirstAidSkill[]{30}
+\HistorySkill[]{50}
+\IntimidateSkill[]{15}
+\JumpSkill[]{20}
+
+% Language (Other) Skill (Max Number: 3)
+\LanguageOtherSkill[]{English}{60}
+%\LanguageOtherSkill[]{German}{60}
+%\LanguageOtherSkill[]{Swahili}{20}
+
+\LanguageOwnSkill[]{Swedish}{\EducationScoreValue}
+\LawSkill[]{5}
+\LibraryUseSkill[]{50}
+\ListenSkill[]{20}
+\LocksmithSkill[]{1}
+\MechanicalRepairSkill[]{10}
+\MedicineSkill[]{1}
+\NaturalWorldSkill[]{10}
+\NavigateSkill[]{10}
+\OccultSkill[]{40}
+\PersuadeSkill[]{30}
+
+% Pilot Skill (Max Number: 1)
+%\PilotSkill[]{Submarine}{1}
+
+\PsychoanalysisSkill[]{1}
+\PsychologySkill[]{60}
+\RideSkill[]{5}
+
+% Science Skill (Max Number: 3)
+%\ScienceSkill[]{Chemistry}{1}
+
+\SleightOfHandSkill[]{10}
+\SpotHiddenSkill[]{25}
+\StealthSkill[]{20}
+
+% Survival Skill (Max Number: 1)
+%\SurvivalSkill[]{Outdoor}{10}
+
+\SwimSkill[]{20}
+\ThrowSkill[]{20}
+\TrackSkill[]{10}
+
+% Extra Slots (Max Number: 4)
+%\ExtraSkill[]{}{}
+% --------------------------------------------------------------------------------------------------------------- %
+% #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#  COMBAT // WEAPONS  #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
+% --------------------------------------------------------------------------------------------------------------- %
+% The max number of weapons that can be displayed is dependent on which character-sheet is in use:
+%% 40th Anniversary:	Max Number 4
+%% Original:			Max Number 6
+%
+% If your number exceeds that value any additional weapon is ommitted
+%% \addWeapon{#1}{#2}{#3}{#4}{#5}{#6}{#7}
+%%% #1: Display Name
+%%% #2: Skill Value (i.e. \BrawlSkillValue or \FirearmsSkillValue)
+%%% #3: Damage
+%%% #4: Number of Attacks
+%%% #5: Range
+%%% #6: Ammo
+%%% #7: Malfunction
+\addWeapon{Brawl}{\BrawlSkillValue}{1D3}{1}{-}{-}{-}
+
+% --------------------------------------------------------------------------------------------------------------- %
+% #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# BACKGROUND & POSSESSION #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
+% --------------------------------------------------------------------------------------------------------------- %
+% The length of the text is irrelevant, however, is eventually cut automatically to avoid text overlays
+% MY STORY
+\MyStory{
+	\small In his youth, Robert studied at the Miskatonic University in Arkham. With his knack for writing, he worked at the student newspaper and dreamed that one day he would return to Sweden as a Nobel Prize-winning author. His dream was never to be realized. With rejections from publishers piling-up beside his typewriter, Robert found he was able to make ends meet by writing for newspapers and magazines. The more lurid and colorful the story, the more attention it received, and the better he was paid. It wasn't long before he began a productive relationship with Strange but True! magazine.
+
+	Nowadays, Robert works pretty much exclusively for Strange but True! He travels the forgotten parts of America, seeking out bizarre and tall tales for the magazine's readership. Known equally as a friend and a nuisance, Robert has built an extensive web of contacts that supply him with the very latest gossip and whispers.
+}%
+
+% BACKSTORY
+%% PERSONAL DESCRIPTION
+\PersonalDescription{Slim build, somewhat frail looking, with a receding hairline and spectacles, kind eyes, and a warm smile.}
+%% TRAITS
+\Traits{Quick-witted, with an active imagination, and a very useful ability to make friends with nearly anyone.}
+%% IDEOLOGY & BELIEFS
+\IdeologyBeliefs{}
+%% INJURIES & SCARS
+\InjuriesScars{}
+%% SIGNIFICANT PEOPLE
+\SignificantPeople{}
+%% PHOBIAS & MANIAS
+\PhobiasManias{}
+%% MEANINGFUL LOCATIONS
+\MeaningfulLocations{}
+%% ARCANE TOMES & SPELLS
+\ArcaneTomesSpells{}
+%% TREASURED POSSESSIONS
+\TreasuredPossessions{His trusty Remington Portable typewriter, and an old, battered but loved, Ford.}
+%% ENCOUNTERS WITH STRANGE ENTITIES
+\StrangeEntitiesEncounters{}
+
+% GEAR & POSSESSIONS (Max Number: 10)
+\addGearOrPossessions{}
+
+% WEALTH
+%% \Wealth{#1}{#2}{#3}
+%% Every empty argument will cause the respective value to be calculated automatically, depending on the Credit Rating
+%%% #1: Spending Level
+%%% #2: Cash
+%%% #3: Assets
+\Wealth{}{}{}
+%% More Information on Assets if required/needed
+\AssetsInformation{}
+
+% FELLOW INVESTIGATORS (Max Number: 6)
+%% \addFellowInvestigator{#1}{#2}
+%%% #1: Character Name
+%%% #2: Player Name
+%\addFellowInvestigator{Phteven}{Steve}
+
+\begin{document}
+	% This pagestyle adds the ornament and sets the text geometry based on the chosen character-sheet style
+	%% To restore the original pagestyle use \pagestyle(base)
+	\pagestyle{character-sheet}
+	\rendercharactersheet
+	
+	\clearpage
+	\renderbackgroundsheet
+	
+	\clearpage
+	% The following command can be used to add text lines to the whole page
+	\renderblanktextsheet
+\end{document}

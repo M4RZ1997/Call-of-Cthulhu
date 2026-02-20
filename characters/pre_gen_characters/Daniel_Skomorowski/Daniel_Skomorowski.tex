@@ -1,0 +1,248 @@
+\documentclass[letterpaper,openany,twoside,twocolumn]{book}
+
+\newcommand{\PATH}{../../../}
+
+\usepackage[justified]{\PATH templates/template_coc/coc}
+
+\usepackage{\PATH templates/utilities/m4rz-colors}
+\usepackage{\PATH templates/utilities/m4rz-fonts}
+
+\usepackage[edition=40th-anniversary]{\PATH /templates/template_character-sheet/character-sheet-stylesheet}
+
+\graphicspath{{./images}}
+
+% --------------------------------------------------------------------------------------------------------------- %
+% #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#  CHARACTER INFORMATION  #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
+% --------------------------------------------------------------------------------------------------------------- %
+\CharacterName{Dr. Daniel Skomorowski}
+\Birthplace{Denmark}
+\Pronoun{Mr.}
+\Occupation{Archaeologist}
+\Residence{}
+\Age{35} % Stat Deduction like age-based appearance or move deductions are automated, however player's choice deductions must be made manually in SCORE MODIFICATIONS
+
+% CHARACTER IMAGE
+%% \CharacterImage[#1][#2]{#3}
+
+%%% #1: tikz/node options, like shift (xshift, yshift) or anchors
+%%% #2:
+%%%% includegraphics options, like height, width or keepaspectratio
+%%%% OR
+%%%% {Width}: width = 101.807pt or {Height}: height = 120.124pt
+%%% #3: Path to image
+
+%% If optionals are left empty the images max dimensions are:
+%%% width = 101.807pt, height = 120.124pt
+%%% keepaspectratio enabled
+\CharacterImage[yshift=0.25cm][Width]{Daniel_Skomorowski.png}
+% If the Constitution Score is 0 a "Deceased" decal will be added to the Investigator's image
+% --------------------------------------------------------------------------------------------------------------- %
+% #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#  CHARACTERISTIC SCORES  #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
+% --------------------------------------------------------------------------------------------------------------- %
+% ROLL 3D6 for the following Stats
+\StrengthRolled{11}
+\ConstitutionRolled{15}
+\DexterityRolled{10}
+\PowerRolled{12}
+\AppearanceRolled{11}
+\LuckRolled{11}
+% ROLL 2D6 and add 6 for the following Stats
+\IntelligenceRolled{16}
+\SizeRolled{13}
+\EducationRolled{17}
+
+% SCORE MODIFICATIONS
+%% like AGE DEDUCTIONS (except for APPEARANCE) or increases, i.e. due to EDU IMPOROVEMENTS
+%% All Score Minimums are 0
+%% Only Size and Power may exceed 99, others are capped at 99
+\StrengthModification{0}
+\ConstitutionModification{0}
+\DexterityModification{0}
+\PowerModification{0}
+\AppearanceModification{0}
+\LuckModification{0}
+\IntelligenceModification{0}
+\SizeModification{0}
+\EducationModification{5}
+
+\calculateCharacteristicStats{}
+
+% CURRENT VALUES
+\HitPointsCurrent{}
+\MagicPointsCurrent{}
+\LuckCurrent{}
+\SanityCurrent{54}
+
+% CONDITIONS
+%% Set argument to T to display an X in the respective condition box
+\TemporaryInsanity{}
+\IndefiniteInsanity{}
+\MajorWound{}
+\Unconscious{}
+\Dying{}
+% --------------------------------------------------------------------------------------------------------------- %
+% #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#  SKILL  #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
+% --------------------------------------------------------------------------------------------------------------- %
+% Each of the following macros has an optional argument which can be {T} to tick the boxes next to the appropriate skill
+% For skills like Art/Craft of Language (Other) you also need to specify a name which can then be displayed
+%% A maximum number is indicated and any further addition to the same category of skill is ommitted
+% Base Percentage Values are set by default
+\AccountingSkill[]{5}
+\AnthropologySkill[]{1}
+\AppraiseSkill[]{5}
+\ArchaeologySkill[]{80}
+
+% Art/Craft Skill (Max Number: 2)
+%\ArtCraftSkill[]{}{}
+
+\CharmSkill[]{25}
+\ClimbSkill[]{20}
+\CreditRating{93}
+\CthulhuMythosSkill{0}
+\DisguiseSkill[]{5}
+\DodgeSkill[]{30}
+\DriveAutoSkill[]{40}
+\ElectricalRepairSkill[]{10}
+\FastTalkSkill[]{5}
+\BrawlSkill[]{35}
+
+% Fighting Skill (Max Number: 2)
+\FightingSkill[]{Sword}{45}
+
+\HandgunSkill[]{30}
+\RifleShotgunSkill[]{50}
+
+% Firearm Skill (Max Number: 1)
+%\FirearmsSkill[]{}{}
+
+\FirstAidSkill[]{30}
+\HistorySkill[]{65}
+\IntimidateSkill[]{15}
+\JumpSkill[]{20}
+
+% Language (Other) Skill (Max Number: 3)
+\LanguageOtherSkill[]{English}{80}
+\LanguageOtherSkill[]{Greenlandic}{15}
+\LanguageOtherSkill[]{Latin}{20}
+
+\LanguageOwnSkill[]{Danish}{\EducationScoreValue}
+\LawSkill[]{5}
+\LibraryUseSkill[]{26}
+\ListenSkill[]{20}
+\LocksmithSkill[]{1}
+\MechanicalRepairSkill[]{10}
+\MedicineSkill[]{1}
+\NaturalWorldSkill[]{25}
+\NavigateSkill[]{10}
+\OccultSkill[]{25}
+\PersuadeSkill[]{35}
+
+% Pilot Skill (Max Number: 1)
+%\PilotSkill[]{Submarine}{1}
+
+\PsychoanalysisSkill[]{1}
+\PsychologySkill[]{10}
+\RideSkill[]{5}
+
+% Science Skill (Max Number: 3)
+\ScienceSkill[]{Geology}{20}
+\ScienceSkill[]{Mathematics}{25}
+
+\SleightOfHandSkill[]{10}
+\SpotHiddenSkill[]{55}
+\StealthSkill[]{20}
+
+% Survival Skill (Max Number: 1)
+\SurvivalSkill[]{Arctic}{35}
+
+\SwimSkill[]{20}
+\ThrowSkill[]{20}
+\TrackSkill[]{10}
+
+% Extra Slots (Max Number: 4)
+%\ExtraSkill[]{}{}
+% --------------------------------------------------------------------------------------------------------------- %
+% #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#  COMBAT // WEAPONS  #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
+% --------------------------------------------------------------------------------------------------------------- %
+% The max number of weapons that can be displayed is dependent on which character-sheet is in use:
+%% 40th Anniversary:	Max Number 4
+%% Original:			Max Number 6
+%
+% If your number exceeds that value any additional weapon is ommitted
+%% \addWeapon{#1}{#2}{#3}{#4}{#5}{#6}{#7}
+%%% #1: Display Name
+%%% #2: Skill Value (i.e. \BrawlSkillValue or \FirearmsSkillValue)
+%%% #3: Damage
+%%% #4: Number of Attacks
+%%% #5: Range
+%%% #6: Ammo
+%%% #7: Malfunction
+\addWeapon{Brawl}{\BrawlSkillValue}{1D3}{1}{-}{-}{-}
+\addWeapon{Sword}{\FightingASkillValue}{1D6 + 1}{1}{Touch}{-}{-}
+
+% --------------------------------------------------------------------------------------------------------------- %
+% #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# BACKGROUND & POSSESSION #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
+% --------------------------------------------------------------------------------------------------------------- %
+% The length of the text is irrelevant, however, is eventually cut automatically to avoid text overlays
+% MY STORY
+\MyStory{\footnotesize Count Daniel Skomorowski was born with a silver spoon in his mouth. His forbears were of the old blood of Prussian Poland, who immigrated to Denmark. He wanted for nothing. When the time came, Skomorowski chose to cross the sea to study at Miskatonic University in Arkham.
+
+	Before returning to Europe, Skomorowski was approached by an associate of Luc Villiers with a tantalizing proposition; namely to join an expedition to study the history of the tribes of Western Greenland. All went well until, during an excavation, disaster struck. When a rescue team finally arrived at the expedition camp, all were dead save for Skomorowski, who could remember nothing of what had taken place. The only clue lay in the object clutched by Skomorowski when the rescue team found his unconscious body - a tupilaq, carved from bone, which depicted an evil-looking, twisted creature.
+
+	Following his recovery, Skomorowski has been employed to investigate and research native practices and religious artifacts around the world. Whether he is aware that such work is funded by Novus Angelus is uncertain.
+}%
+
+% BACKSTORY
+%% PERSONAL DESCRIPTION
+\PersonalDescription{Average height and muscular build, a cherubic face, and blue eyes.}
+%% TRAITS
+\Traits{Highly disdainful of incompetence and stupidity.}
+%% IDEOLOGY & BELIEFS
+\IdeologyBeliefs{}
+%% INJURIES & SCARS
+\InjuriesScars{}
+%% SIGNIFICANT PEOPLE
+\SignificantPeople{His family, comprising a great grandmother, grandmother, mother, father, and sister.}
+%% PHOBIAS & MANIAS
+\PhobiasManias{}
+%% MEANINGFUL LOCATIONS
+\MeaningfulLocations{Denmark, his birthplace and family seat.}
+%% ARCANE TOMES & SPELLS
+\ArcaneTomesSpells{}
+%% TREASURED POSSESSIONS
+\TreasuredPossessions{Signet ring bearing the Skomorowski family crest, and his German Shepherd, Santo.}
+%% ENCOUNTERS WITH STRANGE ENTITIES
+\StrangeEntitiesEncounters{}
+
+% GEAR & POSSESSIONS (Max Number: 10)
+\addGearOrPossessions{}
+
+% WEALTH
+%% \Wealth{#1}{#2}{#3}
+%% Every empty argument will cause the respective value to be calculated automatically, depending on the Credit Rating
+%%% #1: Spending Level
+%%% #2: Cash
+%%% #3: Assets
+\Wealth{}{}{}
+%% More Information on Assets if required/needed
+\AssetsInformation{}
+
+% FELLOW INVESTIGATORS (Max Number: 6)
+%% \addFellowInvestigator{#1}{#2}
+%%% #1: Character Name
+%%% #2: Player Name
+%\addFellowInvestigator{Phteven}{Steve}
+
+\begin{document}
+	% This pagestyle adds the ornament and sets the text geometry based on the chosen character-sheet style
+	%% To restore the original pagestyle use \pagestyle(base)
+	\pagestyle{character-sheet}
+	\rendercharactersheet
+	
+	\clearpage
+	\renderbackgroundsheet
+	
+	\clearpage
+	% The following command can be used to add text lines to the whole page
+	\renderblanktextsheet
+\end{document}
