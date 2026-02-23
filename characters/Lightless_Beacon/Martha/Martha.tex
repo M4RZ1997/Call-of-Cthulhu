@@ -1,0 +1,251 @@
+\documentclass[letterpaper,openany,twoside,twocolumn]{book}
+
+\newcommand{\PATH}{../../../}
+
+\usepackage[justified]{\PATH templates/template_coc/coc}
+
+\usepackage{\PATH templates/utilities/m4rz-colors}
+\usepackage{\PATH templates/utilities/m4rz-fonts}
+
+\usepackage[edition=40th-anniversary]{\PATH /templates/template_character-sheet/character-sheet-stylesheet}
+
+\graphicspath{{./images}}
+
+% --------------------------------------------------------------------------------------------------------------- %
+% #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#  CHARACTER INFORMATION  #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
+% --------------------------------------------------------------------------------------------------------------- %
+\CharacterName{Martha}
+\Birthplace{Bath}
+\Pronoun{Ms.}
+\Occupation{Acrobat}
+\Residence{Circus}
+\Age{30} % Stat Deduction like age-based appearance or move deductions are automated, however player's choice deductions must be made manually in SCORE MODIFICATIONS
+
+% CHARACTER IMAGE
+%% \CharacterImage[#1][#2]{#3}
+
+%%% #1: tikz/node options, like shift (xshift, yshift) or anchors
+%%% #2:
+%%%% includegraphics options, like height, width or keepaspectratio
+%%%% OR
+%%%% {Width}: width = 101.807pt or {Height}: height = 120.124pt
+%%% #3: Path to image
+
+%% If optionals are left empty the images max dimensions are:
+%%% width = 101.807pt, height = 120.124pt
+%%% keepaspectratio enabled
+\CharacterImage[][]{}
+% If the Constitution Score is 0 a "Deceased" decal will be added to the Investigator's image
+% --------------------------------------------------------------------------------------------------------------- %
+% #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#  CHARACTERISTIC SCORES  #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
+% --------------------------------------------------------------------------------------------------------------- %
+% ROLL 3D6 for the following Stats
+\StrengthRolled{12}
+\ConstitutionRolled{11}
+\DexterityRolled{15}
+\PowerRolled{13}
+\AppearanceRolled{11}
+\LuckRolled{15}
+% ROLL 2D6 and add 6 for the following Stats
+\IntelligenceRolled{16}
+\SizeRolled{14}
+\EducationRolled{12}
+
+% SCORE MODIFICATIONS
+%% like AGE DEDUCTIONS (except for APPEARANCE) or increases, i.e. due to EDU IMPOROVEMENTS
+%% All Score Minimums are 0
+%% Only Size and Power may exceed 99, others are capped at 99
+\StrengthModification{0}
+\ConstitutionModification{0}
+\DexterityModification{0}
+\PowerModification{0}
+\AppearanceModification{0}
+\LuckModification{0}
+\IntelligenceModification{0}
+\SizeModification{0}
+\EducationModification{4}
+
+\calculateCharacteristicStats{}
+
+% CURRENT VALUES
+\HitPointsCurrent{}
+\MagicPointsCurrent{}
+\LuckCurrent{}
+\SanityCurrent{64}
+
+% CONDITIONS
+%% Set argument to T to display an X in the respective condition box
+\TemporaryInsanity{}
+\IndefiniteInsanity{}
+\MajorWound{}
+\Unconscious{}
+\Dying{}
+% --------------------------------------------------------------------------------------------------------------- %
+% #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#  SKILL  #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
+% --------------------------------------------------------------------------------------------------------------- %
+% Each of the following macros has an optional argument which can be {T} to tick the boxes next to the appropriate skill
+% For skills like Art/Craft of Language (Other) you also need to specify a name which can then be displayed
+%% A maximum number is indicated and any further addition to the same category of skill is ommitted
+% Base Percentage Values are set by default
+\AccountingSkill[]{5}
+\AnthropologySkill[]{1}
+\AppraiseSkill[]{5}
+\ArchaeologySkill[]{1}
+
+% Art/Craft Skill (Max Number: 2)
+\ArtCraftSkill[]{}{}
+
+\CharmSkill[]{45}
+\ClimbSkill[T]{70}
+\CreditRating{15}
+\CthulhuMythosSkill{0}
+\DisguiseSkill[]{5}
+\DodgeSkill[T]{\intcalcShr{\DexterityScoreValue}}
+\DriveAutoSkill[]{20}
+\ElectricalRepairSkill[]{30}
+\FastTalkSkill[]{5}
+\BrawlSkill[T]{45}
+
+% Fighting Skill (Max Number: 2)
+%\FightingSkill[]{Jiujitsu}{56}
+
+\HandgunSkill[]{20}
+\RifleShotgunSkill[]{25}
+
+% Firearm Skill (Max Number: 1)
+%\FirearmsSkill[]{Firearms (Bow)}{50}
+
+\FirstAidSkill[T]{60}
+\HistorySkill[]{5}
+\IntimidateSkill[]{15}
+\JumpSkill[T]{60}
+
+% Language (Other) Skill (Max Number: 3)
+\LanguageOtherSkill[]{}{31}
+%\LanguageOtherSkill[]{German}{60}
+%\LanguageOtherSkill[]{Swahili}{20}
+
+\LanguageOwnSkill[]{English}{\EducationScoreValue}
+\LawSkill[]{5}
+\LibraryUseSkill[]{20}
+\ListenSkill[]{20}
+\LocksmithSkill[]{1}
+\MechanicalRepairSkill[]{30}
+\MedicineSkill[]{1}
+\NaturalWorldSkill[]{10}
+\NavigateSkill[]{10}
+\OccultSkill[]{5}
+\PersuadeSkill[]{10}
+
+% Pilot Skill (Max Number: 1)
+\PilotSkill[]{}{}
+
+\PsychoanalysisSkill[]{1}
+\PsychologySkill[]{10}
+\RideSkill[]{5}
+
+% Science Skill (Max Number: 3)
+\ScienceSkill[]{}{}
+
+\SleightOfHandSkill[]{10}
+\SpotHiddenSkill[T]{55}
+\StealthSkill[]{20}
+
+% Survival Skill (Max Number: 1)
+\SurvivalSkill[]{}{}
+
+\SwimSkill[T]{50}
+\ThrowSkill[T]{68}
+\TrackSkill[]{10}
+
+% Extra Slots (Max Number: 4)
+%\ExtraSkill[]{}{}
+% --------------------------------------------------------------------------------------------------------------- %
+% #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#  COMBAT // WEAPONS  #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
+% --------------------------------------------------------------------------------------------------------------- %
+% The max number of weapons that can be displayed is dependent on which character-sheet is in use:
+%% 40th Anniversary:	Max Number 4
+%% Original:			Max Number 6
+%
+% If your number exceeds that value any additional weapon is ommitted
+%% \addWeapon{#1}{#2}{#3}{#4}{#5}{#6}{#7}
+%%% #1: Display Name
+%%% #2: Skill Value (i.e. \BrawlSkillValue or \FirearmsSkillValue)
+%%% #3: Damage
+%%% #4: Number of Attacks
+%%% #5: Range
+%%% #6: Ammo
+%%% #7: Malfunction
+\addWeapon{Brawl}{\BrawlSkillValue}{1D3 + 1D4}{1}{-}{-}{-}
+\addWeapon{Brass Knuckles}{\BrawlSkillValue}{\footnotesize 1D3 + 1 + 1D4}{1}{-}{-}{-}
+\addWeapon{.32 Revolver}{\HandgunSkillValue}{1D8}{1 (3)}{15 yds}{6}{100}
+
+% --------------------------------------------------------------------------------------------------------------- %
+% #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# BACKGROUND & POSSESSION #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
+% --------------------------------------------------------------------------------------------------------------- %
+% The length of the text is irrelevant, however, is eventually cut automatically to avoid text overlays
+% MY STORY
+\MyStory{}%
+
+% BACKSTORY
+%% PERSONAL DESCRIPTION
+\PersonalDescription{}
+%% TRAITS
+\Traits{}
+%% IDEOLOGY & BELIEFS
+\IdeologyBeliefs{}
+%% INJURIES & SCARS
+\InjuriesScars{}
+%% SIGNIFICANT PEOPLE
+\SignificantPeople{}
+%% PHOBIAS & MANIAS
+\PhobiasManias{}
+%% MEANINGFUL LOCATIONS
+\MeaningfulLocations{}
+%% ARCANE TOMES & SPELLS
+\ArcaneTomesSpells{}
+%% TREASURED POSSESSIONS
+\TreasuredPossessions{Violin}
+%% ENCOUNTERS WITH STRANGE ENTITIES
+\StrangeEntitiesEncounters{}
+
+% GEAR & POSSESSIONS (Max Number: 10)
+\addGearOrPossessions{3 Bandages}
+\addGearOrPossessions{Pen \& Notebook}
+\addGearOrPossessions{.32 Revolver}
+\addGearOrPossessions{3 .32 Ammo}
+\addGearOrPossessions{Penlight}
+\addGearOrPossessions{Brass Knuckles}
+
+% WEALTH
+%% \Wealth{#1}{#2}{#3}
+%% Every empty argument will cause the respective value to be calculated automatically, depending on the Credit Rating
+%%% #1: Spending Level
+%%% #2: Cash
+%%% #3: Assets
+\Wealth{}{}{}
+%% More Information on Assets if required/needed
+\AssetsInformation{}
+
+% FELLOW INVESTIGATORS (Max Number: 6)
+%% \addFellowInvestigator{#1}{#2}
+%%% #1: Character Name
+%%% #2: Player Name
+\addFellowInvestigator{Valerie}{Brian}
+\addFellowInvestigator{Big Tony}{Lorenzo}
+\addFellowInvestigator{Joshua}{Marvin}
+\addFellowInvestigator{Harald}{Marcel}
+
+\begin{document}
+	% This pagestyle adds the ornament and sets the text geometry based on the chosen character-sheet style
+	%% To restore the original pagestyle use \pagestyle(base)
+	\pagestyle{character-sheet}
+	\rendercharactersheet
+	
+	\clearpage
+	\renderbackgroundsheet
+	
+	\clearpage
+	% The following command can be used to add text lines to the whole page
+	\renderblanktextsheet
+\end{document}

@@ -1,0 +1,258 @@
+\documentclass[letterpaper,openany,twoside,twocolumn]{book}
+
+\newcommand{\PATH}{../../../}
+
+\usepackage[justified]{\PATH templates/template_coc/coc}
+
+\usepackage{\PATH templates/utilities/m4rz-colors}
+\usepackage{\PATH templates/utilities/m4rz-fonts}
+
+\usepackage[edition=40th-anniversary]{\PATH /templates/template_character-sheet/character-sheet-stylesheet}
+
+\graphicspath{{./images}}
+
+% --------------------------------------------------------------------------------------------------------------- %
+% #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#  CHARACTER INFORMATION  #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
+% --------------------------------------------------------------------------------------------------------------- %
+\CharacterName{Harald Buchwitz}
+\Birthplace{Stuckenborstel}
+\Pronoun{Mr.}
+\Occupation{Big Game Hunter}
+\Residence{Worcester, MA}
+\Age{40} % Stat Deduction like age-based appearance or move deductions are automated, however player's choice deductions must be made manually in SCORE MODIFICATIONS
+
+% CHARACTER IMAGE
+%% \CharacterImage[#1][#2]{#3}
+
+%%% #1: tikz/node options, like shift (xshift, yshift) or anchors
+%%% #2:
+%%%% includegraphics options, like height, width or keepaspectratio
+%%%% OR
+%%%% {Width}: width = 101.807pt or {Height}: height = 120.124pt
+%%% #3: Path to image
+
+%% If optionals are left empty the images max dimensions are:
+%%% width = 101.807pt, height = 120.124pt
+%%% keepaspectratio enabled
+\CharacterImage[yshift=-0.45cm][Width]{Harald_Buchwitz.png}
+% If the Constitution Score is 0 a "Deceased" decal will be added to the Investigator's image
+% --------------------------------------------------------------------------------------------------------------- %
+% #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#  CHARACTERISTIC SCORES  #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
+% --------------------------------------------------------------------------------------------------------------- %
+% ROLL 3D6 for the following Stats
+\StrengthRolled{17}
+\ConstitutionRolled{14}
+\DexterityRolled{15}
+\PowerRolled{12}
+\AppearanceRolled{9}
+\LuckRolled{16}
+% ROLL 2D6 and add 6 for the following Stats
+\IntelligenceRolled{17}
+\SizeRolled{14}
+\EducationRolled{13}
+
+% SCORE MODIFICATIONS
+%% like AGE DEDUCTIONS (except for APPEARANCE) or increases, i.e. due to EDU IMPOROVEMENTS
+%% All Score Minimums are 0
+%% Only Size and Power may exceed 99, others are capped at 99
+\StrengthModification{0}
+\ConstitutionModification{0}
+\DexterityModification{-5}
+\PowerModification{0}
+\AppearanceModification{0}
+\LuckModification{0}
+\IntelligenceModification{0}
+\SizeModification{0}
+\EducationModification{9}
+
+\calculateCharacteristicStats{}
+
+% CURRENT VALUES
+\HitPointsCurrent{}
+\MagicPointsCurrent{}
+\LuckCurrent{77}
+\SanityCurrent{59}
+
+% CONDITIONS
+%% Set argument to T to display an X in the respective condition box
+\TemporaryInsanity{}
+\IndefiniteInsanity{}
+\MajorWound{}
+\Unconscious{}
+\Dying{}
+% --------------------------------------------------------------------------------------------------------------- %
+% #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#  SKILL  #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
+% --------------------------------------------------------------------------------------------------------------- %
+% Each of the following macros has an optional argument which can be {T} to tick the boxes next to the appropriate skill
+% For skills like Art/Craft of Language (Other) you also need to specify a name which can then be displayed
+%% A maximum number is indicated and any further addition to the same category of skill is ommitted
+% Base Percentage Values are set by default
+\AccountingSkill[]{5}
+\AnthropologySkill[]{25}
+\AppraiseSkill[]{5}
+\ArchaeologySkill[]{1}
+
+% Art/Craft Skill (Max Number: 2)
+\ArtCraftSkill[]{Taxidermy}{5}
+
+\CharmSkill[]{15}
+\ClimbSkill[]{40}
+\CreditRating{42}
+\CthulhuMythosSkill{0}
+\DisguiseSkill[]{5}
+\DodgeSkill[]{\intcalcShr{\DexterityScoreValue}}
+\DriveAutoSkill[]{20}
+\ElectricalRepairSkill[]{10}
+\FastTalkSkill[]{5}
+\BrawlSkill[]{57}
+
+% Fighting Skill (Max Number: 2)
+%\FightingSkill[]{Jiujitsu}{56}
+
+\HandgunSkill[]{57}
+\RifleShotgunSkill[]{82}
+
+% Firearm Skill (Max Number: 1)
+%\FirearmsSkill[]{Firearms (Bow)}{50}
+
+\FirstAidSkill[]{30}
+\HistorySkill[]{5}
+\IntimidateSkill[]{15}
+\JumpSkill[]{40}
+
+% Language (Other) Skill (Max Number: 3)
+\LanguageOtherSkill[]{English}{25}
+%\LanguageOtherSkill[]{German}{60}
+%\LanguageOtherSkill[]{Swahili}{20}
+
+\LanguageOwnSkill[]{German}{\EducationScoreValue}
+\LawSkill[]{5}
+\LibraryUseSkill[]{20}
+\ListenSkill[]{30}
+\LocksmithSkill[]{1}
+\MechanicalRepairSkill[]{10}
+\MedicineSkill[]{1}
+\NaturalWorldSkill[]{40}
+\NavigateSkill[]{35}
+\OccultSkill[]{5}
+\PersuadeSkill[]{10}
+
+% Pilot Skill (Max Number: 1)
+\PilotSkill[]{Boat}{1}
+
+\PsychoanalysisSkill[]{1}
+\PsychologySkill[]{10}
+\RideSkill[]{50}
+
+% Science Skill (Max Number: 3)
+\ScienceSkill[]{Biology}{34}
+
+\SleightOfHandSkill[]{10}
+\SpotHiddenSkill[]{50}
+\StealthSkill[]{68}
+
+% Survival Skill (Max Number: 1)
+\SurvivalSkill[]{Forest}{43}
+
+\SwimSkill[]{30}
+\ThrowSkill[]{60}
+\TrackSkill[]{57}
+
+% Extra Slots (Max Number: 4)
+%\ExtraSkill[]{}{}
+% --------------------------------------------------------------------------------------------------------------- %
+% #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#  COMBAT // WEAPONS  #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
+% --------------------------------------------------------------------------------------------------------------- %
+% The max number of weapons that can be displayed is dependent on which character-sheet is in use:
+%% 40th Anniversary:	Max Number 4
+%% Original:			Max Number 6
+%
+% If your number exceeds that value any additional weapon is ommitted
+%% \addWeapon{#1}{#2}{#3}{#4}{#5}{#6}{#7}
+%%% #1: Display Name
+%%% #2: Skill Value (i.e. \BrawlSkillValue or \FirearmsSkillValue)
+%%% #3: Damage
+%%% #4: Number of Attacks
+%%% #5: Range
+%%% #6: Ammo
+%%% #7: Malfunction
+\addWeapon{Brawl}{\BrawlSkillValue}{1D3 + 1D4}{1}{-}{-}{-}
+\addWeapon{Bowie Knife}{\BrawlSkillValue}{2D4 + 2}{Touch}{1}{-}{-}
+\addWeapon{.30-06 Rifle}{\RifleShotgunSkillValue}{2d6 + 4}{1}{110 yds}{5}{100}
+\addWeapon{.32 Revolver}{\HandgunSkillValue}{1D8}{1 (3)}{15 yds}{6}{100}
+
+% --------------------------------------------------------------------------------------------------------------- %
+% #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# BACKGROUND & POSSESSION #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
+% --------------------------------------------------------------------------------------------------------------- %
+% The length of the text is irrelevant, however, is eventually cut automatically to avoid text overlays
+% MY STORY
+\MyStory{\small Harald was born in Stuckenborstel, a small town near Hamburg, Germany. At an early age his grandfather taught him how to ethically hunt in the nearby forests and swamps - being a kind of warden. He found his first deer shed which he later designed into his treasured necklace.
+	
+	In his teenage years, however, he was called up by his father to work in the family-owned brewery and with the passing of his grandfather, his once favoured hobby of hunting and surveilling wildlife has become a distant memory.
+	
+	An adult Harald decided to emigrate to America to build his own brewery in the New World, chasing the promised dreams. However, after World War 1, and as a German immigrant in particular, he needed to foreclose his once profitable brewery in the wake of prohibition. Remembering his fondness of hunting and seeing the lush wilderness near Worcester he built up a hunting preserve which became very frequented by the rich and wealthy.
+}%
+
+% BACKSTORY
+%% PERSONAL DESCRIPTION
+\PersonalDescription{Time, especially many years of uncertainty, has taken their toll on the appearance of Harald. However, the glow in his eyes never fully fainted and the remembrance of his old favourite hobby has filled him with life.}
+%% TRAITS
+\Traits{A very skillful entrepreneur, who is not easily defeated by setbacks\\Has always an eye for new opportunities to build profitable endeavours}
+%% IDEOLOGY & BELIEFS
+\IdeologyBeliefs{Even in the most uncertain times there is always a way out to improve your life. Everyone is their own maker.}
+%% INJURIES & SCARS
+\InjuriesScars{}
+%% SIGNIFICANT PEOPLE
+\SignificantPeople{His grandfather, who taught him how to hunt (deceased)\\His wife, Else, who always supported him, even in difficult times}
+%% PHOBIAS & MANIAS
+\PhobiasManias{}
+%% MEANINGFUL LOCATIONS
+\MeaningfulLocations{Honeypot Brewery in Boston, MA, the brewery he helped to build in America\\Moose Hill Wildlife Preserve, Worcester MA}
+%% ARCANE TOMES & SPELLS
+\ArcaneTomesSpells{}
+%% TREASURED POSSESSIONS
+\TreasuredPossessions{Trophy Necklace, made from the very first Deer Shed he found as a kid\\Bowie Knife, a heritage item from his grandfather}
+%% ENCOUNTERS WITH STRANGE ENTITIES
+\StrangeEntitiesEncounters{}
+
+% GEAR & POSSESSIONS (Max Number: 10)
+\addGearOrPossessions{Bowie Knife}
+\addGearOrPossessions{4 Bandages}
+\addGearOrPossessions{Flashlight}
+\addGearOrPossessions{.30-06 Bolt Action Rifle}
+\addGearOrPossessions{20 .30-06 Ammo}
+\addGearOrPossessions{.32 Revolver}
+\addGearOrPossessions{10 .32 Ammo}
+
+% WEALTH
+%% \Wealth{#1}{#2}{#3}
+%% Every empty argument will cause the respective value to be calculated automatically, depending on the Credit Rating
+%%% #1: Spending Level
+%%% #2: Cash
+%%% #3: Assets
+\Wealth{}{}{}
+%% More Information on Assets if required/needed
+\AssetsInformation{A small cottage in the hills near Worcester with many displayed, taxidermied big and small game}
+
+% FELLOW INVESTIGATORS (Max Number: 6)
+%% \addFellowInvestigator{#1}{#2}
+%%% #1: Character Name
+%%% #2: Player Name
+\addFellowInvestigator{Valerie}{Brian}
+\addFellowInvestigator{Big Tony}{Lorenzo}
+\addFellowInvestigator{Joshua}{Marvin}
+\addFellowInvestigator{Martha}{Maura}
+
+\begin{document}
+	% This pagestyle adds the ornament and sets the text geometry based on the chosen character-sheet style
+	%% To restore the original pagestyle use \pagestyle(base)
+	\pagestyle{character-sheet}
+	\rendercharactersheet
+	
+	\clearpage
+	\renderbackgroundsheet
+	
+	\clearpage
+	% The following command can be used to add text lines to the whole page
+	\renderblanktextsheet
+\end{document}
