@@ -11,14 +11,14 @@
 \RequirePackage {colortbl}
 \RequirePackage {enumitem}
 \RequirePackage {etoolbox}
-\RequirePackage {textcomp}							% degree symbol for italian ordinals
-\RequirePackage {hang}								% hanging paragraphs
-\RequirePackage [autolanguage] {numprint}			% localization of thousands separator
-\RequirePackage {tabularx}							% variable-width table columns
+\RequirePackage {textcomp}				% degree symbol for italian ordinals
+\RequirePackage {hang}					% hanging paragraphs
+\RequirePackage [np] {numprint}				% localization of thousands separator
+\RequirePackage {tabularx}				% variable-width table columns
 \RequirePackage [breakable,skins,xparse]{tcolorbox}	% styled text boxes
-\RequirePackage {tikz}								% drawing ornaments and lines
+\RequirePackage {tikz}					% drawing ornaments and lines
 \RequirePackage {xcolor}
-\RequirePackage {xparse}							% \NewDocumentCommand and expl3
+\RequirePackage {xparse}				% \NewDocumentCommand and expl3
 
 \sys_if_engine_luatex:T
 {

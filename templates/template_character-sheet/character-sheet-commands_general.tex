@@ -109,6 +109,7 @@
 % Calculate Wealth
 %% Spending Level
 \newcommand{\calculateSpendingLevel}{%
+	\npthousandsep{'}
 	\ifthenelse{\CreditRatingValue < 1}{%
 		\ifthenelse{\equal{\ERA}{1920s}}{\SpendingLevel{\$ 0.50}}{\SpendingLevel{\$ 10}}
 	}{%
@@ -119,12 +120,12 @@
 				\ifthenelse{\equal{\ERA}{1920s}}{\SpendingLevel{\$ 10}}{\SpendingLevel{\$ 200}}
 			}{%
 				\ifthenelse{\CreditRatingValue < 90}{%
-					\ifthenelse{\equal{\ERA}{1920s}}{\SpendingLevel{\$ 50}}{\SpendingLevel{\$ 1'000}}
+					\ifthenelse{\equal{\ERA}{1920s}}{\SpendingLevel{\$ 50}}{\SpendingLevel{\$ \np{1000}}}
 				}{%
 					\ifthenelse{\CreditRatingValue < 99}{%
-						\ifthenelse{\equal{\ERA}{1920s}}{\SpendingLevel{\$ 250}}{\SpendingLevel{\$ 5'000}}
+						\ifthenelse{\equal{\ERA}{1920s}}{\SpendingLevel{\$ 250}}{\SpendingLevel{\$ \np{5000}}}
 					}{%
-						\ifthenelse{\equal{\ERA}{1920s}}{\SpendingLevel{\$ 5'000}}{\SpendingLevel{\$ 100'000}}
+						\ifthenelse{\equal{\ERA}{1920s}}{\SpendingLevel{\$ \np{5000}}}{\SpendingLevel{\$ \np{100000}}}
 					}%
 				}%
 			}%
@@ -133,22 +134,39 @@
 }%
 %% Cash
 \newcommand{\calculateCash}{%
+	\npthousandsep{'}
 	\ifthenelse{\CreditRatingValue < 1}{%
-		\ifthenelse{\equal{\ERA}{1920s}}{\Cash{\$ 0.50}}{\Cash{\$ 10}}
+		\ifthenelse{\equal{\ERA}{1920s}}{\Cash{\$ 0.50}}{\Cash{\$ 10}}%
 	}{%
 		\ifthenelse{\CreditRatingValue < 10}{%
-			\ifthenelse{\equal{\ERA}{1920s}}{\Cash{\$ \intcalcMul{\CreditRatingValue}{1}}}{\Cash{\$ \intcalcMul{\CreditRatingValue}{20}}}
+			\ifthenelse{\equal{\ERA}{1920s}}{%
+				\Cash{\$ \np{\intcalcMul{\CreditRatingValue}{1}}}%
+			}{%
+				\Cash{\$ \np{\intcalcMul{\CreditRatingValue}{20}}}%
+			}%
 		}{%
 			\ifthenelse{\CreditRatingValue < 50}{%
-				\ifthenelse{\equal{\ERA}{1920s}}{\Cash{\$ \intcalcMul{\CreditRatingValue}{2}}}{\Cash{\$ \intcalcMul{\CreditRatingValue}{40}}}
+				\ifthenelse{\equal{\ERA}{1920s}}{%
+					\Cash{\$ \np{\intcalcMul{\CreditRatingValue}{2}}}%
+				}{%
+					\Cash{\$ \np{\intcalcMul{\CreditRatingValue}{40}}}%
+				}%
 			}{%
 				\ifthenelse{\CreditRatingValue < 90}{%
-					\ifthenelse{\equal{\ERA}{1920s}}{\Cash{\$ \intcalcMul{\CreditRatingValue}{5}}}{\Cash{\$ \intcalcMul{\CreditRatingValue}{100}}}
+					\ifthenelse{\equal{\ERA}{1920s}}{%
+						\Cash{\$ \np{\intcalcMul{\CreditRatingValue}{5}}}%
+					}{%
+						\Cash{\$ \np{\intcalcMul{\CreditRatingValue}{100}}}%
+					}%
 				}{%
 					\ifthenelse{\CreditRatingValue < 99}{%
-						\ifthenelse{\equal{\ERA}{1920s}}{\Cash{\$ \intcalcMul{\CreditRatingValue}{20}}}{\Cash{\$ \intcalcMul{\CreditRatingValue}{400}}}
+						\ifthenelse{\equal{\ERA}{1920s}}{%
+							\Cash{\$ \np{\intcalcMul{\CreditRatingValue}{20}}}%
+						}{%
+							\Cash{\$ \np{\intcalcMul{\CreditRatingValue}{400}}}%
+						}%
 					}{%
-						\ifthenelse{\equal{\ERA}{1920s}}{\Cash{\$ 50'000}}{\Cash{\$ 1'000'000}}
+						\ifthenelse{\equal{\ERA}{1920s}}{\Cash{\$ \np{50000}}}{\Cash{\$ \np{1000000}}}%
 					}%
 				}%
 			}%
@@ -157,22 +175,39 @@
 }%
 %% Assets
 \newcommand{\calculateAssets}{%
+	\npthousandsep{'}
 	\ifthenelse{\CreditRatingValue < 1}{%
-		\ifthenelse{\equal{\ERA}{1920s}}{\Assets{None}}{\Assets{None}}
+		\ifthenelse{\equal{\ERA}{1920s}}{\Assets{None}}{\Assets{None}}%
 	}{%
 		\ifthenelse{\CreditRatingValue < 10}{%
-			\ifthenelse{\equal{\ERA}{1920s}}{\Assets{\$ \intcalcMul{\CreditRatingValue}{10}}}{\Assets{\$ \intcalcMul{\CreditRatingValue}{200}}}
+			\ifthenelse{\equal{\ERA}{1920s}}{%
+				\Assets{\$ \np{\intcalcMul{\CreditRatingValue}{10}}}%
+			}{%
+				\Assets{\$ \np{\intcalcMul{\CreditRatingValue}{200}}}%
+			}%
 		}{%
 			\ifthenelse{\CreditRatingValue < 50}{%
-				\ifthenelse{\equal{\ERA}{1920s}}{\Assets{\$ \intcalcMul{\CreditRatingValue}{50}}}{\Assets{\$ \intcalcMul{\CreditRatingValue}{1000}}}
+				\ifthenelse{\equal{\ERA}{1920s}}{%
+					\Assets{\$ \np{\intcalcMul{\CreditRatingValue}{50}}}%
+				}{%
+					\Assets{\$ \np{\intcalcMul{\CreditRatingValue}{1000}}}%
+				}%
 			}{%
 				\ifthenelse{\CreditRatingValue < 90}{%
-					\ifthenelse{\equal{\ERA}{1920s}}{\Assets{\$ \intcalcMul{\CreditRatingValue}{500}}}{\Assets{\$ \intcalcMul{\CreditRatingValue}{10000}}}
+					\ifthenelse{\equal{\ERA}{1920s}}{%
+						\Assets{\$ \np{\intcalcMul{\CreditRatingValue}{500}}}%
+					}{%
+						\Assets{\$ \np{\intcalcMul{\CreditRatingValue}{10000}}}%
+					}%
 				}{%
 					\ifthenelse{\CreditRatingValue < 99}{%
-						\ifthenelse{\equal{\ERA}{1920s}}{\Assets{\$ \intcalcMul{\CreditRatingValue}{2000}}}{\Assets{\$ \intcalcMul{\CreditRatingValue}{40000}}}
+						\ifthenelse{\equal{\ERA}{1920s}}{%
+							\Assets{\$ \np{\intcalcMul{\CreditRatingValue}{2000}}}%
+						}{%
+							\Assets{\$ \np{\intcalcMul{\CreditRatingValue}{40000}}}%
+						}%
 					}{%
-						\ifthenelse{\equal{\ERA}{1920s}}{\Assets{\$ 5'000'000+}}{\Assets{\$ 100'000'000+}}
+						\ifthenelse{\equal{\ERA}{1920s}}{\Assets{\$ \np{5000000}+}}{\Assets{\$ \np{100000000}+}}
 					}%
 				}%
 			}%
