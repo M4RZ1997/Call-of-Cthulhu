@@ -1,198 +1,289 @@
 \begin{pageTikZ}
+	%%% DON'T ASK ME WHY THIS IS NEED, BUT IT IS!
+	\node at (0,0) {\parbox[t][0pt][t]{0pt}{\justify{}}};
 	% MY STORY
-	\node[anchor=north west, inner sep=0pt] at (49.353, 56.864) {%
-		\parbox[t][515.589pt][t]{247.436pt}{\justify\entryfont%
-			\begingroup%
-			\setbox0=\vbox{%
-				\MyStoryValue%
-			}%
-			\hbox{%
-				\vtop{\hsize=247.436pt\parindent=0pt%
-					\vsplit0 to 100pt%
+	\ifthenelse{\equal{\MyStoryValue}{}}{%
+		\foreach \i in {0,...,6}
+		{
+			\pgfmathsetmacro{\hpos}{74.397 + \i * 13.684};
+			\draw[line width=0.75pt, black] (49.353,\hpos) -- ++(247.436,0);
+			\draw[line width=0.75pt, black] (317.506,\hpos) -- ++(247.436,0);
+		}
+	}{%
+		\node[anchor=north west, inner sep=0pt] at (49.353, 65.397) {%
+			\parbox[t][515.589pt][t]{247.436pt}{\justify\entryfont%
+				\begingroup%
+				\setbox0=\vbox{%
+					\MyStoryValue%
 				}%
-				\setbox1=\vbox{\unvbox0}%
-				\hspace{20.717pt}%
-				\vtop{\hsize=247.436pt\parindent=0pt%
-					\vspace*{-103pt}\hfill\\%
-					\vsplit1 to 100pt
+				\hbox{%
+					\vtop{\hsize=247.436pt\parindent=0pt%
+						\vsplit0 to 100pt%
+					}%
+					\setbox1=\vbox{\unvbox0}%
+					\hspace{20.717pt}%
+					\vtop{\hsize=247.436pt\parindent=0pt%
+						\vspace*{-103pt}\hfill\\%
+						\vsplit1 to 100pt
+					}%
 				}%
+				\endgroup%
+				\parbox[t][0pt][t]{0pt}{\justify{}}%
 			}%
-			\endgroup%
-			\parbox[t][0pt][t]{0pt}{\justify{}}% Resets \parbox, otherwise other parboxes are shifted by \baselineskip
-		}%
-	};%
+		};%
+	}%
 	
 	% BACKSTORY
 	%% PERSONAL DESCRIPTION
-	\node[anchor=north west, inner sep=0pt] at (49.353, 209.615) {%
-		\parbox[t][247.436pt][t]{247.436pt}{\justify\entryfont%
-			\begingroup%
-			\setbox0=\vbox{%
-				\PersonalDescriptionValue%
-			}%
-			\hbox{%
-				\vtop{\hsize=247.436pt\parindent=0pt%
-					\vsplit0 to 50pt%
+	\ifthenelse{\equal{\PersonalDescriptionValue}{}}{%
+		\foreach \i in {1,...,3}
+		{
+			\pgfmathsetmacro{\hpos}{206.615 + \i * 13.684};
+			\draw[line width=0.75pt, black] (49.353,\hpos) -- ++(247.436,0);
+		}
+	}{%
+		\node[anchor=north west, inner sep=0pt] at (49.353, 209.615) {%
+			\parbox[t][247.436pt][t]{247.436pt}{\justify\entryfont%
+				\begingroup%
+				\setbox0=\vbox{%
+					\PersonalDescriptionValue%
 				}%
-				\setbox1=\vbox{\unvbox0}%
+				\hbox{%
+					\vtop{\hsize=247.436pt\parindent=0pt%
+						\vsplit0 to 50pt%
+					}%
+					\setbox1=\vbox{\unvbox0}%
+				}%
+				\endgroup%
+				\parbox[t][0pt][t]{0pt}{\justify{}}
 			}%
-			\endgroup%
-			\parbox[t][0pt][t]{0pt}{\justify{}}
-		}%
-	};%
+		};%
+	}
 	%% TRAITS
-	\node[anchor=north west, inner sep=0pt] at (317.506, 209.615) {%
-		\parbox[t][247.436pt][t]{247.436pt}{\justify\entryfont%
-			\begingroup%
-			\setbox0=\vbox{%
-				\TraitsValue%
-			}%
-			\hbox{%
-				\vtop{\hsize=247.436pt\parindent=0pt%
-					\vsplit0 to 50pt%
+	\ifthenelse{\equal{\TraitsValue}{}}{%
+		\foreach \i in {1,...,3}
+		{
+			\pgfmathsetmacro{\hpos}{206.615 + \i * 13.684};
+			\draw[line width=0.75pt, black] (317.506,\hpos) -- ++(247.436,0);
+		}
+	}{%
+		\node[anchor=north west, inner sep=0pt] at (317.506, 209.615) {%
+			\parbox[t][247.436pt][t]{247.436pt}{\justify\entryfont%
+				\begingroup%
+				\setbox0=\vbox{%
+					\TraitsValue%
 				}%
-				\setbox1=\vbox{\unvbox0}%
+				\hbox{%
+					\vtop{\hsize=247.436pt\parindent=0pt%
+						\vsplit0 to 50pt%
+					}%
+					\setbox1=\vbox{\unvbox0}%
+				}%
+				\endgroup%
+				\parbox[t][0pt][t]{0pt}{\justify{}}
 			}%
-			\endgroup%
-			\parbox[t][0pt][t]{0pt}{\justify{}}
-		}%
-	};%
+		};%
+	}%
 	%% IDEOLOGY & BELIEFS
-	\node[anchor=north west, inner sep=0pt] at (49.353, 275.042) {%
-		\parbox[t][247.436pt][t]{247.436pt}{\justify\entryfont%
-			\begingroup%
-			\setbox0=\vbox{%
-				\IdeologyBeliefsValue%
-			}%
-			\hbox{%
-				\vtop{\hsize=247.436pt\parindent=0pt%
-					\vsplit0 to 50pt%
+	\ifthenelse{\equal{\IdeologyBeliefsValue}{}}{%
+		\foreach \i in {1,...,3}
+		{
+			\pgfmathsetmacro{\hpos}{272.042 + \i * 13.684};
+			\draw[line width=0.75pt, black] (49.353,\hpos) -- ++(247.436,0);
+		}
+	}{%
+		\node[anchor=north west, inner sep=0pt] at (49.353, 275.042) {%
+			\parbox[t][247.436pt][t]{247.436pt}{\justify\entryfont%
+				\begingroup%
+				\setbox0=\vbox{%
+					\IdeologyBeliefsValue%
 				}%
-				\setbox1=\vbox{\unvbox0}%
+				\hbox{%
+					\vtop{\hsize=247.436pt\parindent=0pt%
+						\vsplit0 to 50pt%
+					}%
+					\setbox1=\vbox{\unvbox0}%
+				}%
+				\endgroup%
+				\parbox[t][0pt][t]{0pt}{\justify{}}
 			}%
-			\endgroup%
-			\parbox[t][0pt][t]{0pt}{\justify{}}
-		}%
-	};%
+		};%
+	}
 	%% INJURIES & SCARS
-	\node[anchor=north west, inner sep=0pt] at (317.506, 275.042) {%
-		\parbox[t][247.436pt][t]{247.436pt}{\justify\entryfont%
-			\begingroup%
-			\setbox0=\vbox{%
-				\InjuriesScarsValue%
-			}%
-			\hbox{%
-				\vtop{\hsize=247.436pt\parindent=0pt%
-					\vsplit0 to 50pt%
+	\ifthenelse{\equal{\InjuriesScarsValue}{}}{%
+		\foreach \i in {1,...,3}
+		{
+			\pgfmathsetmacro{\hpos}{272.042 + \i * 13.684};
+			\draw[line width=0.75pt, black] (317.506,\hpos) -- ++(247.436,0);
+		}
+	}{%
+		\node[anchor=north west, inner sep=0pt] at (317.506, 275.042) {%
+			\parbox[t][247.436pt][t]{247.436pt}{\justify\entryfont%
+				\begingroup%
+				\setbox0=\vbox{%
+					\InjuriesScarsValue%
 				}%
-				\setbox1=\vbox{\unvbox0}%
+				\hbox{%
+					\vtop{\hsize=247.436pt\parindent=0pt%
+						\vsplit0 to 50pt%
+					}%
+					\setbox1=\vbox{\unvbox0}%
+				}%
+				\endgroup%
+				\parbox[t][0pt][t]{0pt}{\justify{}}
 			}%
-			\endgroup%
-			\parbox[t][0pt][t]{0pt}{\justify{}}
-		}%
-	};%
+		};%
+	}%
 	%% SIGNIFICANT PEOPLE
-	\node[anchor=north west, inner sep=0pt] at (49.353, 340.470) {%
-		\parbox[t][247.436pt][t]{247.436pt}{\justify\entryfont%
-			\begingroup%
-			\setbox0=\vbox{%
-				\SignificantPeopleValue%
-			}%
-			\hbox{%
-				\vtop{\hsize=247.436pt\parindent=0pt%
-					\vsplit0 to 50pt%
+	\ifthenelse{\equal{\SignificantPeopleValue}{}}{%
+		\foreach \i in {1,...,3}
+		{
+			\pgfmathsetmacro{\hpos}{337.470 + \i * 13.684};
+			\draw[line width=0.75pt, black] (49.353,\hpos) -- ++(247.436,0);
+		}
+	}{%
+		\node[anchor=north west, inner sep=0pt] at (49.353, 340.470) {%
+			\parbox[t][247.436pt][t]{247.436pt}{\justify\entryfont%
+				\begingroup%
+				\setbox0=\vbox{%
+					\SignificantPeopleValue%
 				}%
-				\setbox1=\vbox{\unvbox0}%
+				\hbox{%
+					\vtop{\hsize=247.436pt\parindent=0pt%
+						\vsplit0 to 50pt%
+					}%
+					\setbox1=\vbox{\unvbox0}%
+				}%
+				\endgroup%
+				\parbox[t][0pt][t]{0pt}{\justify{}}
 			}%
-			\endgroup%
-			\parbox[t][0pt][t]{0pt}{\justify{}}
-		}%
-	};%
+		};%
+	}
 	%% PHOBIAS & MANIAS
-	\node[anchor=north west, inner sep=0pt] at (317.506, 340.470) {%
-		\parbox[t][247.436pt][t]{247.436pt}{\justify\entryfont%
-			\begingroup%
-			\setbox0=\vbox{%
-				\PhobiasManiasValue%
-			}%
-			\hbox{%
-				\vtop{\hsize=247.436pt\parindent=0pt%
-					\vsplit0 to 50pt%
+	\ifthenelse{\equal{\PhobiasManiasValue}{}}{%
+		\foreach \i in {1,...,3}
+		{
+			\pgfmathsetmacro{\hpos}{337.470 + \i * 13.684};
+			\draw[line width=0.75pt, black] (317.506,\hpos) -- ++(247.436,0);
+		}
+	}{%
+		\node[anchor=north west, inner sep=0pt] at (317.506, 340.470) {%
+			\parbox[t][247.436pt][t]{247.436pt}{\justify\entryfont%
+				\begingroup%
+				\setbox0=\vbox{%
+					\PhobiasManiasValue%
 				}%
-				\setbox1=\vbox{\unvbox0}%
+				\hbox{%
+					\vtop{\hsize=247.436pt\parindent=0pt%
+						\vsplit0 to 50pt%
+					}%
+					\setbox1=\vbox{\unvbox0}%
+				}%
+				\endgroup%
+				\parbox[t][0pt][t]{0pt}{\justify{}}
 			}%
-			\endgroup%
-			\parbox[t][0pt][t]{0pt}{\justify{}}
-		}%
-	};%
+		};%
+	}%
 	%% MEANINGFUL LOCATIONS
-	\node[anchor=north west, inner sep=0pt] at (49.353, 405.897) {%
-		\parbox[t][247.436pt][t]{247.436pt}{\justify\entryfont%
-			\begingroup%
-			\setbox0=\vbox{%
-				\MeaningfulLocationsValue%
-			}%
-			\hbox{%
-				\vtop{\hsize=247.436pt\parindent=0pt%
-					\vsplit0 to 50pt%
+	\ifthenelse{\equal{\MeaningfulLocationsValue}{}}{%
+		\foreach \i in {1,...,3}
+		{
+			\pgfmathsetmacro{\hpos}{402.897 + \i * 13.684};
+			\draw[line width=0.75pt, black] (49.353,\hpos) -- ++(247.436,0);
+		}
+	}{%
+		\node[anchor=north west, inner sep=0pt] at (49.353, 405.897) {%
+			\parbox[t][247.436pt][t]{247.436pt}{\justify\entryfont%
+				\begingroup%
+				\setbox0=\vbox{%
+					\MeaningfulLocationsValue%
 				}%
-				\setbox1=\vbox{\unvbox0}%
-			}%
-			\endgroup%
-			\parbox[t][0pt][t]{0pt}{\justify{}}
-		}%
-	};%
-	%% ARCANE TOMES & SPELLS
-	\node[anchor=north west, inner sep=0pt] at (317.506, 405.897) {%
-		\parbox[t][247.436pt][t]{247.436pt}{\justify\entryfont%
-			\begingroup%
-			\setbox0=\vbox{%
-				\ArcaneTomesSpellsValue%
-			}%
-			\hbox{%
-				\vtop{\hsize=247.436pt\parindent=0pt%
-					\vsplit0 to 50pt%
+				\hbox{%
+					\vtop{\hsize=247.436pt\parindent=0pt%
+						\vsplit0 to 50pt%
+					}%
+					\setbox1=\vbox{\unvbox0}%
 				}%
-				\setbox1=\vbox{\unvbox0}%
+				\endgroup%
+				\parbox[t][0pt][t]{0pt}{\justify{}}
 			}%
-			\endgroup%
-			\parbox[t][0pt][t]{0pt}{\justify{}}
-		}%
-	};%
+		};%
+	}%
+	%% ARCANE TOMES, SPELLS & ARTIFACTS
+	\ifthenelse{\equal{\ArcaneTomesSpellsArtifactsValue}{}}{%
+		\foreach \i in {1,...,3}
+		{
+			\pgfmathsetmacro{\hpos}{402.897 + \i * 13.684};
+			\draw[line width=0.75pt, black] (317.506,\hpos) -- ++(247.436,0);
+		}
+	}{%
+		\node[anchor=north west, inner sep=0pt] at (317.506, 405.897) {%
+			\parbox[t][247.436pt][t]{247.436pt}{\justify\entryfont%
+				\begingroup%
+				\setbox0=\vbox{%
+					\ArcaneTomesSpellsArtifactsValue%
+				}%
+				\hbox{%
+					\vtop{\hsize=247.436pt\parindent=0pt%
+						\vsplit0 to 50pt%
+					}%
+					\setbox1=\vbox{\unvbox0}%
+				}%
+				\endgroup%
+				\parbox[t][0pt][t]{0pt}{\justify{}}
+			}%
+		};%
+	}%
 	%% TREASURED POSSESSIONS
-	\node[anchor=north west, inner sep=0pt] at (49.353, 471.324) {%
-		\parbox[t][247.436pt][t]{247.436pt}{\justify\entryfont%
-			\begingroup%
-			\setbox0=\vbox{%
-				\TreasuredPossessionsValue%
-			}%
-			\hbox{%
-				\vtop{\hsize=247.436pt\parindent=0pt%
-					\vsplit0 to 50pt%
+	\ifthenelse{\equal{\TreasuredPossessionsValue}{}}{%
+		\foreach \i in {1,...,3}
+		{
+			\pgfmathsetmacro{\hpos}{468.324 + \i * 13.684};
+			\draw[line width=0.75pt, black] (49.353,\hpos) -- ++(247.436,0);
+		}
+	}{%
+		\node[anchor=north west, inner sep=0pt] at (49.353, 471.324) {%
+			\parbox[t][247.436pt][t]{247.436pt}{\justify\entryfont%
+				\begingroup%
+				\setbox0=\vbox{%
+					\TreasuredPossessionsValue%
 				}%
-				\setbox1=\vbox{\unvbox0}%
+				\hbox{%
+					\vtop{\hsize=247.436pt\parindent=0pt%
+						\vsplit0 to 50pt%
+					}%
+					\setbox1=\vbox{\unvbox0}%
+				}%
+				\endgroup%
+				\parbox[t][0pt][t]{0pt}{\justify{}}
 			}%
-			\endgroup%
-			\parbox[t][0pt][t]{0pt}{\justify{}}
-		}%
-	};%
+		};%
+	}%
 	%% ENCOUNTERS WITH STRANGE ENTITIES
-	\node[anchor=north west, inner sep=0pt] at (317.506, 471.324) {%
-		\parbox[t][247.436pt][t]{247.436pt}{\justify\entryfont%
-			\begingroup%
-			\setbox0=\vbox{%
-				\StrangeEntitiesEncountersValue%
-			}%
-			\hbox{%
-				\vtop{\hsize=247.436pt\parindent=0pt%
-					\vsplit0 to 50pt%
+	\ifthenelse{\equal{\StrangeEntitiesEncountersValue}{}}{%
+		\foreach \i in {1,...,3}
+		{
+			\pgfmathsetmacro{\hpos}{468.324 + \i * 13.684};
+			\draw[line width=0.75pt, black] (317.506,\hpos) -- ++(247.436,0);
+		}
+	}{%
+		\node[anchor=north west, inner sep=0pt] at (317.506, 471.324) {%
+			\parbox[t][247.436pt][t]{247.436pt}{\justify\entryfont%
+				\begingroup%
+				\setbox0=\vbox{%
+					\StrangeEntitiesEncountersValue%
 				}%
-				\setbox1=\vbox{\unvbox0}%
+				\hbox{%
+					\vtop{\hsize=247.436pt\parindent=0pt%
+						\vsplit0 to 50pt%
+					}%
+					\setbox1=\vbox{\unvbox0}%
+				}%
+				\endgroup%
+				\parbox[t][0pt][t]{0pt}{\justify{}}
 			}%
-			\endgroup%
-			\parbox[t][0pt][t]{0pt}{\justify{}}
-		}%
-	};%
+		};%
+	}%
 	
 	% GEAR & POSESSIONS
 	\node[anchor=north west, inner sep=0pt] at (54,534.610) {\entryfont\GearPossessionsAValue};

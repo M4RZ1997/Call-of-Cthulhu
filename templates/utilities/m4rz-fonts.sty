@@ -48,7 +48,35 @@
 	Path			=	\PATH templates/template_coc/fonts/kalam/,%
 	Extension		=	.ttf,%
 	UprightFont		=	Kalam-Regular,%
-	BoldFont		=	Kalam-Bold%
+	BoldFont		=	Kalam-Bold,%
+	FakeSmallCaps	=	2
+]%
+\DeclareFontShape{TU}{Kalam(0)}{m}{sc}{<->ssub * Kalam(0)/m/n}{}
+% ------------------------------------------------------------------------------------------------- %
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ %
+% #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-# Digital  Font #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-# %
+\newfontfamily\digitalfont{Xolonium}[%
+	Path			=	\PATH templates/template_coc/fonts/xolonium/,%
+	Extension		=	.ttf,%
+	UprightFont		=	Xolonium-Regular,%
+	BoldFont		=	Xolonium-Bold%
+]%
+\newcommand{\digitaltextsc}[1]{%
+  {\digitalfont\scalebox{0.8}{\MakeUppercase{#1}}}%
+}
+% ------------------------------------------------------------------------------------------------- %
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ %
+% #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-# Cthulhu  Header  Font #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-# %
+\newfontfamily\cthulhuheaderfont{CthulhumbusHeader}[%
+	Path			=	\PATH templates/template_coc/fonts/cthulhumbus_header/,%
+	Extension		=	.ttf,%
+	UprightFont		=	JMH_Cthulhumbus_UGalt2,%
 ]%
 % ------------------------------------------------------------------------------------------------- %
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ %
+% #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-# Cthulhu Text Font #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-# %
+\newfontfamily\cthulhutextfont{CthulhumbusText}[%
+	Path			=	\PATH templates/template_coc/fonts/cthulhumbus/,%
+	Extension		=	.ttf,%
+	UprightFont		=	JMH_Cthulhumbus_UG,%
+]%

@@ -1,0 +1,8 @@
+\begin{pageTikZ}%
+	\foreach \i in {0,...,52}%
+	{%
+		\pgfmathsetmacro{\hpos}{46.184 + \i * 13.684};%
+		\draw[line width=0.75pt, black] (49.353,\hpos) -- ++(247.436,0);%
+		\draw[line width=0.75pt, black] (317.506,\hpos) -- ++(247.436,0);%
+	}%
+\end{pageTikZ}%

@@ -128,14 +128,3 @@
   }
 
 \ProcessKeysOptions { coc / options }
-
-% BEGIN section to remove in version 1.0.0
-\bool_if:NF \c__coc_isclass_bool
-  {
-    \bool_if:NF \l__coc_layout_set_bool
-      {
-        \msg_new:nnn {coc} { options / layout_false } { Package ~ option ~ "layout" ~ will ~ default ~ to ~ false ~ in ~ 1.0.0. }
-        \msg_warning:nn {coc} { options / layout_false }
-      }
-  }
-% END section to remove in version 1.0.0

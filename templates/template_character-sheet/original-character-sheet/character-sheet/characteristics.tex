@@ -1,0 +1,79 @@
+\begin{pageTikZ}
+	% PLAYER INFO
+	%% OUTLINE
+	\draw[line width=0.75pt, \curLineColor, fill=black] (42.059,33.230) rectangle ++(138.712,16.615);
+	\draw[line width=0.75pt, \curLineColor] (42.059,33.230) rectangle ++(138.712,123.974);
+	%% LINES
+	\draw[line width=0.75pt, \curLineColor, fill=black] (72.921,66.034) -- ++(99.234,0);
+	\draw[line width=0.75pt, \curLineColor, fill=black] (75.075,82.649) -- ++(97.080,0);
+	\draw[line width=0.75pt, \curLineColor, fill=black] (101.907,99.264) -- ++(70.248,0);
+	\draw[line width=0.75pt, \curLineColor, fill=black] (62.321,115.879) -- ++(48.232,0);
+	\draw[line width=0.75pt, \curLineColor, fill=black] (130.80,115.879) -- ++(41.355,0);
+	\draw[line width=0.75pt, \curLineColor, fill=black] (93.583,132.494) -- ++(78.572,0);
+	\draw[line width=0.75pt, \curLineColor, fill=black] (95.583,149.109) -- ++(76.572,0);
+	
+	% CHARACTERISTICS
+	%% OUTLINE
+	\draw[line width=0.75pt, \curLineColor] (184.217,33.230) rectangle ++(282.478,123.974);
+	\draw[line width=0.75pt, \curLineColor] (184.217,57.088) -- ++(282.478,0);
+	\begin{scope}
+		\draw[clip, draw=none] (184.592,33.695) rectangle ++(281.728,23.108);
+		\node[inner sep=0pt, opacity=\HeaderBackgroundOpacity] at (325.456, 45.159) {\includegraphics[width=281.728pt, keepaspectratio]{\PATH/templates/template_character-sheet/original-character-sheet/img/\HeaderBackgroundImage}};
+	\end{scope}
+	%% SCORE BOXES
+	\foreach \vi in {0,...,2}
+	{
+		\pgfmathsetmacro{\vpos}{223.418 + \vi * 92.618};
+		\foreach \hi in {0,...,2}
+		{
+			\pgfmathsetmacro{\hpos}{60.496 + \hi * 32.804};
+			\ifthenelse{\vi = 2 \AND \hi = 2}{%
+				%%% Move Rate
+				\draw[line width=0.75pt, \curLineColor] (\vpos,\hpos) ++(0,6.893) arc[start angle=-180, end angle=-90, radius=6.893] -- ++(15.076,0) arc[start angle=-90, end angle=0, radius=6.893] -- ++(0,12.964) arc[start angle=0, end angle=90, radius=6.893] -- ++(-15.076,0) arc[start angle=90, end angle=180, radius=6.893] -- cycle;
+				\draw[line width=0.75pt, \curLineColor] (\vpos,\hpos) ++(33.17,0) rectangle ++(15.981,13.375) rectangle ++(-15.981,13.375);
+			}{%
+				%%% Characteristics Score Boxes
+				\draw[line width=0.75pt, \curLineColor] (\vpos,\hpos) rectangle ++(26.75,26.75);
+				\draw[line width=0.75pt, \curLineColor] (\vpos,\hpos) ++(26.75,0) -- ++(15.508,0) arc[start angle=-90, end angle=0, radius=6.893] -- ++(0,19.857) -- ++(-22.401,0) ++(0,-13.375) -- ++(22.401,0) ;
+			}
+		}
+	}
+	
+	% PICTURE
+	%% OUTLINE
+	\draw[line width=0.75pt, \curLineColor] (572.236,33.230) rectangle ++(-102.095,123.974);
+	
+	% CHARACTER STATS
+	%% OUTLINE
+	\draw[line width=0.75pt, \curLineColor] (42.059,160.186) rectangle ++(530.177,146.554);
+	\begin{scope}
+		\draw[clip, draw=none] (42.434,160.561) rectangle ++(529.427,145.804);
+		\node[inner sep=0pt, opacity=0.5] at (307.1475, 233.463) {\includegraphics[width=529.427pt, keepaspectratio]{\PATH/templates/template_character-sheet/original-character-sheet/img/\StatBackgroundImage}};
+	\end{scope}
+	%% HIT POINTS
+	\draw[line width=0.75pt, black, fill=white] (44.644,239.775) -- ++(0,-62.565) -- ++(125.788,0) -- ++(0,68.165) -- ++(-\HitPointsBoxOffset ,0) -- cycle;
+	%%%% Dying / Unconscious
+	\draw[line width=0.75pt, black] (64.46,179.9795) rectangle ++(39.201,23.858);
+	\draw[line width=0.75pt, black] (64.46,191.9085) -- ++(39.201,0);
+	\draw[line width=0.75pt, black] (108.691,179.9795) rectangle ++(12.902,8.094);
+	\draw[line width=0.75pt, black] (108.691,184.0265) -- ++(-5.03,0) ++(2.515,0) -- ++(0,11.929) -- ++(-2.515,0);
+	%%% MAJOR WOUND
+	\draw[line width=0.75pt, black, fill=white] (68.768,175.645) rectangle ++(15.939,-13.633);
+	\draw[line width=1.25pt, black] (73.0605,173.944) -- ++(0,10);
+	%%% MAX HIT POINTS
+	\draw[line width=0.75pt, black, fill=white] (104.2195,177.21) arc[start angle=90, end angle=270, radius=7.8815] -- ++(29.9,0) arc[start angle=-90, end angle=90, radius=7.8815] -- cycle;
+	%% SANITY
+	\draw[line width=0.75pt, black, fill=white] (569.651,171.133) -- ++(0,49.106) -- ++(-364.441,0) -- ++(0,-43.029) -- ++(199.452,0) -- ++(0,-11.677) -- ++(\SanityBoxOffset, 0) -- cycle;
+	%%% INSANITY BOXES
+	\draw[line width=0.75pt, black, fill=white] (205.21,175.645) rectangle ++(15.939,-13.633);
+	\draw[line width=0.75pt, black, fill=white] (264.227,175.645) rectangle ++(15.939,-13.633);
+	%%% START / MAX SANITY
+	\draw[line width=0.75pt, black, fill=white] (304.8475,177.21) arc[start angle=90, end angle=270, radius=7.8815] -- ++(83.748,0) arc[start angle=-90, end angle=90, radius=7.8815] -- cycle;
+	\draw[line width=0.75pt, black] (346.7215,177.21) -- ++(0,-15.763);
+	%% LUCK
+	\draw[line width=0.75pt, black, fill=white] (44.644,299.848) -- ++(0,-37.429) -- ++(180.498,0) -- ++(0,-11.503) -- ++(186.959,0) -- ++(0,54.532) -- ++(-\LuckBoxOffset ,0) -- cycle;
+	%% MAGIC POINTS
+	\draw[line width=0.75pt, black, fill=white] (569.651,243.309) -- ++(0,62.139) -- ++(-124.38,0) -- ++(0,-67.739) -- ++(\MagicPointsBoxOffset ,0) -- cycle;
+	%%% MAX Magic Points
+	\draw[line width=0.75pt, black, fill=white] (484.5995,237.709) arc[start angle=90, end angle=270, radius=7.8815] -- ++(29.9,0) arc[start angle=-90, end angle=90, radius=7.8815] -- cycle;
+\end{pageTikZ}

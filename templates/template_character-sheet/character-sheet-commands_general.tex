@@ -19,8 +19,8 @@
 	\MagicPointsMaximum{\intcalcDiv{\PowerScoreValue}{5}}
 	\SanityStarting{\PowerScoreValue}
 	
-	\calculateDamageBonusAndBuild{\intcalcAdd{\StrengthScoreValue}{\SizeScoreValue}}
 	\calculateMove{}
+	\calculateDamageBonusAndBuild{\intcalcAdd{\StrengthScoreValue}{\SizeScoreValue}}
 }%
 
 \newcommand{\calculateAppearanceScore}{%
@@ -48,6 +48,31 @@
 	\AppearanceScore{\intcalcSub{\intcalcAdd{\intcalcMul{\AppearanceRolledValue}{5}}{\AppearanceModificationValue}}{\ageDeduction}}
 	
 }%
+\newcommand{\calculateMove}{%
+	\ifthenelse{\DexterityScoreValue < \SizeScoreValue}{%
+		\ifthenelse{\StrengthScoreValue < \SizeScoreValue}{\def\base{7}}{\def\base{8}}
+	}{%
+		\ifthenelse{\DexterityScoreValue = \SizeScoreValue}{%
+			\def\base{8}
+		}{%
+			\ifthenelse{\StrengthScoreValue < \SizeScoreValue}{\def\base{8}}{%
+				\ifthenelse{\StrengthScoreValue = \SizeScoreValue}{\def\base{8}}{%
+					\def\base{9}
+				}%
+			}
+		}
+	}%
+	\ifthenelse{\CharacterAgeValue < 40}{\def\reduction{0}}{%
+		\ifthenelse{\CharacterAgeValue < 50}{\def\reduction{1}}{%
+			\ifthenelse{\CharacterAgeValue < 60}{\def\reduction{2}}{%
+				\ifthenelse{\CharacterAgeValue < 70}{\def\reduction{3}}{%
+					\ifthenelse{\CharacterAgeValue < 80}{\def\reduction{4}}{\def\reduction{5}}%
+				}%
+			}%
+		}%
+	}%
+	\Move{\intcalcAdd{\intcalcSub{\base}{\reduction}}{\MovementBonusValue}}%
+}%
 \newcommand{\calculateDamageBonusAndBuild}[1]{%
 	\ifthenelse{#1<64}{%
 		\DamageBonus{-2}
@@ -72,31 +97,6 @@
 		}%
 	}%
 }%
-\newcommand{\calculateMove}{%
-	\ifthenelse{\DexterityScoreValue < \SizeScoreValue}{%
-		\ifthenelse{\StrengthScoreValue < \SizeScoreValue}{\def\base{7}}{\def\base{8}}
-	}{%
-		\ifthenelse{\DexterityScoreValue = \SizeScoreValue}{%
-			\def\base{8}
-		}{%
-			\ifthenelse{\StrengthScoreValue < \SizeScoreValue}{\def\base{8}}{%
-				\ifthenelse{\StrengthScoreValue = \SizeScoreValue}{\def\base{8}}{%
-					\def\base{9}
-				}%
-			}
-		}
-	}%
-	\ifthenelse{\CharacterAgeValue < 40}{\def\reduction{0}}{%
-		\ifthenelse{\CharacterAgeValue < 50}{\def\reduction{1}}{%
-			\ifthenelse{\CharacterAgeValue < 60}{\def\reduction{2}}{%
-				\ifthenelse{\CharacterAgeValue < 70}{\def\reduction{3}}{%
-					\ifthenelse{\CharacterAgeValue < 80}{\def\reduction{4}}{\def\reduction{5}}%
-				}%
-			}%
-		}%
-	}%
-	\Move{\intcalcSub{\base}{\reduction}}%
-}%
 
 % Calculate Halves and Fifths
 \newcommand{\calculateHalf}[1]{%
@@ -107,25 +107,26 @@
 }%
 
 % Calculate Wealth
+\ExplSyntaxOn
 %% Spending Level
 \newcommand{\calculateSpendingLevel}{%
 	\npthousandsep{'}
 	\ifthenelse{\CreditRatingValue < 1}{%
-		\ifthenelse{\equal{\ERA}{1920s}}{\SpendingLevel{\$ 0.50}}{\SpendingLevel{\$ 10}}
+		\ifthenelse{\equal{\l__era_tl}{1920s}}{\SpendingLevel{\$ 0.50}}{\SpendingLevel{\$ 10}}
 	}{%
 		\ifthenelse{\CreditRatingValue < 10}{%
-			\ifthenelse{\equal{\ERA}{1920s}}{\SpendingLevel{\$ 2}}{\SpendingLevel{\$ 40}}
+			\ifthenelse{\equal{\l__era_tl}{1920s}}{\SpendingLevel{\$ 2}}{\SpendingLevel{\$ 40}}
 		}{%
 			\ifthenelse{\CreditRatingValue < 50}{%
-				\ifthenelse{\equal{\ERA}{1920s}}{\SpendingLevel{\$ 10}}{\SpendingLevel{\$ 200}}
+				\ifthenelse{\equal{\l__era_tl}{1920s}}{\SpendingLevel{\$ 10}}{\SpendingLevel{\$ 200}}
 			}{%
 				\ifthenelse{\CreditRatingValue < 90}{%
-					\ifthenelse{\equal{\ERA}{1920s}}{\SpendingLevel{\$ 50}}{\SpendingLevel{\$ \np{1000}}}
+					\ifthenelse{\equal{\l__era_tl}{1920s}}{\SpendingLevel{\$ 50}}{\SpendingLevel{\$ \np{1000}}}
 				}{%
 					\ifthenelse{\CreditRatingValue < 99}{%
-						\ifthenelse{\equal{\ERA}{1920s}}{\SpendingLevel{\$ 250}}{\SpendingLevel{\$ \np{5000}}}
+						\ifthenelse{\equal{\l__era_tl}{1920s}}{\SpendingLevel{\$ 250}}{\SpendingLevel{\$ \np{5000}}}
 					}{%
-						\ifthenelse{\equal{\ERA}{1920s}}{\SpendingLevel{\$ \np{5000}}}{\SpendingLevel{\$ \np{100000}}}
+						\ifthenelse{\equal{\l__era_tl}{1920s}}{\SpendingLevel{\$ \np{5000}}}{\SpendingLevel{\$ \np{100000}}}
 					}%
 				}%
 			}%
@@ -136,37 +137,37 @@
 \newcommand{\calculateCash}{%
 	\npthousandsep{'}
 	\ifthenelse{\CreditRatingValue < 1}{%
-		\ifthenelse{\equal{\ERA}{1920s}}{\Cash{\$ 0.50}}{\Cash{\$ 10}}%
+		\ifthenelse{\equal{\l__era_tl}{1920s}}{\Cash{\$ 0.50}}{\Cash{\$ 10}}%
 	}{%
 		\ifthenelse{\CreditRatingValue < 10}{%
-			\ifthenelse{\equal{\ERA}{1920s}}{%
+			\ifthenelse{\equal{\l__era_tl}{1920s}}{%
 				\Cash{\$ \np{\intcalcMul{\CreditRatingValue}{1}}}%
 			}{%
 				\Cash{\$ \np{\intcalcMul{\CreditRatingValue}{20}}}%
 			}%
 		}{%
 			\ifthenelse{\CreditRatingValue < 50}{%
-				\ifthenelse{\equal{\ERA}{1920s}}{%
+				\ifthenelse{\equal{\l__era_tl}{1920s}}{%
 					\Cash{\$ \np{\intcalcMul{\CreditRatingValue}{2}}}%
 				}{%
 					\Cash{\$ \np{\intcalcMul{\CreditRatingValue}{40}}}%
 				}%
 			}{%
 				\ifthenelse{\CreditRatingValue < 90}{%
-					\ifthenelse{\equal{\ERA}{1920s}}{%
+					\ifthenelse{\equal{\l__era_tl}{1920s}}{%
 						\Cash{\$ \np{\intcalcMul{\CreditRatingValue}{5}}}%
 					}{%
 						\Cash{\$ \np{\intcalcMul{\CreditRatingValue}{100}}}%
 					}%
 				}{%
 					\ifthenelse{\CreditRatingValue < 99}{%
-						\ifthenelse{\equal{\ERA}{1920s}}{%
+						\ifthenelse{\equal{\l__era_tl}{1920s}}{%
 							\Cash{\$ \np{\intcalcMul{\CreditRatingValue}{20}}}%
 						}{%
 							\Cash{\$ \np{\intcalcMul{\CreditRatingValue}{400}}}%
 						}%
 					}{%
-						\ifthenelse{\equal{\ERA}{1920s}}{\Cash{\$ \np{50000}}}{\Cash{\$ \np{1000000}}}%
+						\ifthenelse{\equal{\l__era_tl}{1920s}}{\Cash{\$ \np{50000}}}{\Cash{\$ \np{1000000}}}%
 					}%
 				}%
 			}%
@@ -177,63 +178,82 @@
 \newcommand{\calculateAssets}{%
 	\npthousandsep{'}
 	\ifthenelse{\CreditRatingValue < 1}{%
-		\ifthenelse{\equal{\ERA}{1920s}}{\Assets{None}}{\Assets{None}}%
+		\ifthenelse{\equal{\l__era_tl}{1920s}}{\Assets{None}}{\Assets{None}}%
 	}{%
 		\ifthenelse{\CreditRatingValue < 10}{%
-			\ifthenelse{\equal{\ERA}{1920s}}{%
+			\ifthenelse{\equal{\l__era_tl}{1920s}}{%
 				\Assets{\$ \np{\intcalcMul{\CreditRatingValue}{10}}}%
 			}{%
 				\Assets{\$ \np{\intcalcMul{\CreditRatingValue}{200}}}%
 			}%
 		}{%
 			\ifthenelse{\CreditRatingValue < 50}{%
-				\ifthenelse{\equal{\ERA}{1920s}}{%
+				\ifthenelse{\equal{\l__era_tl}{1920s}}{%
 					\Assets{\$ \np{\intcalcMul{\CreditRatingValue}{50}}}%
 				}{%
 					\Assets{\$ \np{\intcalcMul{\CreditRatingValue}{1000}}}%
 				}%
 			}{%
 				\ifthenelse{\CreditRatingValue < 90}{%
-					\ifthenelse{\equal{\ERA}{1920s}}{%
+					\ifthenelse{\equal{\l__era_tl}{1920s}}{%
 						\Assets{\$ \np{\intcalcMul{\CreditRatingValue}{500}}}%
 					}{%
 						\Assets{\$ \np{\intcalcMul{\CreditRatingValue}{10000}}}%
 					}%
 				}{%
 					\ifthenelse{\CreditRatingValue < 99}{%
-						\ifthenelse{\equal{\ERA}{1920s}}{%
+						\ifthenelse{\equal{\l__era_tl}{1920s}}{%
 							\Assets{\$ \np{\intcalcMul{\CreditRatingValue}{2000}}}%
 						}{%
 							\Assets{\$ \np{\intcalcMul{\CreditRatingValue}{40000}}}%
 						}%
 					}{%
-						\ifthenelse{\equal{\ERA}{1920s}}{\Assets{\$ \np{5000000}+}}{\Assets{\$ \np{100000000}+}}
+						\ifthenelse{\equal{\l__era_tl}{1920s}}{\Assets{\$ \np{5000000}+}}{\Assets{\$ \np{100000000}+}}
 					}%
 				}%
 			}%
 		}%
 	}%
 }%
+\ExplSyntaxOff
 
+% --------------------------------------------------------------------------------------------------------------- %
+% #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#  CONSTANTS  #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
+% --------------------------------------------------------------------------------------------------------------- %
+\newcounter{CREDIT_RATING_SLOT}
+\newcounter{CTHULHU_MYTHOS_SLOT}
+
+\newcounter{MAX_NUMBER_ART_CRAFT}
+\newcounter{MAX_NUMBER_FIGHTING}
+\newcounter{MAX_NUMBER_LANGUAGE_OTHER}
+\newcounter{MAX_NUMBER_EXTRA}
+
+\newcounter{MAX_NUMBER_WEAPONS}
+
+\newcounter{MAX_NUMBER_GEAR_POSSESSIONS}
+
+\newcounter{MAX_NUMBER_FELLOW_INVESTIGATORS}
 % --------------------------------------------------------------------------------------------------------------- %
 % #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# CHARACTER SHEET #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
 % --------------------------------------------------------------------------------------------------------------- %
 % CHARACTER INFO
+\newcommand{\PlayerNameValue}{}
 \newcommand{\CharacterNameValue}{}
 \newcommand{\CharacterBirthplaceValue}{}
-\newcommand{\CharacterPronounValue}{}
+\newcommand{\CharacterSexValue}{}
 \newcommand{\CharacterOccupationValue}{}
 \newcommand{\CharacterResidenceValue}{}
 \newcommand{\CharacterAgeValue}{}
 \newcommand{\CharacterImageValue}{}
 
 \newcommand{\CharacterImageNode}{
-	\node at (507.1635,91.726) {\includegraphics[width=101.807pt, height=120.124pt, keepaspectratio]{\CharacterImageValue}};
+	\node at \IMAGECENTER {\includegraphics[width=101.807pt, height=120.124pt, keepaspectratio]{\CharacterImageValue}};
 }
 
+\newcommand{\PlayerName}[1]{\renewcommand{\PlayerNameValue}{#1}}
 \newcommand{\CharacterName}[1]{\renewcommand{\CharacterNameValue}{#1}}
 \newcommand{\Birthplace}[1]{\renewcommand{\CharacterBirthplaceValue}{#1}}
-\newcommand{\Pronoun}[1]{\renewcommand{\CharacterPronounValue}{#1}}
+\newcommand{\Sex}[1]{\renewcommand{\CharacterSexValue}{#1}}
 \newcommand{\Occupation}[1]{\renewcommand{\CharacterOccupationValue}{#1}}
 \newcommand{\Residence}[1]{\renewcommand{\CharacterResidenceValue}{#1}}
 \newcommand{\Age}[1]{\renewcommand{\CharacterAgeValue}{#1}}
@@ -243,16 +263,16 @@
 	\ifthenelse{\equal{#2}{}}{}{%
 		\ifthenelse{\equal{#2}{Width}}{%
 			\renewcommand{\CharacterImageNode}{%
-				\node[#1] at (507.1635,91.726) {\includegraphics[width=101.807pt, keepaspectratio]{\CharacterImageValue}};
+				\node[#1] at \IMAGECENTER {\includegraphics[width=101.807pt, keepaspectratio]{\CharacterImageValue}};
 			}%
 		}{%
 			\ifthenelse{\equal{#2}{Height}}{%
 				\renewcommand{\CharacterImageNode}{%
-					\node[#1] at (507.1635,91.726) {\includegraphics[height=120.124pt, keepaspectratio]{\CharacterImageValue}};
+					\node[#1] at \IMAGECENTER {\includegraphics[height=120.124pt, keepaspectratio]{\CharacterImageValue}};
 				}%
 			}{%
 				\renewcommand{\CharacterImageNode}{%
-					\node[#1] at (507.1635,91.726) {\includegraphics[#2]{\CharacterImageValue}};
+					\node[#1] at \IMAGECENTER {\includegraphics[#2]{\CharacterImageValue}};
 				}%
 			}%
 		}%
@@ -291,6 +311,7 @@
 \newcommand{\AppearanceModificationValue}{0}
 \newcommand{\EducationModificationValue}{0}
 \newcommand{\LuckModificationValue}{0}
+\newcommand{\MovementBonusValue}{0}
 
 \newcommand{\StrengthModification}[1]{\renewcommand{\StrengthModificationValue}{#1}}
 \newcommand{\ConstitutionModification}[1]{\renewcommand{\ConstitutionModificationValue}{#1}}
@@ -301,6 +322,13 @@
 \newcommand{\AppearanceModification}[1]{\renewcommand{\AppearanceModificationValue}{#1}}
 \newcommand{\EducationModification}[1]{\renewcommand{\EducationModificationValue}{#1}}
 \newcommand{\LuckModification}[1]{\renewcommand{\LuckModificationValue}{#1}}
+\newcommand{\MovementBonus}[1]{%
+	\ifthenelse{#1 < -1 \OR #1 > 1}{%
+		\PackageWarning{General Commands}{Movement Bonus can either be -1, 0, or +1. Value omitted!}%
+	}{%
+		\renewcommand{\MovementBonusValue}{#1}%
+	}%
+}
 
 %% DISPLAY VALUES
 \newcommand{\StrengthScoreValue}{}
@@ -362,6 +390,8 @@
 \newcommand{\ArtCraftASkillValue}{5}
 \newcommand{\ArtCraftBNameValue}{}
 \newcommand{\ArtCraftBSkillValue}{}
+\newcommand{\ArtCraftCNameValue}{}
+\newcommand{\ArtCraftCSkillValue}{}
 \newcommand{\CharmSkillValue}{15}
 \newcommand{\ClimbSkillValue}{20}
 \newcommand{\CreditRatingValue}{0}
@@ -401,6 +431,7 @@
 \newcommand{\NaturalWorldSkillValue}{10}
 \newcommand{\NavigateSkillValue}{10}
 \newcommand{\OccultSkillValue}{5}
+\newcommand{\OpHeavyMachineSkillValue}{5}
 \newcommand{\PersuadeSkillValue}{10}
 \newcommand{\PilotNameValue}{}
 \newcommand{\PilotSkillValue}{1}
@@ -429,6 +460,8 @@
 \newcommand{\ExtraSlotCSkillValue}{}
 \newcommand{\ExtraSlotDNameValue}{}
 \newcommand{\ExtraSlotDSkillValue}{}
+\newcommand{\ExtraSlotENameValue}{}
+\newcommand{\ExtraSlotESkillValue}{}
 %% BOOLEANS
 \newboolean{b_AccountingSkill}
 \newboolean{b_AnthropologySkill}
@@ -436,6 +469,7 @@
 \newboolean{b_ArchaeologySkill}
 \newboolean{b_ArtCraftASkill}
 \newboolean{b_ArtCraftBSkill}
+\newboolean{b_ArtCraftCSkill}
 \newboolean{b_CharmSkill}
 \newboolean{b_ClimbSkill}
 \newboolean{b_DisguiseSkill}
@@ -466,6 +500,7 @@
 \newboolean{b_NaturalWorldSkill}
 \newboolean{b_NavigateSkill}
 \newboolean{b_OccultSkill}
+\newboolean{b_OpHeavyMachineSkill}
 \newboolean{b_PersuadeSkill}
 \newboolean{b_PilotSkill}
 \newboolean{b_PsychoanalysisSkill}
@@ -485,6 +520,7 @@
 \newboolean{b_ExtraSlotBSkill}
 \newboolean{b_ExtraSlotCSkill}
 \newboolean{b_ExtraSlotDSkill}
+\newboolean{b_ExtraSlotESkill}
 
 \newcommand{\AccountingSkill}[2][]{%
 	\ifthenelse{\equal{#1}{T}}{\setboolean{b_AccountingSkill}{true}}{}%
@@ -506,7 +542,7 @@
 \newcounter{artCraftSlotCounter}
 \setcounter{artCraftSlotCounter}{1}
 \newcommand{\ArtCraftSkill}[3][]{
-	\ifnum\value{artCraftSlotCounter}>2%
+	\ifnum\value{artCraftSlotCounter}>\value{MAX_NUMBER_ART_CRAFT}%
 		\PackageWarning{General Commands}{All Art/Craft slots are filled! Cannot add "#2".}%
 	\else%
 		\ifthenelse{\equal{#1}{T}}{\setboolean{b_ArtCraft\Alph{artCraftSlotCounter}Skill}{true}}{}%
@@ -554,7 +590,7 @@
 \newcounter{fightingSlotCounter}
 \setcounter{fightingSlotCounter}{1}
 \newcommand{\FightingSkill}[3][]{
-	\ifnum\value{fightingSlotCounter}>2%
+	\ifnum\value{fightingSlotCounter}>\value{MAX_NUMBER_FIGHTING}%
 		\PackageWarning{General Commands}{All Fighting slots are filled! Cannot add "#2".}%
 	\else%
 		\ifthenelse{\equal{#1}{T}}{\setboolean{b_Fighting\Alph{fightingSlotCounter}Skill}{true}}{}%
@@ -603,7 +639,7 @@
 \newcounter{languageOtherSlotCounter}
 \setcounter{languageOtherSlotCounter}{1}
 \newcommand{\LanguageOtherSkill}[3][]{
-	\ifnum\value{languageOtherSlotCounter}>3%
+	\ifnum\value{languageOtherSlotCounter}>\value{MAX_NUMBER_LANGUAGE_OTHER}%
 		\PackageWarning{General Commands}{All other Language slots are filled! Cannot add "#2".}%
 	\else%
 		\ifthenelse{\equal{#1}{T}}{\setboolean{b_Language\Alph{languageOtherSlotCounter}Skill}{true}}{}%
@@ -658,6 +694,10 @@
 \newcommand{\OccultSkill}[2][]{%
 	\ifthenelse{\equal{#1}{T}}{\setboolean{b_OccultSkill}{true}}{}%
 	\renewcommand{\OccultSkillValue}{#2}%
+}
+\newcommand{\OperateHeavyMachineSkill}[2][]{%
+	\ifthenelse{\equal{#1}{T}}{\setboolean{b_OpHeavyMachineSkill}{true}}{}%
+	\renewcommand{\OpHeavyMachineSkillValue}{#2}%
 }
 \newcommand{\PersuadeSkill}[2][]{%
 	\ifthenelse{\equal{#1}{T}}{\setboolean{b_PersuadeSkill}{true}}{}%
@@ -739,7 +779,7 @@
 \newcounter{extraSlotCounter}
 \setcounter{extraSlotCounter}{1}
 \newcommand{\ExtraSkill}[3][]{
-	\ifnum\value{extraSlotCounter}>4%
+	\ifnum\value{extraSlotCounter}>\value{MAX_NUMBER_EXTRA}%
 		\PackageWarning{General Commands}{All Extra slots are filled! Cannot add "#2".}%
 	\else%
 		\ifthenelse{\equal{#1}{T}}{\setboolean{b_ExtraSlot\Alph{extraSlotCounter}Skill}{true}}{}%
@@ -748,6 +788,30 @@
 		\stepcounter{extraSlotCounter}%
 	\fi
 }
+
+%% MODERN ONLY SKILLS
+\newcommand{\ComputerUseSkillValue}{1}
+\newcommand{\ElectronicsSkillValue}{1}
+
+\newboolean{b_ComputerUseSkill}
+\newboolean{b_ElectronicsSkill}
+
+\newcommand{\ComputerUseSkill}[2][]{%
+	\ifthenelse{\equal{\ERA}{Modern}}{%
+		\ifthenelse{\equal{#1}{T}}{\setboolean{b_ComputerUseSkill}{true}}{}%
+		\renewcommand{\ComputerUseSkillValue}{#2}%
+	}{%
+		\PackageWarning{General Commands}{"Computer Use" cannot be displayed in the 1920s Character Sheet. Please use the Modern version or create an extra slot using \ExtraSkill[3].}%
+	}%
+}%
+\newcommand{\ElectronicsSkill}[2][]{%
+	\ifthenelse{\equal{\ERA}{Modern}}{%
+		\ifthenelse{\equal{#1}{T}}{\setboolean{b_ElectronicsSkill}{true}}{}%
+		\renewcommand{\ElectronicsSkillValue}{#2}%
+	}{%
+		\PackageWarning{General Commands}{"Electronics" cannot be displayed in the 1920s Character Sheet. Please use the Modern version or create an extra slot using \ExtraSkill[3].}%
+	}%
+}%
 
 % COMBAT
 \newcommand{\WeaponANameValue}{}
@@ -796,7 +860,7 @@
 \newcounter{weaponSlotCounter}
 \setcounter{weaponSlotCounter}{1}
 \newcommand{\addWeapon}[7]{%
-	\ifnum\value{weaponSlotCounter}>6%
+	\ifnum\value{weaponSlotCounter}>\value{MAX_NUMBER_WEAPONS}%
 		\PackageWarning{General Commands}{All Weapon slots are filled! Cannot add "#1".}%
 	\else%
 		\expandafter\renewcommand\csname Weapon\Alph{weaponSlotCounter}NameValue\endcsname{#1}%
@@ -835,7 +899,7 @@
 \newcommand{\TraitsValue}{}
 \newcommand{\InjuriesScarsValue}{}
 \newcommand{\PhobiasManiasValue}{}
-\newcommand{\ArcaneTomesSpellsValue}{}
+\newcommand{\ArcaneTomesSpellsArtifactsValue}{}
 \newcommand{\StrangeEntitiesEncountersValue}{}
 
 \newcommand{\PersonalDescription}[1]{\renewcommand{\PersonalDescriptionValue}{#1}}
@@ -846,7 +910,7 @@
 \newcommand{\Traits}[1]{\renewcommand{\TraitsValue}{#1}}
 \newcommand{\InjuriesScars}[1]{\renewcommand{\InjuriesScarsValue}{#1}}
 \newcommand{\PhobiasManias}[1]{\renewcommand{\PhobiasManiasValue}{#1}}
-\newcommand{\ArcaneTomesSpells}[1]{\renewcommand{\ArcaneTomesSpellsValue}{#1}}
+\newcommand{\ArcaneTomesSpellsArtifacts}[1]{\renewcommand{\ArcaneTomesSpellsArtifactsValue}{#1}}
 \newcommand{\StrangeEntitiesEncounters}[1]{\renewcommand{\StrangeEntitiesEncountersValue}{#1}}
 
 % GEAR, POSSESSIONS & WEALTH
@@ -860,6 +924,18 @@
 \newcommand{\GearPossessionsHValue}{}
 \newcommand{\GearPossessionsIValue}{}
 \newcommand{\GearPossessionsJValue}{}
+
+\newcommand{\GearPossessionsKValue}{}
+\newcommand{\GearPossessionsLValue}{}
+\newcommand{\GearPossessionsMValue}{}
+\newcommand{\GearPossessionsNValue}{}
+\newcommand{\GearPossessionsOValue}{}
+\newcommand{\GearPossessionsPValue}{}
+\newcommand{\GearPossessionsQValue}{}
+\newcommand{\GearPossessionsRValue}{}
+\newcommand{\GearPossessionsSValue}{}
+\newcommand{\GearPossessionsTValue}{}
+
 \newcommand{\SpendingLevelValue}{}
 \newcommand{\CashValue}{}
 \newcommand{\AssetsValue}{}
@@ -868,7 +944,7 @@
 \newcounter{gearPossessionsCounter}
 \setcounter{gearPossessionsCounter}{1}
 \newcommand{\addGearOrPossessions}[1]{%
-	\ifnum\value{gearPossessionsCounter}>10%
+	\ifnum\value{gearPossessionsCounter}>\value{MAX_NUMBER_GEAR_POSSESSIONS}%
 		\PackageWarning{General Commands}{All Gear & Possessions slots are filled! Cannot add "#1".}%
 	\else%
 		\expandafter\renewcommand\csname GearPossessions\Alph{gearPossessionsCounter}Value\endcsname{#1}%
@@ -901,25 +977,38 @@
 % FELLOW INVESTIGATOR
 \newcommand{\FellowInvestigatorACharacterValue}{}
 \newcommand{\FellowInvestigatorAPlayerValue}{}
+\newcommand{\FellowInvestigatorAAdditionalInformationValue}{}
 \newcommand{\FellowInvestigatorBCharacterValue}{}
 \newcommand{\FellowInvestigatorBPlayerValue}{}
+\newcommand{\FellowInvestigatorBAdditionalInformationValue}{}
 \newcommand{\FellowInvestigatorCCharacterValue}{}
 \newcommand{\FellowInvestigatorCPlayerValue}{}
+\newcommand{\FellowInvestigatorCAdditionalInformationValue}{}
 \newcommand{\FellowInvestigatorDCharacterValue}{}
 \newcommand{\FellowInvestigatorDPlayerValue}{}
+\newcommand{\FellowInvestigatorDAdditionalInformationValue}{}
 \newcommand{\FellowInvestigatorECharacterValue}{}
 \newcommand{\FellowInvestigatorEPlayerValue}{}
+\newcommand{\FellowInvestigatorEAdditionalInformationValue}{}
 \newcommand{\FellowInvestigatorFCharacterValue}{}
 \newcommand{\FellowInvestigatorFPlayerValue}{}
+\newcommand{\FellowInvestigatorFAdditionalInformationValue}{}
+\newcommand{\FellowInvestigatorGCharacterValue}{}
+\newcommand{\FellowInvestigatorGPlayerValue}{}
+\newcommand{\FellowInvestigatorGAdditionalInformationValue}{}
+\newcommand{\FellowInvestigatorHCharacterValue}{}
+\newcommand{\FellowInvestigatorHPlayerValue}{}
+\newcommand{\FellowInvestigatorHAdditionalInformationValue}{}
 
 \newcounter{fellowInvestigatorCounter}
 \setcounter{fellowInvestigatorCounter}{1}
-\newcommand{\addFellowInvestigator}[2]{%
-	\ifnum\value{fellowInvestigatorCounter}>6%
-		\PackageWarning{General Commands}{All Fellow Investigator slots are filled! Cannot add "#1".}%
+\NewDocumentCommand{\AddFellowInvestigator}{ O{} mm }{%
+	\ifnum\value{fellowInvestigatorCounter}>\value{MAX_NUMBER_FELLOW_INVESTIGATORS}%
+		\PackageWarning{General Commands}{All Fellow Investigator slots are filled! Cannot add "#2".}%
 	\else%
-		\expandafter\renewcommand\csname FellowInvestigator\Alph{fellowInvestigatorCounter}CharacterValue\endcsname{#1}%
-		\expandafter\renewcommand\csname FellowInvestigator\Alph{fellowInvestigatorCounter}PlayerValue\endcsname{#2}%
+		\expandafter\renewcommand\csname FellowInvestigator\Alph{fellowInvestigatorCounter}CharacterValue\endcsname{#2}%
+		\expandafter\renewcommand\csname FellowInvestigator\Alph{fellowInvestigatorCounter}PlayerValue\endcsname{#3}%
+		\expandafter\renewcommand\csname FellowInvestigator\Alph{fellowInvestigatorCounter}AdditionalInformationValue\endcsname{#1}%
 		\stepcounter{fellowInvestigatorCounter}%
 	\fi
 }%

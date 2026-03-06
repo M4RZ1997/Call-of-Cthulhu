@@ -1,0 +1,33 @@
+\begin{pageTikZ}
+	% COMBAT
+	%% WEAPONS OUTLINE
+	\draw[line width=0.75pt, \curLineColor] (42.059,639.894) rectangle ++(423.889,121.42);
+	\draw[line width=0.75pt, \curLineColor] (42.059,659.917) -- ++(423.889,0);	
+	
+	%% COMBAT OUTLINE
+	\draw[line width=0.75pt, \curLineColor] (572.236,639.894) rectangle ++(-102.842,121.42);
+	\draw[line width=0.75pt, \curLineColor] (572.236,659.917) -- ++(-102.842,0);
+	%%% Damage Bonus
+	\draw[line width=0.75pt, \curLineColor] (554.143,665.547) arc[start angle=-90, end angle=0, radius=10.77] -- ++(0,5.726) arc[start angle=0, end angle=90, radius=10.77] -- ++(-27.611,0) arc[start angle=90, end angle=180, radius=10.77] -- ++(0,-5.726) arc[start angle=180, end angle=270, radius=10.77] -- cycle;
+	%%% Build
+	\draw[line width=0.75pt, \curLineColor] (554.143,696.221) arc[start angle=-90, end angle=0, radius=10.77] -- ++(0,5.726) arc[start angle=0, end angle=90, radius=10.77] -- ++(-27.611,0) arc[start angle=90, end angle=180, radius=10.77] -- ++(0,-5.726) arc[start angle=180, end angle=270, radius=10.77] -- cycle;
+	%%% Dodge
+	\draw[line width=0.75pt, \curLineColor] (515.762,726.895) rectangle ++(26.75,26.75);
+	\draw[line width=0.75pt, \curLineColor] (515.762,726.895) ++(26.75,0) -- ++(15.508,0) arc[start angle=-90, end angle=0, radius=6.893] -- ++(0,19.857) -- ++(-22.401,0) ++(0,-13.375) -- ++(22.401,0);
+	
+	% Background Ornament
+	\begin{scope}
+		\draw[clip, draw=none] (42.434,640.269) rectangle ++(423.139,19.303) ++(3.821,0) rectangle ++(102.092,-19.303);
+		\pgfmathsetmacro{\vpos}{307.1475 - 180 - \HeaderBackgroundOffset};
+		\node[inner sep=0pt, opacity=\HeaderBackgroundOpacity] at (\vpos , 649.6205) {\includegraphics[width=180pt, keepaspectratio]{\PATH/templates/template_character-sheet/original-character-sheet/img/\HeaderBackgroundImage}};
+		\node[inner sep=0pt, opacity=\HeaderBackgroundOpacity] at (307.1475, 649.6205) {\includegraphics[width=180pt, keepaspectratio]{\PATH/templates/template_character-sheet/original-character-sheet/img/\HeaderBackgroundImage}};
+		\pgfmathsetmacro{\vpos}{307.1475 + 180 + \HeaderBackgroundOffset};
+		\node[inner sep=0pt, opacity=\HeaderBackgroundOpacity] at (\vpos , 649.6205) {\includegraphics[width=180pt, keepaspectratio]{\PATH/templates/template_character-sheet/original-character-sheet/img/\HeaderBackgroundImage}};
+	\end{scope}
+	
+	% Easiest way to overlay ornaments over combat boxes
+	\ifthenelse{\equal{\ERA}{1920s}}{%
+		\node[xscale=-1, anchor=south east] at (15,789.968) {\includegraphics[width=60pt]{\PATH/templates/template_character-sheet/original-character-sheet/img/lower-edge-ornament.png}};
+		\node[anchor=south east] at (599.295,789.968) {\includegraphics[width=60pt]{\PATH/templates/template_character-sheet/original-character-sheet/img/lower-edge-ornament.png}};
+	}{}%
+\end{pageTikZ}

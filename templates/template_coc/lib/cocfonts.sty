@@ -7,6 +7,10 @@
 \RequirePackage[auto]{contour}
 \RequirePackage{fontspec}
 
+% Bookman warning omition
+\DeclareFontFamily{TU}{pbk}{}
+\DeclareFontShape{TU}{pbk}{m}{n}{<->ssub * lmr/m/n}{}
+
 \bool_if:NT \l__coc_layout_bool
 {
 	\RequirePackage{bookman}
@@ -95,3 +99,16 @@
 	\seq_use:Nn \l_tmpb_seq { \newline }
 	\group_end:
 }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Custom "to-upper-case" Macro
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cs_new_protected:Npn \my_if_uppercase:nTF #1#2#3
+  {
+    \str_if_eq:eeTF { \tl_upper_case:n {#1} } {#1}
+      {
+        \str_if_eq:eeTF { \tl_lower_case:n {#1} } {#1}
+          { #3 } % not a cased letter
+          { #2 } % uppercase letter
+      }
+      { #3 }
+  }

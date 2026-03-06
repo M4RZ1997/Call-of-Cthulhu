@@ -1,0 +1,40 @@
+\begin{pageTikZ}
+	% PLAYER INFO
+	%% OUTLINE
+	\draw[line width=0.75pt, \curLineColor] (42.059,309.722) rectangle ++(530.177,327.19);
+	\draw[line width=0.75pt, \curLineColor] (42.059,325.911) -- ++(530.177,0);
+	\begin{scope}
+		\draw[clip, draw=none] (42.434,310.097) rectangle ++(529.427,15.439);
+		\pgfmathsetmacro{\vpos}{307.1475 - 180 - \HeaderBackgroundOffset};
+		\node[inner sep=0pt, opacity=\HeaderBackgroundOpacity] at (\vpos , 317.8165) {\includegraphics[width=180pt, keepaspectratio]{\PATH/templates/template_character-sheet/original-character-sheet/img/\HeaderBackgroundImage}};
+		\node[inner sep=0pt, opacity=\HeaderBackgroundOpacity] at (307.1475, 317.8165) {\includegraphics[width=180pt, keepaspectratio]{\PATH/templates/template_character-sheet/original-character-sheet/img/\HeaderBackgroundImage}};
+		\pgfmathsetmacro{\vpos}{307.1475 + 180 + \HeaderBackgroundOffset};
+		\node[inner sep=0pt, opacity=\HeaderBackgroundOpacity] at (\vpos , 317.8165) {\includegraphics[width=180pt, keepaspectratio]{\PATH/templates/template_character-sheet/original-character-sheet/img/\HeaderBackgroundImage}};
+	\end{scope}
+	
+	%% SEPARATOR LINES
+	\draw[line width=0.75pt, gray] (174.60325,335) -- ++(0,295);
+	\draw[line width=0.75pt, gray] (307.1475,335) -- ++(0,295);
+	\draw[line width=0.75pt, gray] (439.69175,335) -- ++(0,295);
+	
+	%% SKILLS
+	\foreach \vi in {0,...,3}
+	{
+		\pgfmathsetmacro{\vpos}{137.35 + \vi * 132.54425};
+		\foreach \hi in {0,...,14}
+		{
+			\pgfmathsetmacro{\hpos}{328.4735625 + \hi * 20.5625625};
+			%% Skill Squares
+			\ifthenelse{\equal{\vi}{0}}{%
+				\ifthenelse{\equal{\hi}{\value{CREDIT_RATING_SLOT}} \OR \equal{\hi}{\value{CTHULHU_MYTHOS_SLOT}}}{}{%
+					\draw[line width=0.5pt, black] (\vpos,\hpos) ++(-92.35,5.5) rectangle ++(7,7);%
+				}%
+			}{%
+				\draw[line width=0.5pt, black] (\vpos,\hpos) ++(-92.35,5.5) rectangle ++(7,7);%
+			}%
+			%% Skill Score Boxes
+			\draw[line width=0.5pt, \curLineColor] (\vpos,\hpos) rectangle ++(18,18);
+			\draw[line width=0.5pt, \curLineColor] (\vpos,\hpos) ++(18,0) -- ++(10.15,0) arc[start angle=-90, end angle=0, radius=4.5] -- ++(0,13.5) -- ++(-14.65,0) ++(0,-9) -- ++(14.65,0);
+		}
+	}
+\end{pageTikZ}

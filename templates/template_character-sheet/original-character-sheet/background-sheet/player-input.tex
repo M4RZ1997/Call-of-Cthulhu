@@ -1,0 +1,340 @@
+\begin{pageTikZ}
+	% BACKSTORY
+	%%% DON'T ASK ME WHY THIS IS NEED, BUT IT IS!
+	\node at (0,0) {\parbox[t][0pt][t]{0pt}{\justify{}}};
+	%% PERSONAL DESCRIPTION
+	\ifthenelse{\equal{\PersonalDescriptionValue}{}}{%
+		\foreach \i in {1,...,3}
+		{
+			\pgfmathsetmacro{\vpos}{82.093 + \i * 15.337};
+			\draw[line width=0.75pt, black] (53.307,\vpos) -- ++(247.269,0);
+		}
+	}{%
+		\node[anchor=north west, inner sep=0pt] at (53.307, 85.093) {
+			\parbox[t][247.269pt][t]{247.269pt}{\justify\entryfont%
+				\begingroup%
+				\setbox0=\vbox{%
+					\PersonalDescriptionValue%
+				}%
+				\hbox{%
+					\vtop{\hsize=247.269pt\parindent=0pt%
+						\vsplit0 to 50pt%
+					}%
+					\setbox1=\vbox{\unvbox0}%
+				}%
+				\endgroup%
+				\parbox[t][0pt][t]{0pt}{\justify{}}
+			}%
+		};%
+	}%
+	%% TRAITS
+	\ifthenelse{\equal{\TraitsValue}{}}{%
+		\foreach \i in {1,...,3}
+		{
+			\pgfmathsetmacro{\vpos}{82.093 + \i * 15.337};
+			\draw[line width=0.75pt, black] (313.719,\vpos) -- ++(166.1725,0);
+		}
+	}{%
+		\node[anchor=north west, inner sep=0pt] at (313.719, 85.093) {%
+			\parbox[t][166.1725pt][t]{166.1725pt}{\justify\entryfont%
+				\begingroup%
+				\setbox0=\vbox{%
+					\TraitsValue%
+				}%
+				\hbox{%
+					\vtop{\hsize=166.1725pt\parindent=0pt%
+						\vsplit0 to 50pt%
+					}%
+					\setbox1=\vbox{\unvbox0}%
+				}%
+				\endgroup%
+				\parbox[t][0pt][t]{0pt}{\justify{}}
+			}%
+		};%
+	}%
+	%% IDEOLOGY & BELIEFS
+	\ifthenelse{\equal{\IdeologyBeliefsValue}{}}{%
+		\foreach \i in {1,...,3}
+		{
+			\pgfmathsetmacro{\vpos}{143.441 + \i * 15.337};
+			\draw[line width=0.75pt, black] (53.307,\vpos) -- ++(247.269,0);
+		}
+	}{%
+		\node[anchor=north west, inner sep=0pt] at (53.307, 146.441) {%
+			\parbox[t][247.269pt][t]{247.269pt}{\justify\entryfont%
+				\begingroup%
+				\setbox0=\vbox{%
+					\IdeologyBeliefsValue%
+				}%
+				\hbox{%
+					\vtop{\hsize=247.269pt\parindent=0pt%
+						\vsplit0 to 50pt%
+					}%
+					\setbox1=\vbox{\unvbox0}%
+				}%
+				\endgroup%
+				\parbox[t][0pt][t]{0pt}{\justify{}}
+			}%
+		};%
+	}%
+	%% INJURIES & SCARS
+	\ifthenelse{\equal{\InjuriesScarsValue}{}}{%
+		\foreach \i in {1,...,3}
+		{
+			\pgfmathsetmacro{\vpos}{143.441 + \i * 15.337};
+			\draw[line width=0.75pt, black] (313.719,\vpos) -- ++(247.269,0);
+		}
+	}{%
+		\node[anchor=north west, inner sep=0pt] at (313.719, 146.441) {%
+			\parbox[t][247.269pt][t]{247.269pt}{\justify\entryfont%
+				\begingroup%
+				\setbox0=\vbox{%
+					\InjuriesScarsValue%
+				}%
+				\hbox{%
+					\vtop{\hsize=247.269pt\parindent=0pt%
+						\vsplit0 to 50pt%
+					}%
+					\setbox1=\vbox{\unvbox0}%
+				}%
+				\endgroup%
+				\parbox[t][0pt][t]{0pt}{\justify{}}
+			}%
+		};%
+	}%
+	%% SIGNIFICANT PEOPLE
+	\ifthenelse{\equal{\SignificantPeopleValue}{}}{%
+		\foreach \i in {1,...,3}
+		{
+			\pgfmathsetmacro{\vpos}{204.789 + \i * 15.337};
+			\draw[line width=0.75pt, black] (53.307,\vpos) -- ++(247.269,0);
+		}
+	}{%
+		\node[anchor=north west, inner sep=0pt] at (53.307, 207.789) {%
+			\parbox[t][247.269pt][t]{247.269pt}{\justify\entryfont%
+				\begingroup%
+				\setbox0=\vbox{%
+					\SignificantPeopleValue%
+				}%
+				\hbox{%
+					\vtop{\hsize=247.269pt\parindent=0pt%
+						\vsplit0 to 50pt%
+					}%
+					\setbox1=\vbox{\unvbox0}%
+				}%
+				\endgroup%
+				\parbox[t][0pt][t]{0pt}{\justify{}}
+			}%
+		};%
+	}%
+	%% PHOBIAS & MANIAS
+	\ifthenelse{\equal{\PhobiasManiasValue}{}}{%
+		\foreach \i in {1,...,3}
+		{
+			\pgfmathsetmacro{\vpos}{204.789 + \i * 15.337};
+			\draw[line width=0.75pt, black] (313.719,\vpos) -- ++(247.269,0);
+		}
+	}{%
+		\node[anchor=north west, inner sep=0pt] at (313.719, 207.789) {%
+			\parbox[t][247.269pt][t]{247.269pt}{\justify\entryfont%
+				\begingroup%
+				\setbox0=\vbox{%
+					\PhobiasManiasValue%
+				}%
+				\hbox{%
+					\vtop{\hsize=247.269pt\parindent=0pt%
+						\vsplit0 to 50pt%
+					}%
+					\setbox1=\vbox{\unvbox0}%
+				}%
+				\endgroup%
+				\parbox[t][0pt][t]{0pt}{\justify{}}
+			}%
+		};%
+	}%
+	%% MEANINGFUL LOCATIONS
+	\ifthenelse{\equal{\MeaningfulLocationsValue}{}}{%
+		\foreach \i in {1,...,3}
+		{
+			\pgfmathsetmacro{\vpos}{266.137 + \i * 15.337};
+			\draw[line width=0.75pt, black] (53.307,\vpos) -- ++(247.269,0);
+		}
+	}{%
+		\node[anchor=north west, inner sep=0pt] at (53.307, 270.137) {%
+			\parbox[t][247.269pt][t]{247.269pt}{\justify\entryfont%
+				\begingroup%
+				\setbox0=\vbox{%
+					\MeaningfulLocationsValue%
+				}%
+				\hbox{%
+					\vtop{\hsize=247.269pt\parindent=0pt%
+						\vsplit0 to 50pt%
+					}%
+					\setbox1=\vbox{\unvbox0}%
+				}%
+				\endgroup%
+				\parbox[t][0pt][t]{0pt}{\justify{}}
+			}%
+		};%
+	}%
+	%% ARCANE TOMES, SPELLS & ARTIFACTS
+	\ifthenelse{\equal{\ArcaneTomesSpellsArtifactsValue}{}}{%
+		\foreach \i in {1,...,3}
+		{
+			\pgfmathsetmacro{\vpos}{266.137 + \i * 15.337};
+			\draw[line width=0.75pt, black] (313.719,\vpos) -- ++(247.269,0);
+		}
+	}{%
+		\node[anchor=north west, inner sep=0pt] at (313.719, 270.137) {%
+			\parbox[t][247.269pt][t]{247.269pt}{\justify\entryfont%
+				\begingroup%
+				\setbox0=\vbox{%
+					\ArcaneTomesSpellsArtifactsValue%
+				}%
+				\hbox{%
+					\vtop{\hsize=247.269pt\parindent=0pt%
+						\vsplit0 to 50pt%
+					}%
+					\setbox1=\vbox{\unvbox0}%
+				}%
+				\endgroup%
+				\parbox[t][0pt][t]{0pt}{\justify{}}
+			}%
+		};%
+	}%
+	%% TREASURED POSSESSIONS
+	\ifthenelse{\equal{\TreasuredPossessionsValue}{}}{%
+		\foreach \i in {1,...,4}
+		{
+			\pgfmathsetmacro{\vpos}{327.485 + \i * 15.337};
+			\draw[line width=0.75pt, black] (53.307,\vpos) -- ++(247.269,0);
+		}
+	}{%
+		\node[anchor=north west, inner sep=0pt] at (53.307, 331.485) {%
+			\parbox[t][247.269pt][t]{247.269pt}{\justify\entryfont%
+				\begingroup%
+				\setbox0=\vbox{%
+					\TreasuredPossessionsValue%
+				}%
+				\hbox{%
+					\vtop{\hsize=247.269pt\parindent=0pt%
+						\vsplit0 to 60pt%
+					}%
+					\setbox1=\vbox{\unvbox0}%
+				}%
+				\endgroup%
+				\parbox[t][0pt][t]{0pt}{\justify{}}
+			}%
+		};%
+	}%
+	%% ENCOUNTERS WITH STRANGE ENTITIES
+	\ifthenelse{\equal{\StrangeEntitiesEncountersValue}{}}{%
+		\foreach \i in {1,...,4}
+		{
+			\pgfmathsetmacro{\vpos}{327.485 + \i * 15.337};
+			\draw[line width=0.75pt, black] (313.719,\vpos) -- ++(247.269,0);
+		}
+	}{%
+		\node[anchor=north west, inner sep=0pt] at (313.719, 331.485) {%
+			\parbox[t][247.269pt][t]{247.269pt}{\justify\entryfont%
+				\begingroup%
+				\setbox0=\vbox{%
+					\StrangeEntitiesEncountersValue%
+				}%
+				\hbox{%
+					\vtop{\hsize=247.269pt\parindent=0pt%
+						\vsplit0 to 60pt%
+					}%
+					\setbox1=\vbox{\unvbox0}%
+				}%
+				\endgroup%
+				\parbox[t][0pt][t]{0pt}{\justify{}}
+			}%
+		};%
+	}%
+	
+	% GEAR & POSSESSIONS
+	\node[anchor=north west, inner sep=0pt] at (56.445,437.929) {\entryfont\GearPossessionsAValue};
+	\node[anchor=north west, inner sep=0pt] at (56.445,453.266) {\entryfont\GearPossessionsBValue};
+	\node[anchor=north west, inner sep=0pt] at (56.445,468.603) {\entryfont\GearPossessionsCValue};
+	\node[anchor=north west, inner sep=0pt] at (56.445,483.94) {\entryfont\GearPossessionsDValue};
+	\node[anchor=north west, inner sep=0pt] at (56.445,499.277) {\entryfont\GearPossessionsEValue};
+	\node[anchor=north west, inner sep=0pt] at (56.445,514.614) {\entryfont\GearPossessionsFValue};
+	\node[anchor=north west, inner sep=0pt] at (56.445,529.951) {\entryfont\GearPossessionsGValue};
+	\node[anchor=north west, inner sep=0pt] at (56.445,545.288) {\entryfont\GearPossessionsHValue};
+	\node[anchor=north west, inner sep=0pt] at (56.445,560.625) {\entryfont\GearPossessionsIValue};
+	\node[anchor=north west, inner sep=0pt] at (56.445,575.962) {\entryfont\GearPossessionsJValue};
+	\node[anchor=north west, inner sep=0pt] at (201.8345,437.929) {\entryfont\GearPossessionsKValue};
+	\node[anchor=north west, inner sep=0pt] at (201.8345,453.266) {\entryfont\GearPossessionsLValue};
+	\node[anchor=north west, inner sep=0pt] at (201.8345,468.603) {\entryfont\GearPossessionsMValue};
+	\node[anchor=north west, inner sep=0pt] at (201.8345,483.94) {\entryfont\GearPossessionsNValue};
+	\node[anchor=north west, inner sep=0pt] at (201.8345,499.277) {\entryfont\GearPossessionsOValue};
+	\node[anchor=north west, inner sep=0pt] at (201.8345,514.614) {\entryfont\GearPossessionsPValue};
+	\node[anchor=north west, inner sep=0pt] at (201.8345,529.951) {\entryfont\GearPossessionsQValue};
+	\node[anchor=north west, inner sep=0pt] at (201.8345,545.288) {\entryfont\GearPossessionsRValue};
+	\node[anchor=north west, inner sep=0pt] at (201.8345,560.625) {\entryfont\GearPossessionsSValue};
+	\node[anchor=north west, inner sep=0pt] at (201.8345,575.962) {\entryfont\GearPossessionsTValue};
+	
+	% CASH & ASSETS
+	\node[anchor=north east, inner sep=0pt] at (557,437.929) {\entryfont\SpendingLevelValue};
+	\node[anchor=north east, inner sep=0pt] at (557,453.266) {\entryfont\CashValue};
+	\node[anchor=north east, inner sep=0pt] at (557,468.643) {\entryfont\AssetsValue};
+	%% ASSETS INFORMATION
+	\ifthenelse{\equal{\AssetsInformationValue}{}}{%
+		\foreach \i in {1,...,7}
+		{
+			\pgfmathsetmacro{\vpos}{477.152 + \i * 15.337};
+			\draw[line width=0.75pt, black] (360.244,\vpos) -- ++(201.606,0);
+		}
+	}{%
+		\node[anchor=north west, inner sep=0pt] at (360.244, 483.152) {%
+			\parbox[t][201.606pt][t]{201.606pt}{\justify\entryfont%
+				\begingroup%
+				\setbox0=\vbox{%
+					\AssetsInformationValue%
+				}%
+				\hbox{%
+					\vtop{\hsize=201.606pt\parindent=0pt%
+						\vsplit0 to 105pt%
+					}%
+					\setbox1=\vbox{\unvbox0}%
+				}%
+				\endgroup%
+				\parbox[t][0pt][t]{0pt}{\justify{}}
+			}%
+		};%
+	}
+	
+	% FELLOW INVESTIGATORS
+	\node[anchor=north west, inner sep=0pt] at (300.216,635.605) {\entryfont\FellowInvestigatorACharacterValue};
+	\node[anchor=north west, inner sep=0pt] at (300.216,646.105) {\entryfont\FellowInvestigatorAPlayerValue};
+	\node[anchor=north west, inner sep=0pt] at (273.216,663.654) {\scriptsize\entryfont\FellowInvestigatorAAdditionalInformationValue};
+	
+	\node[anchor=north west, inner sep=0pt] at (300.216,681.745) {\entryfont\FellowInvestigatorBCharacterValue};
+	\node[anchor=north west, inner sep=0pt] at (300.216,692.245) {\entryfont\FellowInvestigatorBPlayerValue};
+	\node[anchor=north west, inner sep=0pt] at (308.216,706.794) {\scriptsize\entryfont\FellowInvestigatorBAdditionalInformationValue};
+	
+	\node[anchor=north west, inner sep=0pt] at (300.216,727.885) {\entryfont\FellowInvestigatorCCharacterValue};
+	\node[anchor=north west, inner sep=0pt] at (300.216,738.385) {\entryfont\FellowInvestigatorCPlayerValue};
+	\node[anchor=north west, inner sep=0pt] at (283.216,750.934) {\scriptsize\entryfont\FellowInvestigatorCAdditionalInformationValue};
+	
+	\node[anchor=north west, inner sep=0pt] at (401.306,629.705) {\entryfont\FellowInvestigatorDCharacterValue};
+	\node[anchor=north west, inner sep=0pt] at (401.306,640.205) {\entryfont\FellowInvestigatorDPlayerValue};
+	\node[anchor=north west, inner sep=0pt] at (392.306,655.754) {\scriptsize\entryfont\FellowInvestigatorDAdditionalInformationValue};
+	
+	\node[anchor=north west, inner sep=0pt] at (401.306,733.785) {\entryfont\FellowInvestigatorECharacterValue};
+	\node[anchor=north west, inner sep=0pt] at (401.306,744.285) {\entryfont\FellowInvestigatorEPlayerValue};
+	\node[anchor=north west, inner sep=0pt] at (402.306,721.834) {\scriptsize\entryfont\FellowInvestigatorEAdditionalInformationValue};
+	
+	\node[anchor=north west, inner sep=0pt] at (502.396,635.605) {\entryfont\FellowInvestigatorFCharacterValue};
+	\node[anchor=north west, inner sep=0pt] at (502.396,646.105) {\entryfont\FellowInvestigatorFPlayerValue};
+	\node[anchor=north west, inner sep=0pt] at (514.396,625.654) {\scriptsize\entryfont\FellowInvestigatorFAdditionalInformationValue};
+	
+	\node[anchor=north west, inner sep=0pt] at (502.396,681.745) {\entryfont\FellowInvestigatorGCharacterValue};
+	\node[anchor=north west, inner sep=0pt] at (502.396,692.245) {\entryfont\FellowInvestigatorGPlayerValue};
+	\node[anchor=north west, inner sep=0pt] at (497.396,669.794) {\scriptsize\entryfont\FellowInvestigatorGAdditionalInformationValue};
+	
+	\node[anchor=north west, inner sep=0pt] at (502.396,727.885) {\entryfont\FellowInvestigatorHCharacterValue};
+	\node[anchor=north west, inner sep=0pt] at (502.396,738.385) {\entryfont\FellowInvestigatorHPlayerValue};
+	\node[anchor=north west, inner sep=0pt] at (524.396,712.934) {\scriptsize\entryfont\FellowInvestigatorHAdditionalInformationValue};
+\end{pageTikZ}
