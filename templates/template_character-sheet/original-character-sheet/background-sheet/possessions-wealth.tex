@@ -1,0 +1,32 @@
+\begin{pageTikZ}
+	% GEAR & POSSESSIONS OUTLINE
+	\draw[line width=0.75pt, \curLineColor] (42.968,403.023) rectangle ++(302.84,192.991);
+	%% HEADER LINE
+	\draw[line width=0.75pt, \curLineColor] (42.968,429.437) rectangle ++(302.84,0);
+	%% ENTRY LINES (always visible)
+	\foreach \i in {0,...,9}
+	{
+		\pgfmathsetmacro{\vpos}{446.478 + \i * 15.337};
+		\draw[line width=0.75pt, black] (52.445,\vpos) -- (190.9415,\vpos);
+		\draw[line width=0.75pt, black] (197.8345,\vpos) -- (336.331,\vpos);
+	}
+	
+	% CASH % ASSETS OUTLINE
+	\draw[line width=0.75pt, \curLineColor] (571.327,403.023) rectangle ++(-220.56,192.991);
+	%% HEADER LINE
+	\draw[line width=0.75pt, \curLineColor] (571.327,429.437) rectangle ++(-220.56,0);
+	%% ENTRY LINES (always visible)
+	\draw[line width=0.75pt, black] (434.244,446.478) -- (561.85,446.478);
+	\draw[line width=0.75pt, black] (385.244,461.815) -- (561.85,461.815);
+	\draw[line width=0.75pt, black] (393.244,477.152) -- (561.85,477.152);
+	
+	% BACKGROUND BANNER
+	\begin{scope}
+		\draw[clip, draw=none] (43.343,403.398) rectangle ++(302.09,25.664) ++(5.709,0) rectangle ++(219.81,-25.664);
+		\pgfmathsetmacro{\vpos}{307.1475 - 200 - \HeaderBackgroundOffset};
+		\node[inner sep=0pt, opacity=\HeaderBackgroundOpacity] at (\vpos,416.23) {\includegraphics[width=200pt, keepaspectratio]{\PATH/templates/template_character-sheet/original-character-sheet/img/\HeaderBackgroundImage}};
+		\node[inner sep=0pt, opacity=\HeaderBackgroundOpacity] at (307.1475,416.23) {\includegraphics[width=200pt, keepaspectratio]{\PATH/templates/template_character-sheet/original-character-sheet/img/\HeaderBackgroundImage}};
+		\pgfmathsetmacro{\vpos}{307.1475 + 200 + \HeaderBackgroundOffset};
+		\node[inner sep=0pt, opacity=\HeaderBackgroundOpacity] at (\vpos,416.23) {\includegraphics[width=200pt, keepaspectratio]{\PATH/templates/template_character-sheet/original-character-sheet/img/\HeaderBackgroundImage}};
+	\end{scope}
+\end{pageTikZ}

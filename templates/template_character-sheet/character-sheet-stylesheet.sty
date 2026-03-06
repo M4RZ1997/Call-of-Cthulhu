@@ -11,7 +11,8 @@
 % ------------------------------------ Edition-Specific  PATHS ------------------------------------ %
 \newcommand{\ePATH}{}
 \newcommand{\ERA}{}
-\newcommand{\EDITION}{•}
+\newcommand{\EDITION}{}
+\newcommand{\IMAGECENTER}{}
 \ExplSyntaxOn
 \keys_define:nn { character-sheet / options }
 {
@@ -21,19 +22,33 @@
 		\str_if_eq:nnTF {#1} {40th-anniversary}
 		{
 			\renewcommand{\ePATH}{\PATH templates/template_character-sheet/40th_anniversary-character-sheet/}
-			\renewcommand{\ERA}{1920s}
+			\renewcommand{\IMAGECENTER}{(507.1635,91.726)}
 		}
 		{
-			\str_if_eq:nnTF {#1} {other}
-				{ \renewcommand{\ePATH}{\PATH templates/template_character-sheet/other/} }
-			{ \msg_error:nnx {character-sheet} {invalid-edition} {#1} }
+			\str_if_eq:nnTF {#1} {original}
+			{
+				\renewcommand{\ePATH}{\PATH templates/template_character-sheet/original-character-sheet/}
+				\renewcommand{\IMAGECENTER}{(521.1885,95.217)}
+			}
+			{
+				\str_if_eq:nnTF {#1} {other}
+					{ \renewcommand{\ePATH}{\PATH templates/template_character-sheet/other/} }
+				{ \msg_error:nnx {character-sheet} {invalid-edition} {#1} }
+			}
 		}
 	},
 	edition .value_required:n		= true,
-	edition .default:n				= pre5e24
+	edition .default:n				= original,
+	era	.choice:,
+	era	.choices:nn					=
+		{ 1920s, Modern }
+		{ \tl_set_eq:NN \l__era_tl{\l_keys_choice_tl} },
+	era	.initial:n					= 1920s,
+	era		.value_required:n		= true,
 }
 
 \ProcessKeysOptions { character-sheet / options }
+\renewcommand{\ERA}{\l__era_tl}
 \ExplSyntaxOff
 % ------------------------------------------------------------------------------------------------- %
 % ################################################################################################# %
@@ -69,7 +84,38 @@
 			\end{tikzpicture}%
 			\input{\PATH templates/template_character-sheet/40th_anniversary-character-sheet/ornament.tex}%
 		}%
-	}{}%
+	}{%
+		% 1920s Original Character Sheet Ornaments
+		\ifthenelse{\equal{\EDITION}{original} \AND \equal{\ERA}{1920s}}{%
+			\newgeometry{%
+				hmargin		= .75in,	% Left and right margins
+				top			= .46in,	% Top of text area to top of page
+				bottom		= .5in,		% Bottom of text area to bottom of page
+				footskip	= .32in,	% Bottom of text area to bottom of footer text
+				columnsep	= .33in,	% Space between columns
+			}%
+			\fancyhead{%
+				\begin{tikzpicture}[remember picture,overlay]%
+					\node[inner sep=0pt] at (current page.center) {\includegraphics[width=\paperwidth,height=\paperheight]{\PATH templates/template_coc/img/paper.jpg}};%
+				\end{tikzpicture}%
+				\input{\PATH templates/template_character-sheet/original-character-sheet/1920s_ornament.tex}%
+			}%
+		}{%
+			\newgeometry{%
+				hmargin		= .75in,	% Left and right margins
+				top			= .46in,	% Top of text area to top of page
+				bottom		= .5in,		% Bottom of text area to bottom of page
+				footskip	= .32in,	% Bottom of text area to bottom of footer text
+				columnsep	= .33in,	% Space between columns
+			}%
+			\fancyhead{%
+				\begin{tikzpicture}[remember picture,overlay]%
+					\node[inner sep=0pt] at (current page.center) {\includegraphics[width=\paperwidth,height=\paperheight]{\PATH templates/template_coc/img/paper.jpg}};%
+				\end{tikzpicture}%
+				\input{\PATH templates/template_character-sheet/original-character-sheet/modern_ornament.tex}%
+			}%
+		}%
+	}
 }
 % ------------------------------------------------------------------------------------------------- %
 % ################################################################################################# %
@@ -91,6 +137,7 @@
 \usepackage{\PATH templates/template_character-sheet/character-sheet-usepackages}
 \input{\PATH templates/template_character-sheet/character-sheet-settings}
 \input{\PATH templates/template_character-sheet/character-sheet-commands_general}
+\input{\ePATH character-sheet-settings_specific}
 % ------------------------------------------------------------------------------------------------- %
 % ################################################################################################# %
 % --------------------------------- Commands for  Rendering Pages --------------------------------- %

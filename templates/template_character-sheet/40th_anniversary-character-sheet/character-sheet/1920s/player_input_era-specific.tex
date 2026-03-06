@@ -1,0 +1,266 @@
+\begin{pageTikZ}
+	% SKILLS
+	%% Credit Rating
+	\node at (165.1965,462.8965) {\entryfont\CreditRatingValue};
+	\node at (188.107,462.8965) {\entryfont\calculateHalf{\CreditRatingValue}};
+	\node at (211.0175,462.8965) {\entryfont\calculateFifth{\CreditRatingValue}};
+	%% Cthulhu Mythos
+	\node at (165.1965,483.0185) {\entryfont\CthulhuMythosSkillValue};
+	\node at (188.107,483.0185) {\entryfont\calculateHalf{\CthulhuMythosSkillValue}};
+	\node at (211.0175,483.0185) {\entryfont\calculateFifth{\CthulhuMythosSkillValue}};
+	%% Disguise
+	\node[inner sep=0pt] at (51.5225,503.1405) {\ifthenelse{\boolean{b_DisguiseSkill}}{$\times$}{}};
+	\node at (165.1965,503.1405) {\entryfont\DisguiseSkillValue};
+	\node at (188.107,503.1405) {\entryfont\calculateHalf{\DisguiseSkillValue}};
+	\node at (211.0175,503.1405) {\entryfont\calculateFifth{\DisguiseSkillValue}};
+	%% Dodge
+	\node[inner sep=0pt] at (51.5225,523.2625) {\ifthenelse{\boolean{b_DodgeSkill}}{$\times$}{}};
+	\node at (165.1965,523.2625) {\entryfont\DodgeSkillValue};
+	\node at (188.107,523.2625) {\entryfont\calculateHalf{\DodgeSkillValue}};
+	\node at (211.0175,523.2625) {\entryfont\calculateFifth{\DodgeSkillValue}};
+	%% Drive Auto
+	\node[inner sep=0pt] at (51.5225,543.3845) {\ifthenelse{\boolean{b_DriveAutoSkill}}{$\times$}{}};
+	\node at (165.1965,543.3845) {\entryfont\DriveAutoSkillValue};
+	\node at (188.107,543.3845) {\entryfont\calculateHalf{\DriveAutoSkillValue}};
+	\node at (211.0175,543.3845) {\entryfont\calculateFifth{\DriveAutoSkillValue}};
+	%% Electrical Repair
+	\node[inner sep=0pt] at (51.5225,563.5065) {\ifthenelse{\boolean{b_ElecRepairSkill}}{$\times$}{}};
+	\node at (165.1965,563.5065) {\entryfont\ElecRepairSkillValue};
+	\node at (188.107,563.5065) {\entryfont\calculateHalf{\ElecRepairSkillValue}};
+	\node at (211.0175,563.5065) {\entryfont\calculateFifth{\ElecRepairSkillValue}};
+	%% Fast Talk
+	\node[inner sep=0pt] at (51.5225,583.6285) {\ifthenelse{\boolean{b_FastTalkSkill}}{$\times$}{}};
+	\node at (165.1965,583.6285) {\entryfont\FastTalkSkillValue};
+	\node at (188.107,583.6285) {\entryfont\calculateHalf{\FastTalkSkillValue}};
+	\node at (211.0175,583.6285) {\entryfont\calculateFifth{\FastTalkSkillValue}};
+	%% Fighting (Brawl)
+	\node[inner sep=0pt] at (51.5225,603.7505) {\ifthenelse{\boolean{b_BrawlSkill}}{$\times$}{}};
+	\node at (165.1965,603.7505) {\entryfont\BrawlSkillValue};
+	\node at (188.107,603.7505) {\entryfont\calculateHalf{\BrawlSkillValue}};
+	\node at (211.0175,603.7505) {\entryfont\calculateFifth{\BrawlSkillValue}};
+	%% Fighting
+	%%% A
+	\node[inner sep=0pt] at (51.5225,623.8725) {\ifthenelse{\boolean{b_FightingASkill}}{$\times$}{}};
+	\node[anchor=north west, inner sep=0pt] at (58.797,619.598) {\entryfont\FightingANameValue};
+	\node at (165.1965,623.8725) {\entryfont\FightingASkillValue};
+	\node at (188.107,623.8725) {\entryfont\calculateHalf{\FightingASkillValue}};
+	\node at (211.0175,623.8725) {\entryfont\calculateFifth{\FightingASkillValue}};
+	%%% B
+	\node[inner sep=0pt] at (51.5225,643.9945) {\ifthenelse{\boolean{b_FightingBSkill}}{$\times$}{}};
+	\node[anchor=north west, inner sep=0pt] at (58.797,639.720) {\entryfont\FightingBNameValue};
+	\node at (165.1965,643.9945) {\entryfont\FightingBSkillValue};
+	\node at (188.107,643.9945) {\entryfont\calculateHalf{\FightingBSkillValue}};
+	\node at (211.0175,643.9945) {\entryfont\calculateFifth{\FightingBSkillValue}};
+	%% Fighting (Handgun)
+	\node[inner sep=0pt] at (51.5225,664.1165) {\ifthenelse{\boolean{b_HandgunSkill}}{$\times$}{}};
+	\node at (165.1965,664.1165) {\entryfont\HandgunSkillValue};
+	\node at (188.107,664.1165) {\entryfont\calculateHalf{\HandgunSkillValue}};
+	\node at (211.0175,664.1165) {\entryfont\calculateFifth{\HandgunSkillValue}};
+	%% Firearms (Rifle/Shotgun)
+	\node[inner sep=0pt] at (232.3745,301.9205) {\ifthenelse{\boolean{b_RifleShotgunSkill}}{$\times$}{}};
+	\node at (346.0485,301.9205) {\entryfont\RifleShotgunSkillValue};
+	\node at (368.959,301.9205) {\entryfont\calculateHalf{\RifleShotgunSkillValue}};
+	\node at (391.8695,301.9205) {\entryfont\calculateFifth{\RifleShotgunSkillValue}};
+	%% Firearms
+	\node[inner sep=0pt] at (232.3745,322.0425) {\ifthenelse{\boolean{b_FirearmsSkill}}{$\times$}{}};
+	\node[anchor=north west, inner sep=0pt] at (239.649,317.768) {\entryfont\FirearmsNameValue};
+	\node at (346.0485,322.0425) {\entryfont\FirearmsSkillValue};
+	\node at (368.959,322.0425) {\entryfont\calculateHalf{\FirearmsSkillValue}};
+	\node at (391.8695,322.0425) {\entryfont\calculateFifth{\FirearmsSkillValue}};
+	%% First Aid
+	\node[inner sep=0pt] at (232.3745,342.1645) {\ifthenelse{\boolean{b_FirstAidSkill}}{$\times$}{}};
+	\node at (346.0485,342.1645) {\entryfont\FirstAidSkillValue};
+	\node at (368.959,342.1645) {\entryfont\calculateHalf{\FirstAidSkillValue}};
+	\node at (391.8695,342.1645) {\entryfont\calculateFifth{\FirstAidSkillValue}};
+	%% History
+	\node[inner sep=0pt] at (232.3745,362.2865) {\ifthenelse{\boolean{b_HistorySkill}}{$\times$}{}};
+	\node at (346.0485,362.2865) {\entryfont\HistorySkillValue};
+	\node at (368.959,362.2865) {\entryfont\calculateHalf{\HistorySkillValue}};
+	\node at (391.8695,362.2865) {\entryfont\calculateFifth{\HistorySkillValue}};
+	%% Intimidate
+	\node[inner sep=0pt] at (232.3745,382.4085) {\ifthenelse{\boolean{b_IntimidateSkill}}{$\times$}{}};
+	\node at (346.0485,382.4085) {\entryfont\IntimidateSkillValue};
+	\node at (368.959,382.4085) {\entryfont\calculateHalf{\IntimidateSkillValue}};
+	\node at (391.8695,382.4085) {\entryfont\calculateFifth{\IntimidateSkillValue}};
+	%% Jump
+	\node[inner sep=0pt] at (232.3745,402.5305) {\ifthenelse{\boolean{b_JumpSkill}}{$\times$}{}};
+	\node at (346.0485,402.5305) {\entryfont\JumpSkillValue};
+	\node at (368.959,402.5305) {\entryfont\calculateHalf{\JumpSkillValue}};
+	\node at (391.8695,402.5305) {\entryfont\calculateFifth{\JumpSkillValue}};
+	%% Language (Other)
+	%%% A
+	\node[inner sep=0pt] at (232.3745,422.6525) {\ifthenelse{\boolean{b_LanguageASkill}}{$\times$}{}};
+	\node[anchor=north west, inner sep=0pt] at (239.649,418.378) {\entryfont\LanguageANameValue};
+	\node at (346.0485,422.6525) {\entryfont\LanguageASkillValue};
+	\node at (368.959,422.6525) {\entryfont\calculateHalf{\LanguageASkillValue}};
+	\node at (391.8695,422.6525) {\entryfont\calculateFifth{\LanguageASkillValue}};
+	%%% B
+	\node[inner sep=0pt] at (232.3745,442.7745) {\ifthenelse{\boolean{b_LanguageBSkill}}{$\times$}{}};
+	\node[anchor=north west, inner sep=0pt] at (239.649,438.5) {\entryfont\LanguageBNameValue};
+	\node at (346.0485,442.7745) {\entryfont\LanguageBSkillValue};
+	\node at (368.959,442.7745) {\entryfont\calculateHalf{\LanguageBSkillValue}};
+	\node at (391.8695,442.7745) {\entryfont\calculateFifth{\LanguageBSkillValue}};
+	%%% C
+	\node[inner sep=0pt] at (232.3745,462.8965) {\ifthenelse{\boolean{b_LanguageCSkill}}{$\times$}{}};
+	\node[anchor=north west, inner sep=0pt] at (239.649,458.622) {\entryfont\LanguageCNameValue};
+	\node at (346.0485,462.8965) {\entryfont\LanguageCSkillValue};
+	\node at (368.959,462.8965) {\entryfont\calculateHalf{\LanguageCSkillValue}};
+	\node at (391.8695,462.8965) {\entryfont\calculateFifth{\LanguageCSkillValue}};
+	%% Language (Own)
+	\node[inner sep=0pt] at (232.3745,483.0185) {\ifthenelse{\boolean{b_LanguageOwnSkill}}{$\times$}{}};
+	\node[anchor=north west, inner sep=0pt] at (239.649,478.744) {\entryfont\LanguageOwnNameValue};
+	\node at (346.0485,483.0185) {\entryfont\LanguageOwnSkillValue};
+	\node at (368.959,483.0185) {\entryfont\calculateHalf{\LanguageOwnSkillValue}};
+	\node at (391.8695,483.0185) {\entryfont\calculateFifth{\LanguageOwnSkillValue}};
+	%% Law
+	\node[inner sep=0pt] at (232.3745,503.1405) {\ifthenelse{\boolean{b_LawSkill}}{$\times$}{}};
+	\node at (346.0485,503.1405) {\entryfont\LawSkillValue};
+	\node at (368.959,503.1405) {\entryfont\calculateHalf{\LawSkillValue}};
+	\node at (391.8695,503.1405) {\entryfont\calculateFifth{\LawSkillValue}};
+	%% Library Use
+	\node[inner sep=0pt] at (232.3745,523.2625) {\ifthenelse{\boolean{b_LibraryUseSkill}}{$\times$}{}};
+	\node at (346.0485,523.2625) {\entryfont\LibraryUseSkillValue};
+	\node at (368.959,523.2625) {\entryfont\calculateHalf{\LibraryUseSkillValue}};
+	\node at (391.8695,523.2625) {\entryfont\calculateFifth{\LibraryUseSkillValue}};
+	%% Listen
+	\node[inner sep=0pt] at (232.3745,543.3845) {\ifthenelse{\boolean{b_ListenSkill}}{$\times$}{}};
+	\node at (346.0485,543.3845) {\entryfont\ListenSkillValue};
+	\node at (368.959,543.3845) {\entryfont\calculateHalf{\ListenSkillValue}};
+	\node at (391.8695,543.3845) {\entryfont\calculateFifth{\ListenSkillValue}};
+	%% Locksmith
+	\node[inner sep=0pt] at (232.3745,563.5065) {\ifthenelse{\boolean{b_LocksmithSkill}}{$\times$}{}};
+	\node at (346.0485,563.5065) {\entryfont\LocksmithSkillValue};
+	\node at (368.959,563.5065) {\entryfont\calculateHalf{\LocksmithSkillValue}};
+	\node at (391.8695,563.5065) {\entryfont\calculateFifth{\LocksmithSkillValue}};
+	%% Mechanical Repair
+	\node[inner sep=0pt] at (232.3745,583.6285) {\ifthenelse{\boolean{b_MechRepairSkill}}{$\times$}{}};
+	\node at (346.0485,583.6285) {\entryfont\MechRepairSkillValue};
+	\node at (368.959,583.6285) {\entryfont\calculateHalf{\MechRepairSkillValue}};
+	\node at (391.8695,583.6285) {\entryfont\calculateFifth{\MechRepairSkillValue}};
+	%% Medicine
+	\node[inner sep=0pt] at (232.3745,603.7505) {\ifthenelse{\boolean{b_MedicineSkill}}{$\times$}{}};
+	\node at (346.0485,603.7505) {\entryfont\MedicineSkillValue};
+	\node at (368.959,603.7505) {\entryfont\calculateHalf{\MedicineSkillValue}};
+	\node at (391.8695,603.7505) {\entryfont\calculateFifth{\MedicineSkillValue}};
+	%% Natural World
+	\node[inner sep=0pt] at (232.3745,623.8725) {\ifthenelse{\boolean{b_NaturalWorldSkill}}{$\times$}{}};
+	\node at (346.0485,623.8725) {\entryfont\NaturalWorldSkillValue};
+	\node at (368.959,623.8725) {\entryfont\calculateHalf{\NaturalWorldSkillValue}};
+	\node at (391.8695,623.8725) {\entryfont\calculateFifth{\NaturalWorldSkillValue}};
+	%% Navigate
+	\node[inner sep=0pt] at (232.3745,643.9945) {\ifthenelse{\boolean{b_NavigateSkill}}{$\times$}{}};
+	\node at (346.0485,643.9945) {\entryfont\NavigateSkillValue};
+	\node at (368.959,643.9945) {\entryfont\calculateHalf{\NavigateSkillValue}};
+	\node at (391.8695,643.9945) {\entryfont\calculateFifth{\NavigateSkillValue}};
+	%% Occult
+	\node[inner sep=0pt] at (232.3745,664.1165) {\ifthenelse{\boolean{b_OccultSkill}}{$\times$}{}};
+	\node at (346.0485,664.1165) {\entryfont\OccultSkillValue};
+	\node at (368.959,664.1165) {\entryfont\calculateHalf{\OccultSkillValue}};
+	\node at (391.8695,664.1165) {\entryfont\calculateFifth{\OccultSkillValue}};
+	%% Persuade
+	\node[inner sep=0pt] at (413.2265,301.9205) {\ifthenelse{\boolean{b_PersuadeSkill}}{$\times$}{}};
+	\node at (526.9005,301.9205) {\entryfont\PersuadeSkillValue};
+	\node at (549.811,301.9205) {\entryfont\calculateHalf{\PersuadeSkillValue}};
+	\node at (572.7215,301.9205) {\entryfont\calculateFifth{\PersuadeSkillValue}};
+	%% Pilot
+	\node[inner sep=0pt] at (413.2265,322.0425) {\ifthenelse{\boolean{b_PilotSkill}}{$\times$}{}};
+	\node[anchor=north west, inner sep=0pt] at (420.501,317.768) {\entryfont\PilotNameValue};
+	\node at (526.9005,322.0425) {\entryfont\PilotSkillValue};
+	\node at (549.811,322.0425) {\entryfont\calculateHalf{\PilotSkillValue}};
+	\node at (572.7215,322.0425) {\entryfont\calculateFifth{\PilotSkillValue}};
+	%% Psychoanalysis
+	\node[inner sep=0pt] at (413.2265,342.1645) {\ifthenelse{\boolean{b_PsychoanalysisSkill}}{$\times$}{}};
+	\node at (526.9005,342.1645) {\entryfont\PsychoanalysisSkillValue};
+	\node at (549.811,342.1645) {\entryfont\calculateHalf{\PsychoanalysisSkillValue}};
+	\node at (572.7215,342.1645) {\entryfont\calculateFifth{\PsychoanalysisSkillValue}};
+	%% Psychology
+	\node[inner sep=0pt] at (413.2265,362.2865) {\ifthenelse{\boolean{b_PsychologySkill}}{$\times$}{}};
+	\node at (526.9005,362.2865) {\entryfont\PsychologySkillValue};
+	\node at (549.811,362.2865) {\entryfont\calculateHalf{\PsychologySkillValue}};
+	\node at (572.7215,362.2865) {\entryfont\calculateFifth{\PsychologySkillValue}};
+	%% Ride
+	\node[inner sep=0pt] at (413.2265,382.4085) {\ifthenelse{\boolean{b_RideSkill}}{$\times$}{}};
+	\node at (526.9005,382.4085) {\entryfont\RideSkillValue};
+	\node at (549.811,382.4085) {\entryfont\calculateHalf{\RideSkillValue}};
+	\node at (572.7215,382.4085) {\entryfont\calculateFifth{\RideSkillValue}};
+	%% Science
+	%%% A
+	\node[inner sep=0pt] at (413.2265,402.5305) {\ifthenelse{\boolean{b_ScienceASkill}}{$\times$}{}};
+	\node[anchor=north west, inner sep=0pt] at (420.501,398.256) {\entryfont\ScienceANameValue};
+	\node at (526.9005,402.5305) {\entryfont\ScienceASkillValue};
+	\node at (549.811,402.5305) {\entryfont\calculateHalf{\ScienceASkillValue}};
+	\node at (572.7215,402.5305) {\entryfont\calculateFifth{\ScienceASkillValue}};
+	%%% B
+	\node[inner sep=0pt] at (413.2265,422.6525) {\ifthenelse{\boolean{b_ScienceBSkill}}{$\times$}{}};
+	\node[anchor=north west, inner sep=0pt] at (420.501,418.378) {\entryfont\ScienceBNameValue};
+	\node at (526.9005,422.6525) {\entryfont\ScienceBSkillValue};
+	\node at (549.811,422.6525) {\entryfont\calculateHalf{\ScienceBSkillValue}};
+	\node at (572.7215,422.6525) {\entryfont\calculateFifth{\ScienceBSkillValue}};
+	%%% C
+	\node[inner sep=0pt] at (413.2265,442.7745) {\ifthenelse{\boolean{b_ScienceCSkill}}{$\times$}{}};
+	\node[anchor=north west, inner sep=0pt] at (420.501,438.5) {\entryfont\ScienceCNameValue};
+	\node at (526.9005,442.7745) {\entryfont\ScienceCSkillValue};
+	\node at (549.811,442.7745) {\entryfont\calculateHalf{\ScienceCSkillValue}};
+	\node at (572.7215,442.7745) {\entryfont\calculateFifth{\ScienceCSkillValue}};
+	%% Sleight of Hand
+	\node[inner sep=0pt] at (413.2265,462.8965) {\ifthenelse{\boolean{b_SleightOfHandSkill}}{$\times$}{}};
+	\node at (526.9005,462.8965) {\entryfont\SleightOfHandSkillValue};
+	\node at (549.811,462.8965) {\entryfont\calculateHalf{\SleightOfHandSkillValue}};
+	\node at (572.7215,462.8965) {\entryfont\calculateFifth{\SleightOfHandSkillValue}};
+	%% Spot Hidden
+	\node[inner sep=0pt] at (413.2265,483.0185) {\ifthenelse{\boolean{b_SpotHiddenSkill}}{$\times$}{}};
+	\node at (526.9005,483.0185) {\entryfont\SpotHiddenSkillValue};
+	\node at (549.811,483.0185) {\entryfont\calculateHalf{\SpotHiddenSkillValue}};
+	\node at (572.7215,483.0185) {\entryfont\calculateFifth{\SpotHiddenSkillValue}};
+	%% Stealth
+	\node[inner sep=0pt] at (413.2265,503.1405) {\ifthenelse{\boolean{b_StealthSkill}}{$\times$}{}};
+	\node at (526.9005,503.1405) {\entryfont\StealthSkillValue};
+	\node at (549.811,503.1405) {\entryfont\calculateHalf{\StealthSkillValue}};
+	\node at (572.7215,503.1405) {\entryfont\calculateFifth{\StealthSkillValue}};
+	%% Survival
+	\node[inner sep=0pt] at (413.2265,523.2625) {\ifthenelse{\boolean{b_SurvivalSkill}}{$\times$}{}};
+	\node[anchor=north west, inner sep=0pt] at (420.501,518.988) {\entryfont\SurvivalNameValue};
+	\node at (526.9005,523.2625) {\entryfont\SurvivalSkillValue};
+	\node at (549.811,523.2625) {\entryfont\calculateHalf{\SurvivalSkillValue}};
+	\node at (572.7215,523.2625) {\entryfont\calculateFifth{\SurvivalSkillValue}};
+	%% Swim
+	\node[inner sep=0pt] at (413.2265,543.3845) {\ifthenelse{\boolean{b_SwimSkill}}{$\times$}{}};
+	\node at (526.9005,543.3845) {\entryfont\SwimSkillValue};
+	\node at (549.811,543.3845) {\entryfont\calculateHalf{\SwimSkillValue}};
+	\node at (572.7215,543.3845) {\entryfont\calculateFifth{\SwimSkillValue}};
+	%% Throw
+	\node[inner sep=0pt] at (413.2265,563.5065) {\ifthenelse{\boolean{b_ThrowSkill}}{$\times$}{}};
+	\node at (526.9005,563.5065) {\entryfont\ThrowSkillValue};
+	\node at (549.811,563.5065) {\entryfont\calculateHalf{\ThrowSkillValue}};
+	\node at (572.7215,563.5065) {\entryfont\calculateFifth{\ThrowSkillValue}};
+	%% Track
+	\node[inner sep=0pt] at (413.2265,583.6285) {\ifthenelse{\boolean{b_TrackSkill}}{$\times$}{}};
+	\node at (526.9005,583.6285) {\entryfont\TrackSkillValue};
+	\node at (549.811,583.6285) {\entryfont\calculateHalf{\TrackSkillValue}};
+	\node at (572.7215,583.6285) {\entryfont\calculateFifth{\TrackSkillValue}};
+	%% Extra
+	%%% A
+	\node[inner sep=0pt] at (413.2265,603.7505) {\ifthenelse{\boolean{b_ExtraSlotASkill}}{$\times$}{}};
+	\node[anchor=north west, inner sep=0pt] at (420.501,599.476) {\entryfont\ExtraSlotANameValue};
+	\node at (526.9005,603.7505) {\entryfont\ExtraSlotASkillValue};
+	\node at (549.811,603.7505) {\entryfont\calculateHalf{\ExtraSlotASkillValue}};
+	\node at (572.7215,603.7505) {\entryfont\calculateFifth{\ExtraSlotASkillValue}};
+	%%% B
+	\node[inner sep=0pt] at (413.2265,623.8725) {\ifthenelse{\boolean{b_ExtraSlotBSkill}}{$\times$}{}};
+	\node[anchor=north west, inner sep=0pt] at (420.501,619.598) {\entryfont\ExtraSlotBNameValue};
+	\node at (526.9005,623.8725) {\entryfont\ExtraSlotBSkillValue};
+	\node at (549.811,623.8725) {\entryfont\calculateHalf{\ExtraSlotBSkillValue}};
+	\node at (572.7215,623.8725) {\entryfont\calculateFifth{\ExtraSlotBSkillValue}};
+	%%% C
+	\node[inner sep=0pt] at (413.2265,643.9945) {\ifthenelse{\boolean{b_ExtraSlotCSkill}}{$\times$}{}};
+	\node[anchor=north west, inner sep=0pt] at (420.501,639.72) {\entryfont\ExtraSlotCNameValue};
+	\node at (526.9005,643.9945) {\entryfont\ExtraSlotCSkillValue};
+	\node at (549.811,643.9945) {\entryfont\calculateHalf{\ExtraSlotCSkillValue}};
+	\node at (572.7215,643.9945) {\entryfont\calculateFifth{\ExtraSlotCSkillValue}};
+	%%% D
+	\node[inner sep=0pt] at (413.2265,664.1165) {\ifthenelse{\boolean{b_ExtraSlotDSkill}}{$\times$}{}};
+	\node[anchor=north west, inner sep=0pt] at (420.501,659.842) {\entryfont\ExtraSlotDNameValue};
+	\node at (526.9005,664.1165) {\entryfont\ExtraSlotDSkillValue};
+	\node at (549.811,664.1165) {\entryfont\calculateHalf{\ExtraSlotDSkillValue}};
+	\node at (572.7215,664.1165) {\entryfont\calculateFifth{\ExtraSlotDSkillValue}};
+\end{pageTikZ}

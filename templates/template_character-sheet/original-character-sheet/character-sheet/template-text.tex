@@ -1,0 +1,214 @@
+\begin{pageTikZ}
+	% CHARACTERISTICS
+	\node[anchor=south west, inner sep=0pt] at (44.059,66.034) {Name};
+	\node[anchor=south west, inner sep=0pt] at (44.059,84.899) {Player};
+	\node[anchor=south west, inner sep=0pt] at (44.059,101.514) {Occupation};
+	\node[anchor=south west, inner sep=0pt] at (44.059,118.129) {Age};
+	\node[anchor=south west, inner sep=0pt] at (111.553,115.879) {Sex};
+	\node[anchor=south west, inner sep=0pt] at (44.059,132.494) {Residence};
+	\node[anchor=south west, inner sep=0pt] at (44.059,151.359) {Birthplace};
+	
+	\node[inner sep=0pt] at (239.456,45.159) {\bfseries\Huge\HeaderFont{C}};
+	\node[inner sep=0pt] at (334.456,45.159) {\bfseries\huge\HeaderFont{haracteristics}};
+	
+	\node[inner sep=0pt] at (203.793,73.871) {\Large STR};
+	\node[inner sep=0pt] at (296.411,73.871) {\Large DEX};
+	\node[inner sep=0pt] at (389.029,73.871) {\Large INT};
+	\node[inner sep=0pt] at (389.029,82.871) {\footnotesize Idea};
+	
+	\node[inner sep=0pt] at (203.793,106.675) {\Large CON};
+	\node[inner sep=0pt] at (296.411,106.675) {\Large APP};
+	\node[inner sep=0pt] at (389.029,106.675) {\Large POW};
+	
+	\node[inner sep=0pt] at (203.793,139.479) {\Large SIZ};
+	\node[inner sep=0pt] at (296.411,139.479) {\Large EDU};
+	\node[inner sep=0pt] at (296.411,148.479) {\footnotesize Know};
+	\node[inner sep=0pt] at (389.029,134.479) {\large Move};
+	\node[inner sep=0pt] at (389.029,144.479) {\large Rate};
+	
+	%% MOVE RATE
+	\node[opacity=0.5] at (449.8145,132.7915) {\textcolor{grey_text_color}{+1}};
+	\node[opacity=0.5] at (449.8145,146.1665) {\textcolor{grey_text_color}{-1}};
+	
+	% CALL OF CTHULHU
+	\def\shadowfyfont{}
+	\node[inner sep=0pt] at (306.1475,235.463) {\shadowfy{{\cthulhuheaderfont{\Huge C}{\huge A}}{\cthulhutextfont\huge LL}{\cthulhuheaderfont~~{\LARGE of}~~{\Huge C}{\huge THU}}{\cthulhutextfont\huge LH\Huge U}{}}};
+	\def\shadowfyfont{\titlefont}
+	
+	%% HIT POINTS
+	\node[opacity=0.5] at (119.1695,169.3285) {\textcolor{grey_text_color}{Max HP}};
+	\node[anchor=east, inner sep=0pt] at (67.768,165.8335) {\scriptsize\bfseries Major};
+	\node[anchor=east, inner sep=0pt] at (67.768,171.8335) {\scriptsize\bfseries Wound};
+	\node[inner sep=0pt] at (84.0605,185.944) {\scriptsize Dying};
+	\node[inner sep=0pt] at (84.0605,197.873) {\tiny Unconscious};
+	
+	\foreach \hi in {0,...,2}
+	{%
+		\pgfmathsetmacro{\hpos}{115.142 + 22.11 * \hi};
+		\foreach \vi in {0,1}
+		{%
+			\pgfmathsetmacro{\vpos}{184.0265 + 13.633 * \vi};
+			\node[inner sep=0pt] at (\hpos,\vpos) {\footnotesize 0\intcalcAdd{\intcalcMul{3}{\vi}}{\hi}};
+		}%
+	}%
+	\foreach \hi in {0,...,4}
+	{%
+		\pgfmathsetmacro{\hpos}{70.922 + 22.11 * \hi};
+		\foreach \vi in {0,...,2}
+		{%
+			\pgfmathsetmacro{\vpos}{211.2925 + 13.633 * \vi};
+			\ifthenelse{\intcalcAdd{6}{\intcalcAdd{\intcalcMul{5}{\vi}}{\hi}} < 10}{%
+				\node[inner sep=0pt] at (\hpos,\vpos) {\footnotesize 0\intcalcAdd{6}{\intcalcAdd{\intcalcMul{5}{\vi}}{\hi}}};
+			}{%
+				\node[inner sep=0pt] at (\hpos,\vpos) {\footnotesize\intcalcAdd{6}{\intcalcAdd{\intcalcMul{5}{\vi}}{\hi}}};
+			}%
+		}%
+	}%
+	
+	%% SANITY
+	\node[inner sep=0pt] at (190.21,165.8335) {\scriptsize\bfseries Temp.};
+	\node[inner sep=0pt] at (190.21,171.8335) {\scriptsize\bfseries Insane};
+	\node[inner sep=0pt] at (249.227,165.8335) {\scriptsize\bfseries Indef.};
+	\node[inner sep=0pt] at (249.227,171.8335) {\scriptsize\bfseries Insane};
+	\node[opacity=0.5] at (321.84375,169.3285) {\textcolor{grey_text_color}{Start}};
+	\node[opacity=0.5] at (371.59925,169.3285) {\textcolor{grey_text_color}{Max}};
+	
+	
+	\node[inner sep=0pt] at (427.50975,171.831375) {\footnotesize Insane};
+	\foreach \hi in {0,...,6}
+	{%
+		\pgfmathsetmacro{\hpos}{454.129 + 15.086 * \hi};
+		\node[inner sep=0pt] at (\hpos,171.831375) {\footnotesize 0\intcalcAdd{\hi}{1}};
+	}%
+	\foreach \hi in {0,...,22}%69,629
+	{%
+		\pgfmathsetmacro{\hpos}{212.753 + 15.086 * \hi};
+		\foreach \vi in {0,...,3}%
+		{%
+			\pgfmathsetmacro{\vpos}{182.588625 + 10.75725 * \vi};
+			\ifthenelse{\intcalcAdd{8}{\intcalcAdd{\intcalcMul{23}{\vi}}{\hi}} < 10}{%
+				\node[inner sep=0pt] at (\hpos,\vpos) {\footnotesize 0\intcalcAdd{8}{\intcalcAdd{\intcalcMul{23}{\vi}}{\hi}}};
+			}{%
+				\node[inner sep=0pt] at (\hpos,\vpos) {\footnotesize\intcalcAdd{8}{\intcalcAdd{\intcalcMul{23}{\vi}}{\hi}}};
+			}%
+		}%
+	}%
+	
+	%% LUCK
+	\node[inner sep=0pt] at (265.3405,257.040375) {\footnotesize Out of Luck};
+	\foreach \hi in {0,...,6}
+	{%
+		\pgfmathsetmacro{\hpos}{313.149 + 15.22 * \hi};
+		\node[inner sep=0pt] at (\hpos,257.040375) {\footnotesize 0\intcalcAdd{\hi}{1}};
+	}%
+	\foreach \hi in {0,...,22}%
+	{%
+		\pgfmathsetmacro{\hpos}{69.629 + 15.22 * \hi};
+		\foreach \vi in {0,...,3}%
+		{%
+			\pgfmathsetmacro{\vpos}{267.797625 + 10.75725 * \vi};
+			\ifthenelse{\intcalcAdd{8}{\intcalcAdd{\intcalcMul{23}{\vi}}{\hi}} < 10}{%
+				\node[inner sep=0pt] at (\hpos,\vpos) {\footnotesize 0\intcalcAdd{8}{\intcalcAdd{\intcalcMul{23}{\vi}}{\hi}}};
+			}{%
+				\node[inner sep=0pt] at (\hpos,\vpos) {\footnotesize\intcalcAdd{8}{\intcalcAdd{\intcalcMul{23}{\vi}}{\hi}}};
+			}%
+		}%
+	}%
+	
+	%% MAGIC POINTS
+	\node[opacity=0.5] at (499.5495,229.8275) {\textcolor{grey_text_color}{Max MP}};
+	\foreach \hi in {0,...,4}
+	{%
+		\pgfmathsetmacro{\hpos}{456.41 + 22.278 * \hi};
+		\foreach \vi in {0,...,4}
+		{%
+			\pgfmathsetmacro{\vpos}{244.4829 + 13.5478 * \vi};
+			\ifthenelse{\intcalcAdd{\intcalcMul{5}{\vi}}{\hi} < 10}{%
+				\node[inner sep=0pt] at (\hpos,\vpos) {\footnotesize 0\intcalcAdd{\intcalcMul{5}{\vi}}{\hi}};
+			}{%
+				\node[inner sep=0pt] at (\hpos,\vpos) {\footnotesize\intcalcAdd{\intcalcMul{5}{\vi}}{\hi}};
+			}%
+		}%
+	}%
+	
+	% SKILLS
+	%% LEFT
+	\node[inner sep=0pt] at (198.1475,317.8165) {\bfseries\huge\HeaderFont{I}};
+	\node[inner sep=0pt] at (272.1475,317.8165) {\bfseries\huge\HeaderFont{nvestigator}};
+	\node[inner sep=0pt] at (356.1475,317.8165) {\bfseries\huge\HeaderFont{S}};
+	\node[inner sep=0pt] at (392.1475,317.8165) {\bfseries\huge\HeaderFont{kills}};
+	%% Skills Names
+	\node[anchor=north west, inner sep=0pt] at (55,334.1990625) {\footnotesize Accounting (05\%)};
+	\node[anchor=north west, inner sep=0pt] at (55,354.761625) {\footnotesize Anthropology (01\%)};
+	\node[anchor=north west, inner sep=0pt] at (55,375.3241875) {\footnotesize Appraise (05\%)};
+	\node[anchor=north west, inner sep=0pt] at (55,395.88675) {\footnotesize Archaeology (01\%)};
+	\draw[line width=0.75pt, \curLineColor] (55,425.7238125) -- ++(58,0);
+	\node[anchor=north west, inner sep=0pt] at (113,416.4493125) {\footnotesize (05\%)};\node[anchor=north west, inner sep=0pt] at (55,426.4493125) {\tiny\textcolor{grey_text_color}{Art / Craft}};
+	\draw[line width=0.75pt, \curLineColor] (55,446.286375) -- ++(80,0);
+%	\node[anchor=north west, inner sep=0pt] at (55,437.011875) {\footnotesize Fighting (Brawl) (05\%)};
+	\draw[line width=0.75pt, \curLineColor] (55,466.8489375) -- ++(80,0);
+%	\node[anchor=north west, inner sep=0pt] at (55,457.45744375) {\footnotesize Fighting (Brawl) (05\%)};
+	\node[anchor=north west, inner sep=0pt] at (55,478.137) {\footnotesize Charm (15\%)};
+	\node[anchor=north west, inner sep=0pt] at (55,498.6995625) {\footnotesize Climb (20\%)};
+	%% RIGHT
+	\draw[line width=0.75pt, \curLineColor] (452.63275,343.4735625) -- ++(58,0);
+	\node[anchor=north west, inner sep=0pt] at (510.63275,334.1990625) {\footnotesize (01\%)};\node[anchor=north west, inner sep=0pt] at (452.63275,344.1990625) {\tiny\textcolor{grey_text_color}{Science}};
+	\draw[line width=0.75pt, \curLineColor] (452.63275,364.036125) -- ++(80,0);
+%	\node[anchor=north west, inner sep=0pt] at (452.63275,419.378) {\footnotesize Charm (15\%)};
+	\draw[line width=0.75pt, \curLineColor] (452.63275,384.5986875) -- ++(80,0);
+%	\node[anchor=north west, inner sep=0pt] at (452.63275,439.500) {\footnotesize Climb (20\%)};
+	\node[anchor=north west, inner sep=0pt] at (452.63275,395.88675) {\scriptsize Sleight of Hand (10\%)};
+	\node[anchor=north west, inner sep=0pt] at (452.63275,416.4493125) {\footnotesize Spot Hidden (25\%)};
+	\node[anchor=north west, inner sep=0pt] at (452.63275,437.011875) {\footnotesize Stealth (20\%)};
+	\draw[line width=0.75pt, \curLineColor] (452.63275,466.8489375) -- ++(58,0);
+	\node[anchor=north west, inner sep=0pt] at (510.63275,457.45744375) {\footnotesize (10\%)};\node[anchor=north west, inner sep=0pt] at (452.63275,467.45744375) {\tiny\textcolor{grey_text_color}{Survival}};
+	\node[anchor=north west, inner sep=0pt] at (452.63275,478.137) {\footnotesize Swim (20\%)};
+	\node[anchor=north west, inner sep=0pt] at (452.63275,498.6995625) {\footnotesize Throw (20\%)};
+	\node[anchor=north west, inner sep=0pt] at (452.63275,519.262125) {\footnotesize Track (10\%)};
+	\draw[line width=0.75pt, \curLineColor] (452.63275,549.0991875) -- ++(80,0);
+%	\node[anchor=north west, inner sep=0pt] at (452.63275,600.476) {\footnotesize Fighting (Brawl) (25\%)};
+	\draw[line width=0.75pt, \curLineColor] (452.63275,569.66175) -- ++(80,0);
+%	\node[anchor=north west, inner sep=0pt] at (452.63275,620.598) {\footnotesize Fighting};
+	\draw[line width=0.75pt, \curLineColor] (452.63275,590.2243125) -- ++(80,0);
+%	\node[anchor=north west, inner sep=0pt] at (452.63275,640.720) {\footnotesize Fighting (Brawl) (25\%)};
+	\draw[line width=0.75pt, \curLineColor] (452.63275,610.786875) -- ++(80,0);
+%	\node[anchor=north west, inner sep=0pt] at (452.63275,660.842) {\footnotesize Firearms (20\%)};
+	\draw[line width=0.75pt, \curLineColor] (452.63275,631.3494375) -- ++(80,0);
+%	\node[anchor=north west, inner sep=0pt] at (452.63275,660.842) {\footnotesize Fighting (Brawl) (25\%)};
+	
+	% WEAPONS
+	\node[inner sep=0pt] at (254.0035,649.9055) {\bfseries\huge\HeaderFont{Weapons}};
+	
+	\node[anchor=north west, inner sep=0pt] at (56.706,661.917) {\bfseries\footnotesize Weapon};
+	\node[anchor=north, inner sep=0pt] at (154.493,661.917) {\bfseries\footnotesize Regular};
+	\node[anchor=north, inner sep=0pt] at (188.524,661.917) {\bfseries\footnotesize Hard};
+	\node[anchor=north, inner sep=0pt] at (222.555,661.917) {\bfseries\footnotesize Extreme};
+	\node[anchor=north, inner sep=0pt] at (267.356,661.917) {\bfseries\footnotesize Damage};
+	\node[anchor=north, inner sep=0pt] at (317.111,661.917) {\bfseries\footnotesize Range};
+	\node[anchor=north, inner sep=0pt] at (358.25,661.917) {\bfseries\footnotesize Attacks};
+	\node[anchor=north, inner sep=0pt] at (401.1125,661.917) {\bfseries\footnotesize Ammo};
+	\node[anchor=north, inner sep=0pt] at (443.975,661.917) {\bfseries\footnotesize Malf.};
+	%% LINES
+	\foreach \i in {0,...,5}%
+	{%
+		\pgfmathsetmacro{\vpos}{683.775 + \i * 14.911};
+		\draw[line width=0.75pt, \curLineColor] (56.706,\vpos) -- ++(77.11,0);
+		\draw[line width=0.75pt, \curLineColor] (141.139,\vpos) -- ++(26.708,0);
+		\draw[line width=0.75pt, \curLineColor] (175.17,\vpos) -- ++(26.708,0);
+		\draw[line width=0.75pt, \curLineColor] (209.201,\vpos) -- ++(26.708,0);
+		\draw[line width=0.75pt, \curLineColor] (243.232,\vpos) -- ++(48.248,0);
+		\draw[line width=0.75pt, \curLineColor] (298.803,\vpos) -- ++(36.616,0);
+		\draw[line width=0.75pt, \curLineColor] (342.742,\vpos) -- ++(31.016,0);
+		\draw[line width=0.75pt, \curLineColor] (381.081,\vpos) -- ++(40.063,0);
+		\draw[line width=0.75pt, \curLineColor] (428.467,\vpos) -- ++(31.016,0);
+	}%
+	
+	
+	% COMBAT
+	\node[inner sep=0pt] at (520.815,649.9055) {\bfseries\huge\HeaderFont{Combat}};
+	
+	\node[inner sep=0pt] at (494,674.18) {Damage};
+	\node[inner sep=0pt] at (494.029,684.18) {Bonus};
+	\node[inner sep=0pt] at (494,709.854) {Build};
+	\node[inner sep=0pt] at (494,740.27) {Dodge};
+\end{pageTikZ}

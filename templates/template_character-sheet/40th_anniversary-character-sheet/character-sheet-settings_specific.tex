@@ -1,0 +1,56 @@
+% --------------------------------------------------------------------------------------------------------------- %
+% #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#  CONSTANTS  #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
+% --------------------------------------------------------------------------------------------------------------- %
+\setcounter{MAX_NUMBER_ART_CRAFT}{2}
+\setcounter{MAX_NUMBER_LANGUAGE_OTHER}{3}
+
+\setcounter{MAX_NUMBER_WEAPONS}{4}
+
+\setcounter{MAX_NUMBER_GEAR_POSSESSIONS}{10}
+
+\setcounter{MAX_NUMBER_FELLOW_INVESTIGATORS}{6}
+% --------------------------------------------------------------------------------------------------------------- %
+% #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
+% --------------------------------------------------------------------------------------------------------------- %
+
+\newcommand{\FellowInvestigatorsBackgroundImage}{}
+
+% --------------------------------------------------------------------------------------------------------------- %
+% #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# Update Warnings #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
+% --------------------------------------------------------------------------------------------------------------- %
+
+% --------------------------------------------------------------------------------------------------------------- %
+% #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#  Era-Specific  Changes  #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
+% --------------------------------------------------------------------------------------------------------------- %
+\ExplSyntaxOn
+\ifthenelse{\equal{\l__era_tl}{1920s}}{%
+	\RenewDocumentCommand{\HeaderFont}{m}{\textsc{#1}}
+	
+	\setcounter{CREDIT_RATING_SLOT}{8}
+	\setcounter{CTHULHU_MYTHOS_SLOT}{9}
+	
+	\setcounter{MAX_NUMBER_FIGHTING}{2}
+	\setcounter{MAX_NUMBER_EXTRA}{4}
+	
+	\renewcommand{\FellowInvestigatorsBackgroundImage}{1920s-fellow-investigator.png}
+}{}%
+
+\ifthenelse{\equal{\l__era_tl}{Modern}}{%
+	\RenewDocumentCommand{\HeaderFont}{m}{%
+		\tl_map_inline:nn { #1 }
+		{%
+			\my_if_uppercase:nTF { ##1 }
+				{ \digitalfont{ ##1 } }
+				{ \digitalfont\scalebox{0.8}{\MakeUppercase{##1}} }
+		}%
+	}%
+	
+	\setcounter{CREDIT_RATING_SLOT}{9}
+	\setcounter{CTHULHU_MYTHOS_SLOT}{10}
+	
+	\setcounter{MAX_NUMBER_FIGHTING}{1}
+	\setcounter{MAX_NUMBER_EXTRA}{3}
+	
+	\renewcommand{\FellowInvestigatorsBackgroundImage}{modern-fellow-investigator.png}
+}{}%
+\ExplSyntaxOff

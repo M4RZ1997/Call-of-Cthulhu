@@ -1,0 +1,34 @@
+\begin{pageTikZ}
+	% BACKSTORY
+	%% OUTLINE
+	\draw[line width=0.75pt, \curLineColor] (42.968,33.656) rectangle ++(528.359,365.959);
+	%% HEADER LINE
+	\draw[line width=0.75pt, \curLineColor] (42.968,60.496) rectangle ++(528.359,0);
+	\begin{scope}
+		\draw[clip, draw=none] (43.343,34.021) rectangle ++(528.677,26.09);
+		\pgfmathsetmacro{\vpos}{307.1475 - 200 - \HeaderBackgroundOffset};
+		\node[inner sep=0pt, opacity=\HeaderBackgroundOpacity] at (\vpos , 47.066) {\includegraphics[width=200pt, keepaspectratio]{\PATH/templates/template_character-sheet/original-character-sheet/img/\HeaderBackgroundImage}};
+		\node[inner sep=0pt, opacity=\HeaderBackgroundOpacity] at (307.1475, 47.066) {\includegraphics[width=200pt, keepaspectratio]{\PATH/templates/template_character-sheet/original-character-sheet/img/\HeaderBackgroundImage}};
+		\pgfmathsetmacro{\vpos}{307.1475 + 200 + \HeaderBackgroundOffset};
+		\node[inner sep=0pt, opacity=\HeaderBackgroundOpacity] at (\vpos , 47.066) {\includegraphics[width=200pt, keepaspectratio]{\PATH/templates/template_character-sheet/original-character-sheet/img/\HeaderBackgroundImage}};
+	\end{scope}
+	
+	% PICTURE
+	\draw[line width=0.75pt, \curLineColor] (571.327,33.656) rectangle ++(-84.864,94.448);
+	\begin{scope}
+		\draw[draw=none, clip] (570.952,34.031) rectangle ++(-84.114,93.698);
+		\node[yshift=-5pt, inner sep=0pt] at (528.895,80.88) {\includegraphics[width=84.114pt, keepaspectratio]{\PATH/templates/template_character-sheet/original-character-sheet/img/\BackstoryImage}};
+	\end{scope}
+	
+	% LINES (always visible - after entry name only)
+	\draw[line width=0.75pt, black] (152.346,82.093) -- (300.576,82.093);
+	\draw[line width=0.75pt, black] (343.719,82.093) -- (479.8915,82.093);
+	\draw[line width=0.75pt, black] (140.346,143.441) -- (300.576,143.441);
+	\draw[line width=0.75pt, black] (389.719,143.441) -- (560.988,143.441);
+	\draw[line width=0.75pt, black] (140.346,204.789) -- (300.576,204.789);
+	\draw[line width=0.75pt, black] (399.719,204.789) -- (560.988,204.789);
+	\draw[line width=0.75pt, black] (155.346,266.137) -- (300.576,266.137);
+	\draw[line width=0.75pt, black] (470.719,266.137) -- (560.988,266.137);
+	\draw[line width=0.75pt, black] (160.346,327.485) -- (300.576,327.485);
+	\draw[line width=0.75pt, black] (473.719,327.485) -- (560.988,327.485);
+\end{pageTikZ}
