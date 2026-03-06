@@ -6,17 +6,19 @@
 
 \usepackage{\PATH templates/utilities/m4rz-colors}
 \usepackage{\PATH templates/utilities/m4rz-fonts}
+\usepackage{\PATH templates/utilities/shadowfy}
 
-\usepackage[edition=40th-anniversary]{\PATH /templates/template_character-sheet/character-sheet-stylesheet}
+\usepackage[edition=original, era=1920s]{\PATH /templates/template_character-sheet/character-sheet-stylesheet}
 
 \graphicspath{{./images}}
 
 % --------------------------------------------------------------------------------------------------------------- %
 % #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#  CHARACTER INFORMATION  #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
 % --------------------------------------------------------------------------------------------------------------- %
-\CharacterName{Antony "Big Tony" Luigi}
+\CharacterName{\small Antony "Big Tony" Luigi}
+\PlayerName{Lorenzo}
 \Birthplace{Italy}
-\Pronoun{Mr.}
+\Sex{male}
 \Occupation{Gangster Boss}
 \Residence{New York City}
 \Age{39} % Stat Deduction like age-based appearance or move deductions are automated, however player's choice deductions must be made manually in SCORE MODIFICATIONS
@@ -65,11 +67,14 @@
 \SizeModification{0}
 \EducationModification{0}
 
+% Movement Bonus not included in normal calculations and age reduction (can either be -1, 0, or +1)
+\MovementBonus{0}
+
 \calculateCharacteristicStats{}
 
 % CURRENT VALUES
-\HitPointsCurrent{}
-\MagicPointsCurrent{}
+\HitPointsCurrent{14}
+\MagicPointsCurrent{10}
 \LuckCurrent{44}
 \SanityCurrent{49}
 
@@ -92,8 +97,10 @@
 \AppraiseSkill[T]{5}
 \ArchaeologySkill[]{1}
 
-% Art/Craft Skill (Max Number: 2)
-\ArtCraftSkill[]{}{}
+% Art/Craft Skill
+%% Max Number (original):			3
+%% Max Number (40th-anniversary):	2
+\ArtCraftSkill[]{}{5}
 
 \CharmSkill[]{15}
 \ClimbSkill[]{20}
@@ -106,8 +113,12 @@
 \FastTalkSkill[]{5}
 \BrawlSkill[T]{90}
 
-% Fighting Skill (Max Number: 2)
-%\FightingSkill[]{Jiujitsu}{56}
+% Fighting Skill
+%% Max Number (original):			2
+%% Max Number (40th-anniversary)
+%%%						1920s:		2
+%%%						Modern:		1
+\FightingSkill[]{}{}
 
 \HandgunSkill[T]{99}
 \RifleShotgunSkill[]{25}
@@ -120,10 +131,12 @@
 \IntimidateSkill[T]{60}
 \JumpSkill[]{20}
 
-% Language (Other) Skill (Max Number: 3)
+% Language (Other) Skill
+%% Max Number (original)
+%%%						1920s:		3
+%%%						Modern:		2
+%% Max Number (40th-anniversary):	3
 \LanguageOtherSkill[]{Italian}{30}
-%\LanguageOtherSkill[]{German}{60}
-%\LanguageOtherSkill[]{Swahili}{20}
 
 \LanguageOwnSkill[]{English}{\EducationScoreValue}
 \LawSkill[T]{15}
@@ -138,28 +151,32 @@
 \PersuadeSkill[T]{10}
 
 % Pilot Skill (Max Number: 1)
-\PilotSkill[]{}{}
+\PilotSkill[]{}{1}
 
 \PsychoanalysisSkill[]{1}
 \PsychologySkill[T]{20}
 \RideSkill[]{5}
 
 % Science Skill (Max Number: 3)
-\ScienceSkill[]{}{}
+\ScienceSkill[]{}{1}
 
 \SleightOfHandSkill[]{10}
 \SpotHiddenSkill[T]{25}
 \StealthSkill[]{20}
 
 % Survival Skill (Max Number: 1)
-\SurvivalSkill[]{}{}
+\SurvivalSkill[]{}{10}
 
 \SwimSkill[]{20}
 \ThrowSkill[]{20}
 \TrackSkill[]{10}
 
-% Extra Slots (Max Number: 4)
-%\ExtraSkill[]{}{}
+% Extra Slots
+%% Max Number (original):			5
+%% Max Number (40th-anniversary)
+%%%						1920s:		4
+%%%						Modern:		3
+\ExtraSkill[]{}{}
 % --------------------------------------------------------------------------------------------------------------- %
 % #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#  COMBAT // WEAPONS  #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
 % --------------------------------------------------------------------------------------------------------------- %
@@ -203,8 +220,8 @@
 \PhobiasManias{}
 %% MEANINGFUL LOCATIONS
 \MeaningfulLocations{}
-%% ARCANE TOMES & SPELLS
-\ArcaneTomesSpells{}
+%% ARCANE TOMES, SPELLS & ARTIFACTS
+\ArcaneTomesSpellsArtifacts{}
 %% TREASURED POSSESSIONS
 \TreasuredPossessions{}
 %% ENCOUNTERS WITH STRANGE ENTITIES
@@ -229,14 +246,19 @@
 %% More Information on Assets if required/needed
 \AssetsInformation{}
 
-% FELLOW INVESTIGATORS (Max Number: 6)
-%% \addFellowInvestigator{#1}{#2}
-%%% #1: Character Name
-%%% #2: Player Name
-\addFellowInvestigator{Valerie}{Brian}
-\addFellowInvestigator{Harald}{Marcel}
-\addFellowInvestigator{Joshua}{Marvin}
-\addFellowInvestigator{Martha}{Maura}
+% The max number of fellow investigators that can be displayed is dependent on which character-sheet is in use:
+%% 40th Anniversary:	Max Number 6
+%% Original:			Max Number 8
+%
+% If your number exceeds that value any additional Fellow Investigator is ommitted)
+%% \AddFellowInvestigator[#1]{#2}{#3}
+%%% #2: Character Name
+%%% #3: Player Name
+%%% #4: Additional Information (like Occupation or Personality); only displayed in original version
+\AddFellowInvestigator[Private Eye]{Valerie}{Brian}
+\AddFellowInvestigator[\tiny Big Game Hunter]{Harald}{Marcel}
+\AddFellowInvestigator[Bartender]{Joshua}{Marvin}
+\AddFellowInvestigator[Acrobat]{Martha}{Maura}
 
 \begin{document}
 	% This pagestyle adds the ornament and sets the text geometry based on the chosen character-sheet style

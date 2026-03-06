@@ -6,8 +6,9 @@
 
 \usepackage{\PATH templates/utilities/m4rz-colors}
 \usepackage{\PATH templates/utilities/m4rz-fonts}
+\usepackage{\PATH templates/utilities/shadowfy}
 
-\usepackage[edition=40th-anniversary]{\PATH /templates/template_character-sheet/character-sheet-stylesheet}
+\usepackage[edition=40th-anniversary, era=Modern]{\PATH /templates/template_character-sheet/character-sheet-stylesheet}
 
 \graphicspath{{./images}}
 
@@ -15,8 +16,9 @@
 % #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#  CHARACTER INFORMATION  #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
 % --------------------------------------------------------------------------------------------------------------- %
 \CharacterName{Sveinung Svea}
+\PlayerName{}
 \Birthplace{}
-\Pronoun{}
+\Sex{male}
 \Occupation{Author}
 \Residence{}
 \Age{42} % Stat Deduction like age-based appearance or move deductions are automated, however player's choice deductions must be made manually in SCORE MODIFICATIONS
@@ -64,6 +66,9 @@
 \IntelligenceModification{0}
 \SizeModification{0}
 \EducationModification{10}
+
+% Movement Bonus not included in normal calculations and age reduction (can either be -1, 0, or +1)
+\MovementBonus{0}
 
 \calculateCharacteristicStats{}
 
@@ -161,10 +166,13 @@
 \TrackSkill[]{10}
 
 % Extra Slots (Max Number: 4)
-\ExtraSkill[]{Computer Use}{85}
 \ExtraSkill[]{Science (Physics)}{10}
 \ExtraSkill[]{Language (Greek)}{20}
 \ExtraSkill[]{Language (Latin)}{66}
+
+% Modern only Skills (can only be displayed when the 'Modern' version of the character sheet is used)
+\ComputerUseSkill[]{85}
+\ElectronicsSkill[]{1}
 % --------------------------------------------------------------------------------------------------------------- %
 % #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#  COMBAT // WEAPONS  #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
 % --------------------------------------------------------------------------------------------------------------- %
@@ -211,8 +219,8 @@
 \PhobiasManias{}
 %% MEANINGFUL LOCATIONS
 \MeaningfulLocations{}
-%% ARCANE TOMES & SPELLS
-\ArcaneTomesSpells{}
+%% ARCANE TOMES, SPELLS & ARTIFACTS
+\ArcaneTomesSpellsArtifacts{}
 %% TREASURED POSSESSIONS
 \TreasuredPossessions{A fake copy of the Book of Eibon, two pages (alleged) to have been taken from a copy of Al Azif.}
 %% ENCOUNTERS WITH STRANGE ENTITIES
@@ -231,11 +239,16 @@
 %% More Information on Assets if required/needed
 \AssetsInformation{}
 
-% FELLOW INVESTIGATORS (Max Number: 6)
-%% \addFellowInvestigator{#1}{#2}
-%%% #1: Character Name
-%%% #2: Player Name
-%\addFellowInvestigator{Phteven}{Steve}
+% The max number of fellow investigators that can be displayed is dependent on which character-sheet is in use:
+%% 40th Anniversary:	Max Number 6
+%% Original:			Max Number 8
+%
+% If your number exceeds that value any additional Fellow Investigator is ommitted)
+%% \AddFellowInvestigator[#1]{#2}{#3}
+%%% #2: Character Name
+%%% #3: Player Name
+%%% #4: Additional Information (like Occupation or Personality); only displayed in original version
+%\AddFellowInvestigator[Occupation A]{Fellow A}{Player A}
 
 \begin{document}
 	% This pagestyle adds the ornament and sets the text geometry based on the chosen character-sheet style

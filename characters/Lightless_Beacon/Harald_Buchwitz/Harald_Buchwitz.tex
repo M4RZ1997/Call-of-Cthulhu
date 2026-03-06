@@ -6,8 +6,9 @@
 
 \usepackage{\PATH templates/utilities/m4rz-colors}
 \usepackage{\PATH templates/utilities/m4rz-fonts}
+\usepackage{\PATH templates/utilities/shadowfy}
 
-\usepackage[edition=40th-anniversary]{\PATH /templates/template_character-sheet/character-sheet-stylesheet}
+\usepackage[edition=original, era=1920s]{\PATH /templates/template_character-sheet/character-sheet-stylesheet}
 
 \graphicspath{{./images}}
 
@@ -15,8 +16,9 @@
 % #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#  CHARACTER INFORMATION  #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
 % --------------------------------------------------------------------------------------------------------------- %
 \CharacterName{Harald Buchwitz}
+\PlayerName{M4RZ}
 \Birthplace{Stuckenborstel}
-\Pronoun{Mr.}
+\Sex{male}
 \Occupation{Big Game Hunter}
 \Residence{Worcester, MA}
 \Age{40} % Stat Deduction like age-based appearance or move deductions are automated, however player's choice deductions must be made manually in SCORE MODIFICATIONS
@@ -65,11 +67,14 @@
 \SizeModification{0}
 \EducationModification{9}
 
+% Movement Bonus not included in normal calculations and age reduction (can either be -1, 0, or +1)
+\MovementBonus{0}
+
 \calculateCharacteristicStats{}
 
 % CURRENT VALUES
-\HitPointsCurrent{}
-\MagicPointsCurrent{}
+\HitPointsCurrent{14}
+\MagicPointsCurrent{12}
 \LuckCurrent{77}
 \SanityCurrent{59}
 
@@ -92,7 +97,9 @@
 \AppraiseSkill[]{5}
 \ArchaeologySkill[]{1}
 
-% Art/Craft Skill (Max Number: 2)
+% Art/Craft Skill
+%% Max Number (original):			3
+%% Max Number (40th-anniversary):	2
 \ArtCraftSkill[]{Taxidermy}{5}
 
 \CharmSkill[]{15}
@@ -106,8 +113,12 @@
 \FastTalkSkill[]{5}
 \BrawlSkill[]{57}
 
-% Fighting Skill (Max Number: 2)
-%\FightingSkill[]{Jiujitsu}{56}
+% Fighting Skill
+%% Max Number (original):			2
+%% Max Number (40th-anniversary)
+%%%						1920s:		2
+%%%						Modern:		1
+\FightingSkill[]{}{}
 
 \HandgunSkill[]{57}
 \RifleShotgunSkill[]{82}
@@ -120,10 +131,12 @@
 \IntimidateSkill[]{15}
 \JumpSkill[]{40}
 
-% Language (Other) Skill (Max Number: 3)
+% Language (Other) Skill
+%% Max Number (original)
+%%%						1920s:		3
+%%%						Modern:		2
+%% Max Number (40th-anniversary):	3
 \LanguageOtherSkill[]{English}{25}
-%\LanguageOtherSkill[]{German}{60}
-%\LanguageOtherSkill[]{Swahili}{20}
 
 \LanguageOwnSkill[]{German}{\EducationScoreValue}
 \LawSkill[]{5}
@@ -158,8 +171,17 @@
 \ThrowSkill[]{60}
 \TrackSkill[]{57}
 
-% Extra Slots (Max Number: 4)
-%\ExtraSkill[]{}{}
+% Extra Slots
+%% Max Number (original):			5
+%% Max Number (40th-anniversary)
+%%%						1920s:		4
+%%%						Modern:		3
+\ExtraSkill[]{}{}
+
+% Modern only Skills (can only be displayed when the 'Modern' version of the character sheet is used)
+\ComputerUseSkill[]{5}
+\ElectronicsSkill[]{1}
+\OperateHeavyMachineSkill[]{1}
 % --------------------------------------------------------------------------------------------------------------- %
 % #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#  COMBAT // WEAPONS  #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
 % --------------------------------------------------------------------------------------------------------------- %
@@ -208,8 +230,8 @@
 \PhobiasManias{}
 %% MEANINGFUL LOCATIONS
 \MeaningfulLocations{Honeypot Brewery in Boston, MA, the brewery he helped to build in America\\Moose Hill Wildlife Preserve, Worcester MA}
-%% ARCANE TOMES & SPELLS
-\ArcaneTomesSpells{}
+%% ARCANE TOMES, SPELLS & ARTIFACTS
+\ArcaneTomesSpellsArtifacts{}
 %% TREASURED POSSESSIONS
 \TreasuredPossessions{Trophy Necklace, made from the very first Deer Shed he found as a kid\\Bowie Knife, a heritage item from his grandfather}
 %% ENCOUNTERS WITH STRANGE ENTITIES
@@ -234,14 +256,19 @@
 %% More Information on Assets if required/needed
 \AssetsInformation{A small cottage in the hills near Worcester with many displayed, taxidermied big and small game}
 
-% FELLOW INVESTIGATORS (Max Number: 6)
-%% \addFellowInvestigator{#1}{#2}
-%%% #1: Character Name
-%%% #2: Player Name
-\addFellowInvestigator{Valerie}{Brian}
-\addFellowInvestigator{Big Tony}{Lorenzo}
-\addFellowInvestigator{Joshua}{Marvin}
-\addFellowInvestigator{Martha}{Maura}
+% The max number of fellow investigators that can be displayed is dependent on which character-sheet is in use:
+%% 40th Anniversary:	Max Number 6
+%% Original:			Max Number 8
+%
+% If your number exceeds that value any additional Fellow Investigator is ommitted)
+%% \AddFellowInvestigator[#1]{#2}{#3}
+%%% #2: Character Name
+%%% #3: Player Name
+%%% #4: Additional Information (like Occupation or Personality); only displayed in original version
+\AddFellowInvestigator[Private Eye]{Valerie}{Brian}
+\AddFellowInvestigator[Gangster Boss]{Big Tony}{Lorenzo}
+\AddFellowInvestigator[Bartender]{Joshua}{Marvin}
+\AddFellowInvestigator[Acrobat]{Martha}{Maura}
 
 \begin{document}
 	% This pagestyle adds the ornament and sets the text geometry based on the chosen character-sheet style

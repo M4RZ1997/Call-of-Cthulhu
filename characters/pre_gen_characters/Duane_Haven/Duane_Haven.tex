@@ -6,8 +6,9 @@
 
 \usepackage{\PATH templates/utilities/m4rz-colors}
 \usepackage{\PATH templates/utilities/m4rz-fonts}
+\usepackage{\PATH templates/utilities/shadowfy}
 
-\usepackage[edition=40th-anniversary]{\PATH /templates/template_character-sheet/character-sheet-stylesheet}
+\usepackage[edition=40th-anniversary, era=1920s]{\PATH /templates/template_character-sheet/character-sheet-stylesheet}
 
 \graphicspath{{./images}}
 
@@ -15,8 +16,9 @@
 % #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#  CHARACTER INFORMATION  #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
 % --------------------------------------------------------------------------------------------------------------- %
 \CharacterName{Duane Haven}
+\PlayerName{}
 \Birthplace{Central Africa}
-\Pronoun{Mr.}
+\Sex{male}
 \Occupation{Lion Tamer}
 \Residence{Circus}
 \Age{40} % Stat Deduction like age-based appearance or move deductions are automated, however player's choice deductions must be made manually in SCORE MODIFICATIONS
@@ -64,6 +66,9 @@
 \IntelligenceModification{0}
 \SizeModification{0}
 \EducationModification{15}
+
+% Movement Bonus not included in normal calculations and age reduction (can either be -1, 0, or +1)
+\MovementBonus{0}
 
 \calculateCharacteristicStats{}
 
@@ -206,8 +211,8 @@
 \PhobiasManias{}
 %% MEANINGFUL LOCATIONS
 \MeaningfulLocations{New Orleans and Central Africa.}
-%% ARCANE TOMES & SPELLS
-\ArcaneTomesSpells{}
+%% ARCANE TOMES, SPELLS & ARTIFACTS
+\ArcaneTomesSpellsArtifacts{}
 %% TREASURED POSSESSIONS
 \TreasuredPossessions{A set of four, native African statuettes he was given by an African witch doctor.}
 %% ENCOUNTERS WITH STRANGE ENTITIES
@@ -226,11 +231,16 @@
 %% More Information on Assets if required/needed
 \AssetsInformation{}
 
-% FELLOW INVESTIGATORS (Max Number: 6)
-%% \addFellowInvestigator{#1}{#2}
-%%% #1: Character Name
-%%% #2: Player Name
-%\addFellowInvestigator{Phteven}{Steve}
+% The max number of fellow investigators that can be displayed is dependent on which character-sheet is in use:
+%% 40th Anniversary:	Max Number 6
+%% Original:			Max Number 8
+%
+% If your number exceeds that value any additional Fellow Investigator is ommitted)
+%% \AddFellowInvestigator[#1]{#2}{#3}
+%%% #2: Character Name
+%%% #3: Player Name
+%%% #4: Additional Information (like Occupation or Personality); only displayed in original version
+%\AddFellowInvestigator[Occupation A]{Fellow A}{Player A}
 
 \begin{document}
 	% This pagestyle adds the ornament and sets the text geometry based on the chosen character-sheet style

@@ -6,8 +6,9 @@
 
 \usepackage{\PATH templates/utilities/m4rz-colors}
 \usepackage{\PATH templates/utilities/m4rz-fonts}
+\usepackage{\PATH templates/utilities/shadowfy}
 
-\usepackage[edition=40th-anniversary]{\PATH /templates/template_character-sheet/character-sheet-stylesheet}
+\usepackage[edition=40th-anniversary, era=Modern]{\PATH /templates/template_character-sheet/character-sheet-stylesheet}
 
 \graphicspath{{./images}}
 
@@ -15,8 +16,9 @@
 % #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#  CHARACTER INFORMATION  #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
 % --------------------------------------------------------------------------------------------------------------- %
 \CharacterName{Henry Talotap}
+\PlayerName{}
 \Birthplace{Boston}
-\Pronoun{Mr.}
+\Sex{male}
 \Occupation{Anthropologist}
 \Residence{Rift Valley}
 \Age{39} % Stat Deduction like age-based appearance or move deductions are automated, however player's choice deductions must be made manually in SCORE MODIFICATIONS
@@ -64,6 +66,9 @@
 \IntelligenceModification{0}
 \SizeModification{0}
 \EducationModification{5}
+
+% Movement Bonus not included in normal calculations and age reduction (can either be -1, 0, or +1)
+\MovementBonus{0}
 
 \calculateCharacteristicStats{}
 
@@ -162,6 +167,10 @@
 
 % Extra Slots (Max Number: 4)
 \ExtraSkill[]{Science (Zoology)}{15}
+
+% Modern only Skills (can only be displayed when the 'Modern' version of the character sheet is used)
+\ComputerUseSkill[]{5}
+\ElectronicsSkill[]{1}
 % --------------------------------------------------------------------------------------------------------------- %
 % #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#  COMBAT // WEAPONS  #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
 % --------------------------------------------------------------------------------------------------------------- %
@@ -204,8 +213,8 @@ During the mission, Talotap was instrumental in not only gaining the trust of th
 \PhobiasManias{}
 %% MEANINGFUL LOCATIONS
 \MeaningfulLocations{Rift Valley, East Africa, and Boston, New England.}
-%% ARCANE TOMES & SPELLS
-\ArcaneTomesSpells{}
+%% ARCANE TOMES, SPELLS & ARTIFACTS
+\ArcaneTomesSpellsArtifacts{}
 %% TREASURED POSSESSIONS
 \TreasuredPossessions{A strangely deformed, skull found in North Africa, defying any known scientific identify cation - Talotap is convinced this represents mankind's "missing link".}
 %% ENCOUNTERS WITH STRANGE ENTITIES
@@ -224,11 +233,16 @@ During the mission, Talotap was instrumental in not only gaining the trust of th
 %% More Information on Assets if required/needed
 \AssetsInformation{}
 
-% FELLOW INVESTIGATORS (Max Number: 6)
-%% \addFellowInvestigator{#1}{#2}
-%%% #1: Character Name
-%%% #2: Player Name
-%\addFellowInvestigator{Phteven}{Steve}
+% The max number of fellow investigators that can be displayed is dependent on which character-sheet is in use:
+%% 40th Anniversary:	Max Number 6
+%% Original:			Max Number 8
+%
+% If your number exceeds that value any additional Fellow Investigator is ommitted)
+%% \AddFellowInvestigator[#1]{#2}{#3}
+%%% #2: Character Name
+%%% #3: Player Name
+%%% #4: Additional Information (like Occupation or Personality); only displayed in original version
+%\AddFellowInvestigator[Occupation A]{Fellow A}{Player A}
 
 \begin{document}
 	% This pagestyle adds the ornament and sets the text geometry based on the chosen character-sheet style
