@@ -6,8 +6,12 @@
 
 \usepackage{\PATH templates/utilities/m4rz-colors}
 \usepackage{\PATH templates/utilities/m4rz-fonts}
+\usepackage{\PATH templates/utilities/shadowfy}
 
-\usepackage[edition=40th-anniversary]{\PATH /templates/template_character-sheet/character-sheet-stylesheet}
+% Provided Options (defaults: edition=original, era=1920s)
+%% edition: {40th-anniversary, original}
+%% era:		{1920s, Modern}
+\usepackage[edition=original, era=1920s]{\PATH /templates/template_character-sheet/character-sheet-stylesheet}
 
 \graphicspath{{./images}}
 
@@ -15,8 +19,9 @@
 % #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#  CHARACTER INFORMATION  #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
 % --------------------------------------------------------------------------------------------------------------- %
 \CharacterName{}
+\PlayerName{}
 \Birthplace{}
-\Pronoun{}
+\Sex{}
 \Occupation{}
 \Residence{}
 \Age{20} % Stat Deduction like age-based appearance or move deductions are automated, however player's choice deductions must be made manually in SCORE MODIFICATIONS
@@ -65,6 +70,9 @@
 \SizeModification{0}
 \EducationModification{0}
 
+% Movement Bonus not included in normal calculations and age reduction (can either be -1, 0, or +1)
+\MovementBonus{0}
+
 \calculateCharacteristicStats{}
 
 % CURRENT VALUES
@@ -92,8 +100,10 @@
 \AppraiseSkill[]{5}
 \ArchaeologySkill[]{1}
 
-% Art/Craft Skill (Max Number: 2)
-%\ArtCraftSkill[]{}{}
+% Art/Craft Skill
+%% Max Number (original):			3
+%% Max Number (40th-anniversary):	2
+\ArtCraftSkill[]{}{5}
 
 \CharmSkill[]{15}
 \ClimbSkill[]{20}
@@ -106,24 +116,30 @@
 \FastTalkSkill[]{5}
 \BrawlSkill[]{25}
 
-% Fighting Skill (Max Number: 2)
-%\FightingSkill[]{Jiujitsu}{56}
+% Fighting Skill
+%% Max Number (original):			2
+%% Max Number (40th-anniversary)
+%%%						1920s:		2
+%%%						Modern:		1
+\FightingSkill[]{}{}
 
 \HandgunSkill[]{20}
 \RifleShotgunSkill[]{25}
 
 % Firearm Skill (Max Number: 1)
-%\FirearmsSkill[]{Firearms (Bow)}{50}
+\FirearmsSkill[]{}{}
 
 \FirstAidSkill[]{30}
 \HistorySkill[]{5}
 \IntimidateSkill[]{15}
 \JumpSkill[]{20}
 
-% Language (Other) Skill (Max Number: 3)
-%\LanguageOtherSkill[]{Afrikaans}{10}
-%\LanguageOtherSkill[]{German}{60}
-%\LanguageOtherSkill[]{Swahili}{20}
+% Language (Other) Skill
+%% Max Number (original)
+%%%						1920s:		3
+%%%						Modern:		2
+%% Max Number (40th-anniversary):	3
+\LanguageOtherSkill[]{}{1}
 
 \LanguageOwnSkill[]{English}{\EducationScoreValue}
 \LawSkill[]{5}
@@ -138,28 +154,36 @@
 \PersuadeSkill[]{10}
 
 % Pilot Skill (Max Number: 1)
-%\PilotSkill[]{Submarine}{1}
+\PilotSkill[]{}{1}
 
 \PsychoanalysisSkill[]{1}
 \PsychologySkill[]{10}
 \RideSkill[]{5}
 
 % Science Skill (Max Number: 3)
-%\ScienceSkill[]{Chemistry}{1}
+\ScienceSkill[]{}{1}
 
 \SleightOfHandSkill[]{10}
 \SpotHiddenSkill[]{25}
 \StealthSkill[]{20}
 
 % Survival Skill (Max Number: 1)
-%\SurvivalSkill[]{Outdoor}{10}
+\SurvivalSkill[]{}{10}
 
 \SwimSkill[]{20}
 \ThrowSkill[]{20}
 \TrackSkill[]{10}
 
-% Extra Slots (Max Number: 4)
-%\ExtraSkill[]{}{}
+% Extra Slots
+%% Max Number (original):			5
+%% Max Number (40th-anniversary)
+%%%						1920s:		4
+%%%						Modern:		3
+\ExtraSkill[]{}{}
+
+% Modern only Skills (can only be displayed when the 'Modern' version of the character sheet is used)
+\ComputerUseSkill[]{5}
+\ElectronicsSkill[]{1}
 % --------------------------------------------------------------------------------------------------------------- %
 % #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#  COMBAT // WEAPONS  #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+# %
 % --------------------------------------------------------------------------------------------------------------- %
@@ -202,14 +226,18 @@
 \PhobiasManias{}
 %% MEANINGFUL LOCATIONS
 \MeaningfulLocations{}
-%% ARCANE TOMES & SPELLS
-\ArcaneTomesSpells{}
+%% ARCANE TOMES, SPELLS & ARTIFACTS
+\ArcaneTomesSpellsArtifacts{}
 %% TREASURED POSSESSIONS
 \TreasuredPossessions{}
 %% ENCOUNTERS WITH STRANGE ENTITIES
 \StrangeEntitiesEncounters{}
 
-% GEAR & POSSESSIONS (Max Number: 10)
+% The max number of gear & possessions that can be displayed is dependent on which character-sheet is in use:
+%% 40th Anniversary:	Max Number 10
+%% Original:			Max Number 20
+%
+% If your number exceeds that value any additional Gear/Possession is ommitted)
 \addGearOrPossessions{}
 
 % WEALTH
@@ -222,11 +250,16 @@
 %% More Information on Assets if required/needed
 \AssetsInformation{}
 
-% FELLOW INVESTIGATORS (Max Number: 6)
-%% \addFellowInvestigator{#1}{#2}
-%%% #1: Character Name
-%%% #2: Player Name
-%\addFellowInvestigator{Phteven}{Steve}
+% The max number of fellow investigators that can be displayed is dependent on which character-sheet is in use:
+%% 40th Anniversary:	Max Number 6
+%% Original:			Max Number 8
+%
+% If your number exceeds that value any additional Fellow Investigator is ommitted)
+%% \AddFellowInvestigator[#1]{#2}{#3}
+%%% #2: Character Name
+%%% #3: Player Name
+%%% #4: Additional Information (like Occupation or Personality); only displayed in original version
+\AddFellowInvestigator[Occupation A]{Fellow A}{Player A}
 
 \begin{document}
 	% This pagestyle adds the ornament and sets the text geometry based on the chosen character-sheet style
